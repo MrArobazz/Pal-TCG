@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">PalTCG</string>
     <string name="app_logo_content_description">Logo de l\'application sur la page d\'accueil</string>
-    <string name="edittext_username_hints">Entrez un pseudo...</string>
+    <string name="edittext_username_hints">Entrez un pseudo…</string>
     <string name="button_rules_text">REGLES</string>
     <string name="button_exit_text">QUITTER</string>
 </resources>
