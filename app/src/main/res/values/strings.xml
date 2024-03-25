@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PalTCG</string>
+    <string name="app_logo_content_description">Application logo on homepage</string>
+    <string name="edittext_username_hints">Enter a username…</string>
+    <string name="button_rules_text">RULES</string>
+    <string name="button_exit_text">EXIT</string>
 </resources>
