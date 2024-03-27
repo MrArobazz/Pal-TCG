@@ -5,4 +5,9 @@
     <string name="edittext_username_hints">Entrez un pseudo…</string>
     <string name="button_rules_text">REGLES</string>
     <string name="button_exit_text">QUITTER</string>
+    <string name="textView_title_text">Création de compte</string>
+    <string name="textView_genderTitle">Choisir un genre</string>
+    <string name="textView_pictureTitle">Choisir une photo de profil</string>
+    <string name="textView_genDeckTitle_text">Générer un deck</string>
+    <string name="button_validate_text">S\'INSCRIRE</string>
 </resources>

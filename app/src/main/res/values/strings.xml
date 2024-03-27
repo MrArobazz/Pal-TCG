@@ -4,4 +4,10 @@
     <string name="edittext_username_hints">Enter a username…</string>
     <string name="button_rules_text">RULES</string>
     <string name="button_exit_text">EXIT</string>
+    <string name="textView_title_text">Profile creation</string>
+    <string name="textView_username_text" translatable="false">[USERNAME]</string>
+    <string name="textView_genderTitle">Choose a gender</string>
+    <string name="textView_pictureTitle">Choose a profile picture</string>
+    <string name="textView_genDeckTitle_text">Generate a deck</string>
+    <string name="button_validate_text">SIGN UP</string>
 </resources>
