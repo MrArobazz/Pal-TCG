@@ -36,6 +36,8 @@
         android:id="@+id/button_rules"
         android:layout_width="114dp"
         android:layout_height="63dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         android:onClick="goSignUpView"
         android:text="@string/button_rules_text"
         app:layout_constraintBottom_toTopOf="@+id/button_exit"
@@ -47,9 +49,10 @@
         android:id="@+id/button_exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/button_exit_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
