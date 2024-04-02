@@ -82,4 +82,5 @@
         <item>Aspicot</item>
         <item>Électhor</item>
     </string-array>
+    <string name="need_to_create_a_account">CREER UN PROFIL</string>
 </resources>

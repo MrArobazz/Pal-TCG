@@ -17,18 +17,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pok_mon_trading_card_game_logo_svg" />
 
-    <EditText
-        android:id="@+id/editText_username"
-        android:layout_width="244dp"
-        android:layout_height="66dp"
+    <include
+        android:id="@+id/include_accountRow"
+        layout="@layout/account_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
-        android:autofillHints="username"
-        android:ems="10"
-        android:hint="@string/edittext_username_hints"
-        android:inputType="text"
-        android:textColorHint="#555151"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_logo" />
 
@@ -38,18 +33,18 @@
         android:layout_height="63dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
-        android:onClick="goSignUpView"
         android:text="@string/button_rules_text"
         app:layout_constraintBottom_toTopOf="@+id/button_exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_username" />
+        app:layout_constraintTop_toBottomOf="@+id/include_accountRow" />
 
     <Button
         android:id="@+id/button_exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:onClick="leaveApp"
         android:text="@string/button_exit_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -10,6 +10,7 @@
     <string name="textView_pictureTitle">Choose a profile picture</string>
     <string name="textView_genDeckTitle_text">Generate a deck</string>
     <string name="button_validate_text">SIGN UP</string>
+    <string name="need_to_create_a_account">CREATE PROFILE</string>
 
     <string-array name="pokemon_names">
         <item>Abra</item>

@@ -36,13 +36,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_title"
         app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:id="@+id/textView_username"
+        <EditText
+            android:id="@+id/editTextText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/textView_username_text"
-            android:textAlignment="center" />
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:hint="@string/edittext_username_hints"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -55,7 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/textView_genderTitle"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
 
         <RadioGroup
             android:id="@+id/radioGroup_gender"
@@ -66,7 +73,7 @@
 
             <RadioButton
                 android:id="@+id/radioButton_genderMale"
-                android:layout_width="150dp"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/brice"
                 android:button="@null"
@@ -79,7 +86,7 @@
 
             <RadioButton
                 android:id="@+id/radioButton_genderFemale"
-                android:layout_width="150dp"
+                android:layout_width="135dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/flora"
                 android:button="@null" />
@@ -96,7 +103,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/textView_pictureTitle"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/linearLayoutH_pics1"
@@ -221,7 +229,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/textView_genDeckTitle_text"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/imageButton_genDeck"
