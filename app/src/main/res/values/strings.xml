@@ -10,4 +10,76 @@
     <string name="textView_pictureTitle">Choose a profile picture</string>
     <string name="textView_genDeckTitle_text">Generate a deck</string>
     <string name="button_validate_text">SIGN UP</string>
+
+    <string-array name="pokemon_names">
+        <item>Abra</item>
+        <item>Alakazam</item>
+        <item>Arcanine</item>
+        <item>Beedrill</item>
+        <item>Blastoise</item>
+        <item>Bulbasaur</item>
+        <item>Caterpie</item>
+        <item>Chansey</item>
+        <item>Charizard</item>
+        <item>Charmander</item>
+        <item>Charmeleon</item>
+        <item>Clefairy</item>
+        <item>Dewgong</item>
+        <item>Diglett</item>
+        <item>Doduo</item>
+        <item>Dragonair</item>
+        <item>Dratini</item>
+        <item>Drowzee</item>
+        <item>Dugtrio</item>
+        <item>Electabuzz</item>
+        <item>Electrode</item>
+        <item>Farfetch\'d</item>
+        <item>Gastly</item>
+        <item>Growlithe</item>
+        <item>Gyarados</item>
+        <item>Haunter</item>
+        <item>Hitmonchan</item>
+        <item>Ivysaur</item>
+        <item>Jynx</item>
+        <item>Kadabra</item>
+        <item>Kakuna</item>
+        <item>Koffing</item>
+        <item>Machamp</item>
+        <item>Machoke</item>
+        <item>Machop</item>
+        <item>Magikarp</item>
+        <item>Magmar</item>
+        <item>Magnemite</item>
+        <item>Magneton</item>
+        <item>Metapod</item>
+        <item>Mewtwo</item>
+        <item>Nidoking</item>
+        <item>Nidoran</item>
+        <item>Nidorino</item>
+        <item>Ninetales</item>
+        <item>Onix</item>
+        <item>Pidgeotto</item>
+        <item>Pidgey</item>
+        <item>Pikachu</item>
+        <item>Poliwag</item>
+        <item>Poliwhirl</item>
+        <item>Poliwrath</item>
+        <item>Ponyta</item>
+        <item>Porygon</item>
+        <item>Raichu</item>
+        <item>Raticate</item>
+        <item>Rattata</item>
+        <item>Sandshrew</item>
+        <item>Seel</item>
+        <item>Squirtle</item>
+        <item>Starmie</item>
+        <item>Staryu</item>
+        <item>Tangela</item>
+        <item>Venusaur</item>
+        <item>Voltorb</item>
+        <item>Vulpix</item>
+        <item>Wartortle</item>
+        <item>Weedle</item>
+        <item>Zapdos</item>
+    </string-array>
 </resources>

@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(10);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
-        
 
     }
 

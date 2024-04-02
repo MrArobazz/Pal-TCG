@@ -230,6 +230,7 @@
             android:layout_weight="1"
             android:background="@drawable/roundshapebutton"
             android:importantForAccessibility="no"
+            android:onClick="goSeeDeckView"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/p9488_290_85568_03" />
 

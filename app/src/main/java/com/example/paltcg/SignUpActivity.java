@@ -1,7 +1,9 @@
 package com.example.paltcg;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,5 +24,12 @@ public class SignUpActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(10);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
+    }
+
+    public void goSeeDeckView(android.view.View v) {
+        Log.i("TAG", "goSeeDeckView: begin");
+        Intent intent = new Intent(this, DecksActivity.class);
+        startActivity(intent);
+        Log.i("TAG", "goSeeDeckView: end");
     }
 }
