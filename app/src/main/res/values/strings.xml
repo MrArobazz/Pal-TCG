@@ -11,6 +11,8 @@
     <string name="textView_genDeckTitle_text">Generate a deck</string>
     <string name="button_validate_text">SIGN UP</string>
     <string name="need_to_create_a_account">CREATE PROFILE</string>
+    <string name="ask_to_delete">Are you sure you want to delete this account?</string>
+    <string name="ask_to_delete_title">Delete account</string>
 
     <string-array name="pokemon_names">
         <item>Abra</item>

@@ -10,9 +10,9 @@ public class User implements Parcelable {
     Boolean gender; // false : male, true : female
     Integer profilePicId;
 
-    int[] cardsIds;
+    int[] cardsIds = new int[]{};
 
-    int[] deckCardsIds;
+    int[] deckCardsIds = new int[]{};
 
     public User() {}
 
@@ -73,5 +73,9 @@ public class User implements Parcelable {
 
     public Integer getProfilePicId() {
         return profilePicId;
+    }
+
+    public int getNbCards() {
+        return cardsIds.length;
     }
 }

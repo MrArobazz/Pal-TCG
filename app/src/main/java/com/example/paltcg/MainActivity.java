@@ -1,6 +1,7 @@
 package com.example.paltcg;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.AnimationDrawable;
@@ -73,18 +74,22 @@ public class MainActivity extends AppCompatActivity {
                                 );
                                 profilePicsIds.recycle();
 
-
                                 accountUsername.setText(user.getUsername());
                                 findViewById(R.id.textView_completion).setVisibility(View.VISIBLE);
+
+                                String toDisplay = user.getNbCards() + "/69";
+                                completion.setText(toDisplay);
                             }
                         }
                     }
             );
         }
 
-        ImageButton btn = findViewById(R.id.imageButton_playOrCreate);
+        ImageButton btnPlayOrCreate = findViewById(R.id.imageButton_playOrCreate);
+        btnPlayOrCreate.setOnClickListener(this::playOrSignUp);
 
-        btn.setOnClickListener(this::playOrSignUp);
+        ImageButton btnDelete = findViewById(R.id.imageButton_deleteAccount);
+        btnDelete.setOnClickListener(this::deleteAccount);
 
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
@@ -93,6 +98,27 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.start();
 
         playMusic();
+    }
+
+    private void deleteAccount(View view) {
+        if (user != null) {
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle(R.string.ask_to_delete_title);
+            alert.setMessage(R.string.ask_to_delete);
+            alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                user = null;
+                profilePic.setImageDrawable(null);
+                profilePic.setVisibility(View.GONE);
+                accountUsername.setText(R.string.need_to_create_a_account);
+                completion.setText("");
+                completion.setVisibility(View.GONE);
+            });
+
+            alert.setNegativeButton(android.R.string.no, (dialog, which) -> dialog.cancel());
+
+            alert.show();
+        }
     }
 
     @Override
