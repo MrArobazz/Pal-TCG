@@ -111,4 +111,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
         System.exit(0);
     }
+    public void goHome(android.view.View v) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
 }

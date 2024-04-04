@@ -13,7 +13,19 @@
         android:theme="@style/Theme.PalTCG"
         tools:targetApi="31">
         <activity
+            android:name=".Arena_2_Activity"
+            android:exported="false" />
+        <activity
             android:name=".DecksActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Arena_1_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ArenaChoiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
