@@ -2,11 +2,13 @@ package com.example.paltcg;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,28 +17,39 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.paltcg.dataclasses.User;
+
 public class MainActivity extends AppCompatActivity {
 
     MediaPlayer mainTheme;
     ActivityResultLauncher<Intent> signUpActivityResultLauncher;
-    Boolean accountExists = false;
 
-    Integer profilePicId;
-    String profileUsername;
-    Integer gender; //0 for male, 1 for female
+    User user;
 
+    TypedArray profilePicsIds;
+
+
+    // Widgets
+
+    ImageView profilePic;
+    TextView accountUsername;
+    TextView completion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
+        // Widgets
+        profilePic = findViewById(R.id.imageView_profilePic);
+        accountUsername = findViewById(R.id.textView_accountUsername);
+        completion = findViewById(R.id.textView_completion);
+
         //TODO: check si sauvegarde existante ou non
-        if (!accountExists) {
-            findViewById(R.id.imageView_profilePic).setVisibility(View.GONE);
-            TextView text = findViewById(R.id.textView_accountUsername);
-            text.setText(R.string.need_to_create_a_account);
-            findViewById(R.id.textView_completion).setVisibility(View.GONE);
+        if (user == null) {
+            profilePic.setVisibility(View.GONE);
+            accountUsername.setText(R.string.need_to_create_a_account);
+            completion.setVisibility(View.GONE);
 
             signUpActivityResultLauncher = registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
@@ -46,21 +59,22 @@ public class MainActivity extends AppCompatActivity {
                             Log.i("TAG", "onActivityResult: received result ok");
                             Intent resultDatas = result.getData();
                             if (resultDatas != null) {
-
                                 Log.i("TAG", "onActivityResult: received something");
-                                profilePicId = resultDatas.getIntExtra("profile_pic_id", 0);
-                                profileUsername = resultDatas.getStringExtra("profile_username");
-                                gender = resultDatas.getIntExtra("profile_gender", 0);
-                                Log.i("TAG", "onActivityResult: get those infos : " + profilePicId + " " + profileUsername + " " + gender);
+                                user = resultDatas.getParcelableExtra("the_user");
+                                assert user != null;
+                                Log.i("TAG", "onActivityResult: get those infos : " + user.getUsername() + " " + user.getProfilePicId() + " " + user.getGender());
 
                                 ImageView profilePic = findViewById(R.id.imageView_profilePic);
                                 profilePic.setVisibility(View.VISIBLE);
-                                profilePic.setImageResource(getResources()
-                                        .obtainTypedArray(R.array.profils_pics_ids)
-                                        .getResourceId(profilePicId-1,0));
 
-                                TextView text1 = findViewById(R.id.textView_accountUsername);
-                                text1.setText(profileUsername);
+                                profilePicsIds = getResources().obtainTypedArray(R.array.profils_pics_ids);
+                                profilePic.setImageResource(
+                                        profilePicsIds.getResourceId(user.getProfilePicId(), 0)
+                                );
+                                profilePicsIds.recycle();
+
+
+                                accountUsername.setText(user.getUsername());
                                 findViewById(R.id.textView_completion).setVisibility(View.VISIBLE);
                             }
                         }
@@ -68,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
             );
         }
 
+        ImageButton btn = findViewById(R.id.imageButton_playOrCreate);
 
+        btn.setOnClickListener(this::playOrSignUp);
 
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
@@ -91,9 +107,16 @@ public class MainActivity extends AppCompatActivity {
         stopMusic();
     }
 
-    public void goSignUpView(android.view.View v) {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        signUpActivityResultLauncher.launch(intent);
+    public void playOrSignUp(android.view.View v) {
+        Intent intent;
+        if (user == null) {
+            intent = new Intent(this, SignUpActivity.class);
+            signUpActivityResultLauncher.launch(intent);
+        }
+        else {
+            intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void playMusic() {
@@ -110,9 +133,5 @@ public class MainActivity extends AppCompatActivity {
     public void leaveApp(android.view.View v) {
         finish();
         System.exit(0);
-    }
-    public void goHome(android.view.View v) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 }

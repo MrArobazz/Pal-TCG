@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="[USERNAME]"
+                android:text="@string/textView_username_text"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView_profilePic"
                 app:layout_constraintStart_toEndOf="@+id/imageView_profilePic"
@@ -43,11 +43,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                android:text="0/69"
                 android:textSize="14sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="@+id/textView_accountUsername"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton_playOrCreate"
                 app:layout_constraintStart_toEndOf="@+id/textView_accountUsername"
                 app:layout_constraintTop_toTopOf="@+id/textView_accountUsername" />
 
@@ -58,18 +57,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icons8_trash_30" />
+                app:srcCompat="@drawable/icons8_trash_30"
+                android:importantForAccessibility="no" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/imageButton_playOrCreate"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
-                android:onClick="goSignUpView"
                 app:layout_constraintBottom_toBottomOf="@+id/imageButton_deleteAccount"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton_deleteAccount"
                 app:layout_constraintTop_toTopOf="@+id/imageButton_deleteAccount"
-                app:srcCompat="@drawable/icons8_play_30" />
+                app:srcCompat="@drawable/icons8_play_30"
+                android:importantForAccessibility="no" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

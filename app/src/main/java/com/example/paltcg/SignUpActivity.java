@@ -14,8 +14,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.paltcg.dataclasses.User;
+
 public class SignUpActivity extends AppCompatActivity {
 
+    User user = new User();
     ImageButton profilePic;
 
     RadioGroup genders;
@@ -61,13 +64,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if (profilePic == null)
                     Toast.makeText(this, "Please select a profile picture", Toast.LENGTH_SHORT).show();
                 else {
+                    user.setUsername(usernameEditText.getText().toString());
+                    user.setProfilePicId(Integer.parseInt(profilePic.getTag().toString())-1);
+                    user.setGender(genders.getCheckedRadioButtonId() != R.id.radioButton_genderMale);
+
                     Intent returnIntent = new Intent();
-                    returnIntent.putExtra("profile_username", usernameEditText.getText().toString());
-                    if (genders.getCheckedRadioButtonId() == R.id.radioButton_genderMale)
-                        returnIntent.putExtra("profile_gender", 0);
-                    else
-                        returnIntent.putExtra("profile_gender", 1);
-                    returnIntent.putExtra("profile_pic_id", Integer.valueOf(profilePic.getTag().toString()));
+                    returnIntent.putExtra("the_user",user);
                     Log.i("TAG", "signUp: end");
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
