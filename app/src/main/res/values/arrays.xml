@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <integer-array name="profils_pics_ids">
+        <item>@drawable/pic1</item>
+        <item>@drawable/pic2</item>
+        <item>@drawable/pic3</item>
+        <item>@drawable/pic4</item>
+        <item>@drawable/pic5</item>
+        <item>@drawable/pic6</item>
+        <item>@drawable/pic7</item>
+        <item>@drawable/pic8</item>
+    </integer-array>
+
     <integer-array name="pokemon_cards_ids">
         <item>@drawable/abrabaseset43</item>
         <item>@drawable/alakazambaseset1</item>

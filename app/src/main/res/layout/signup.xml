@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/editText_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -75,8 +75,8 @@
                 android:id="@+id/radioButton_genderMale"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/brice"
-                android:button="@null"
+                android:button="@drawable/brice"
+                android:foreground="@drawable/brice"
                 android:textAlignment="center" />
 
             <Space
@@ -88,8 +88,9 @@
                 android:id="@+id/radioButton_genderFemale"
                 android:layout_width="135dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/flora"
-                android:button="@null" />
+                android:background="@null"
+                android:button="@drawable/flora"
+                android:foreground="@drawable/flora" />
         </RadioGroup>
 
         <Space
@@ -117,21 +118,14 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/pic1"
-                android:importantForAccessibility="no" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:id="@+id/imageButton_pic2"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="@drawable/pic3"
-                android:importantForAccessibility="no" />
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic1"
+                android:tag="1" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -143,8 +137,14 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/pic6"
-                android:importantForAccessibility="no" />
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic3"
+                android:tag="3" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -152,12 +152,37 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/imageButton_pic4"
+                android:id="@+id/imageButton_pic6"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/pic8"
-                android:importantForAccessibility="no" />
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic6"
+                android:tag="6" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/imageButton_pic8"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic8"
+                android:tag="8" />
         </LinearLayout>
 
         <Space
@@ -171,12 +196,18 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton_pic5"
+                android:id="@+id/imageButton_pic2"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/pic2"
-                android:importantForAccessibility="no" />
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic2"
+                android:tag="2" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -184,12 +215,37 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/imageButton_pic6"
+                android:id="@+id/imageButton_pic4"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/pic4"
-                android:importantForAccessibility="no" />
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic4"
+                android:tag="4" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/imageButton_pic5"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic5"
+                android:tag="5" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -201,21 +257,14 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/pic5"
-                android:importantForAccessibility="no" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:id="@+id/imageButton_pic8"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="@drawable/pic7"
-                android:importantForAccessibility="no" />
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:importantForAccessibility="no"
+                android:onClick="chooseProfilePic"
+                android:padding="3dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/pic7"
+                android:tag="7" />
         </LinearLayout>
 
         <Space
@@ -253,6 +302,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="signUp"
             android:text="@string/button_validate_text" />
 
     </LinearLayout>
