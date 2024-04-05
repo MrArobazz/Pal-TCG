@@ -1,0 +1,48 @@
+How to play Pokémon TCG
+
+After creating your profile, you will have 15 cards out of a possible 69.
+Your goal? Of course, to catch them all!
+
+To get new cards, you will need to win duels against other trainers.
+In a duel, the winner takes the cards that the opponent played.
+
+Fortunately, only 5 cards are playable per player.
+So you will first need to go through your cards obtained at the beginning and select the five you want.
+Be careful, if you lose your next duel, you will lose these five cards!
+So be careful, you never know who you might come across!
+
+For your information, you can't have two identical cards in your deck, otherwise you will lose the card permanently!
+
+When you are ready, select an arena and it's time for the du-du-du-duel!
+Uh no, that's not the right universe…
+
+Each player chooses their first card without knowing the other's (they don't know the rest of the deck either).
+
+At the beginning of each turn, the player can either change cards, flee, or attack.
+If they change cards, the new one replaces the old one and the turn ends.
+If they want to flee, they have a x% chance of stopping the fight, otherwise it continues.
+If they want to attack, they can perform an action possible for the Pokemon (which is on the card and possible within the limitations of the game).
+
+Once the turn is over, it is the opponent's turn.
+The opponent (robot) will always attack with the action that deals the most damage possible to the player.
+
+Types are taken into account.
+
+When a player's Pokemon is KO,
+If they have any left, they can choose to replace it with one of their remaining Pokemon,
+If they don't have any left, it's the end of the fight, they lose their cards.
+
+When an opponent's Pokemon is KO,
+If they have any left, they randomly replace it with one of their remaining Pokemon,
+If they don't have any left, it's the end of the fight, the player gets the opponent's cards if they don't already have them.
+
+If the player flees,
+They lose their KO'd Pokemon.
+
+And there you have it, you have completed your first duel. So was it a positive experience?
+
+If you lose all your cards, it's game over!
+Until you create a new profile!
+
+You can give up and start the adventure over at any time by deleting your profile.
+This option is available from the main menu or the profile settings.

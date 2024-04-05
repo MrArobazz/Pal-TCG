@@ -84,5 +84,8 @@
     </string-array>
     <string name="need_to_create_a_account">CREER UN PROFIL</string>
     <string name="ask_to_delete">Êtes-vous sûrs de vouloir supprimer ce compte?</string>
+
+
     <string name="ask_to_delete_title">Supprimer le compte</string>
+    <string name="error_rules">Erreur : impossible d\'afficher les règles.</string>
 </resources>

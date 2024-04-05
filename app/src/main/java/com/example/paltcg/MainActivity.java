@@ -156,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
         mainTheme = null;
     }
 
+    public void seeRules(View v) {
+        Intent intent = new Intent(this, RulesActivity.class);
+        startActivity(intent);
+    }
     public void leaveApp(android.view.View v) {
         finish();
         System.exit(0);
