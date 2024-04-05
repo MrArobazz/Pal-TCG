@@ -47,7 +47,8 @@
             android:inputType="text"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="match_parent"
@@ -288,7 +289,7 @@
             android:layout_weight="1"
             android:background="@drawable/roundshapebutton"
             android:importantForAccessibility="no"
-            android:onClick="goSeeDeckView"
+            android:onClick="generateDeck"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/p9488_290_85568_03" />
 

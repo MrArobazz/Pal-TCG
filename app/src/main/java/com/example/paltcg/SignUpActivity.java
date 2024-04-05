@@ -2,6 +2,7 @@ package com.example.paltcg;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.paltcg.dataclasses.User;
 
+import java.util.Random;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 public class SignUpActivity extends AppCompatActivity {
 
     User user = new User();
@@ -24,6 +29,8 @@ public class SignUpActivity extends AppCompatActivity {
     RadioGroup genders;
 
     EditText usernameEditText;
+
+    TypedArray pokemonCardsIds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +46,27 @@ public class SignUpActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.editText_username);
     }
 
-    public void goSeeDeckView(android.view.View v) {
-        Log.i("TAG", "goSeeDeckView: begin");
+    public void generateDeck(android.view.View v) {
+        Log.i("TAG", "generateDeck: begin");
+
+        Random random = new Random();
+        user = new User();
+
+        SortedSet<Integer> randomCardsIds = new TreeSet<>();
+        pokemonCardsIds = getResources().obtainTypedArray(R.array.pokemon_cards_ids);
+
+        while (randomCardsIds.size() != 15) {
+            int randomId = random.nextInt(pokemonCardsIds.length());
+            randomCardsIds.add(pokemonCardsIds.getResourceId(randomId, 0));
+        }
+        pokemonCardsIds.recycle();
+
+        user.addNewCards(randomCardsIds);
+
         Intent intent = new Intent(this, DecksActivity.class);
+        intent.putExtra("the_user",user);
         startActivity(intent);
-        Log.i("TAG", "goSeeDeckView: end");
+        Log.i("TAG", "generateDeck: end");
     }
 
     public void chooseProfilePic(android.view.View v) {
@@ -63,6 +86,8 @@ public class SignUpActivity extends AppCompatActivity {
             else {
                 if (profilePic == null)
                     Toast.makeText(this, "Please select a profile picture", Toast.LENGTH_SHORT).show();
+                if (user.getNbCards() == 0)
+                    Toast.makeText(this, "You need to generate a deck", Toast.LENGTH_SHORT).show();
                 else {
                     user.setUsername(usernameEditText.getText().toString());
                     user.setProfilePicId(Integer.parseInt(profilePic.getTag().toString())-1);

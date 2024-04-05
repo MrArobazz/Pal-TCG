@@ -5,14 +5,17 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.SortedSet;
+
 public class User implements Parcelable {
     String username;
-    Boolean gender; // false : male, true : female
-    Integer profilePicId;
+    Boolean gender = false; // false : male, true : female
+    Integer profilePicId = 0;
 
-    int[] cardsIds = new int[]{};
+    ArrayList<Integer> cardsIds = new ArrayList<>();
 
-    int[] deckCardsIds = new int[]{};
+    ArrayList<Integer> deckCardsIds = new ArrayList<>();
 
     public User() {}
 
@@ -21,8 +24,8 @@ public class User implements Parcelable {
         byte tmpGender = in.readByte();
         gender = tmpGender != 0;
         profilePicId = in.readInt();
-        cardsIds = in.createIntArray();
-        deckCardsIds = in.createIntArray();
+        cardsIds = (ArrayList<Integer>) in.readSerializable();
+        deckCardsIds = (ArrayList<Integer>) in.readSerializable();
     }
 
     @Override
@@ -30,8 +33,8 @@ public class User implements Parcelable {
         dest.writeString(username);
         dest.writeByte((byte) (gender ? 1 : 0));
         dest.writeInt(profilePicId);
-        dest.writeIntArray(cardsIds);
-        dest.writeIntArray(deckCardsIds);
+        dest.writeSerializable(cardsIds);
+        dest.writeSerializable(deckCardsIds);
     }
 
     @Override
@@ -63,6 +66,12 @@ public class User implements Parcelable {
         this.profilePicId = profilePicId;
     }
 
+    public void addNewCards(SortedSet<Integer> newCards) {
+        for (Integer cardId : newCards)
+            if (!cardsIds.contains(cardId))
+                cardsIds.add(cardId);
+    }
+
     public String getUsername() {
         return username;
     }
@@ -76,6 +85,10 @@ public class User implements Parcelable {
     }
 
     public int getNbCards() {
-        return cardsIds.length;
+        return cardsIds.size();
+    }
+
+    public ArrayList<Integer> getCardsIds() {
+        return cardsIds;
     }
 }

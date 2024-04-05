@@ -16,10 +16,10 @@ import java.util.ArrayList;
 public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerViewAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<PokemonCard> cards;
-    public PC_RecyclerViewAdapter(Context context, ArrayList<PokemonCard> cards) {
+    ArrayList<Integer> cardsIds;
+    public PC_RecyclerViewAdapter(Context context, ArrayList<Integer> cards) {
         this.context = context;
-        this.cards = cards;
+        this.cardsIds = cards;
     }
 
     @NonNull
@@ -34,12 +34,12 @@ public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerView
     @Override
     public void onBindViewHolder(@NonNull PC_RecyclerViewAdapter.MyViewHolder holder, int position) {
         Log.i("TAG", "onBindViewHolder: " + position);
-        holder.leftCard.setImageResource(cards.get(position*2).getImage());
+        holder.leftCard.setImageResource(cardsIds.get(position*2));
         holder.isLeftEnabled.setChecked(false);
-        if (position*2+1 < getItemCount()*2-1) {
+        if (position*2+1 < cardsIds.size()) {
             holder.rightCard.setVisibility(View.VISIBLE);
             holder.isRightEnabled.setVisibility(View.VISIBLE);
-            holder.rightCard.setImageResource(cards.get(position*2 + 1).getImage());
+            holder.rightCard.setImageResource(cardsIds.get(position*2 + 1));
             holder.isRightEnabled.setChecked(false);
         }
         else {
@@ -50,7 +50,7 @@ public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerView
 
     @Override
     public int getItemCount() {
-        return cards.size()/2+1;
+        return (cardsIds.size()+1)/2;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
