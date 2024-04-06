@@ -1,5 +1,6 @@
 package com.example.paltcg;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class ArenaChoiceActivity extends AppCompatActivity {
+public class ArenaChoiceActivity extends AppCompatActivity{
 
     ImageButton imageButton_arene1;
 
@@ -38,7 +39,7 @@ public class ArenaChoiceActivity extends AppCompatActivity {
     }
     public void goArene3(android.view.View v){
         Intent intent = new Intent(this, Arena_3_Activity.class);
-        //intent.putExtra("background", R.drawable.arene3);
+        intent.putExtra("background", R.drawable.arene3);
         startActivity(intent);
     }
     public void goArene2(android.view.View v){
@@ -51,4 +52,12 @@ public class ArenaChoiceActivity extends AppCompatActivity {
         intent.putExtra("background", R.drawable.arene1);
         startActivity(intent);
     }
+
+    public void goHome(android.view.View v){
+        Intent intent = new Intent(this,HomeActivity.class);
+        startActivity(intent);
+    }
+
+
+
 }
