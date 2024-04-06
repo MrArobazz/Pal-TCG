@@ -37,8 +37,8 @@ public class ArenaChoiceActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void goArene3(android.view.View v){
-        Intent intent = new Intent(this,Arena_2_Activity.class);
-        intent.putExtra("background", R.drawable.arene3);
+        Intent intent = new Intent(this, Arena_3_Activity.class);
+        //intent.putExtra("background", R.drawable.arene3);
         startActivity(intent);
     }
     public void goArene2(android.view.View v){

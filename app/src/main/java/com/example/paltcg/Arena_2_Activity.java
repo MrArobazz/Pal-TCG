@@ -2,10 +2,13 @@ package com.example.paltcg;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,7 @@ public class Arena_2_Activity extends AppCompatActivity {
     CoordinatorLayout Page;
     BottomAppBar bottomAppBar;
     ProgressBar progressBar_bot,progressBar_player;
+    VideoView sprite_player;
 
     private int pv_bot = 100;
     private int pv_player = 100;
@@ -35,6 +39,10 @@ public class Arena_2_Activity extends AppCompatActivity {
 
         progressBar_bot = findViewById(R.id.progressBar_pv_bot_arene2);
         progressBar_player = findViewById(R.id.progressBar_pv_player_arene2);
+        sprite_player = (VideoView)findViewById(R.id.videoView_sprite_player_arene2);
+        Uri uri= Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.charmander_back);
+        sprite_player.setVideoURI(uri);
+        sprite_player.start();
 
 
         AnimationDrawable animationDrawable = (AnimationDrawable) Page.getBackground();

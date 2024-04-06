@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single"
+        android:id="@+id/groupe_navigation_view_menu">
+        <item android:title="CHOICE"/>
+        <item android:id="@+id/attack_arena3"
+            android:icon="@drawable/fight_svgrepo_com"
+            android:title="Attack"/>
+        <item android:id="@+id/defense_arena3"
+            android:icon="@drawable/shield_reflect_svgrepo_com"
+            android:title="Defense"/>
+        <item android:id="@+id/change_arena3"
+            android:icon="@drawable/replace_svgrepo_com"
+            android:title="Change"/>
+    </group>
+
+</menu>

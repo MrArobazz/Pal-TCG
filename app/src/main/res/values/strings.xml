@@ -15,6 +15,9 @@
     <string name="ask_to_delete_title">Delete account</string>
     <string name="error_rules">Error : can\'t show rules.</string>
 
+    <string name="open_menu" translatable="false">Open</string>
+    <string name="close_menu" translatable="false">Close</string>
+
     <string-array name="pokemon_names">
         <item>Abra</item>
         <item>Alakazam</item>
