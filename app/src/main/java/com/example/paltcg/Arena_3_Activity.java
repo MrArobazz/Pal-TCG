@@ -40,10 +40,11 @@ public class Arena_3_Activity extends AppCompatActivity {
                     if(menuItem.getItemId() == R.id.defense_arena3) {
                         Toast.makeText(Arena_3_Activity.this, "Defense", Toast.LENGTH_SHORT).show();
                     }
-                        else{
-                            if(menuItem.getItemId() == R.id.change_arena3 ){
-                                Toast.makeText(Arena_3_Activity.this,"Change", Toast.LENGTH_SHORT).show();
-                            }
+                        else {
+                        if (menuItem.getItemId() == R.id.change_arena3) {
+                            Toast.makeText(Arena_3_Activity.this, "Change", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
