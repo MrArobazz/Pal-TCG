@@ -1,5 +1,6 @@
 package com.example.paltcg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,6 +28,12 @@ public class Arena_3_Activity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView_arena3);
         toolbar = findViewById(R.id.toolbar_arena3);
         drawerLayout = findViewById(R.id.drawerLayout_arena3);
+
+        Intent intent = getIntent();
+        int background = intent.getIntExtra("background",-1);
+        if (background != -1) {
+            drawerLayout.setBackgroundResource(background);
+        }
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Arena_3_Activity.this,drawerLayout,toolbar,R.string.open_menu,R.string.close_menu);
         drawerLayout.addDrawerListener(toggle);

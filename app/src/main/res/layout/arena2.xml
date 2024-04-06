@@ -8,46 +8,43 @@
     tools:context=".Arena_2_Activity"
     android:background="@drawable/gradient_list">
 
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar_arene2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/gradient_list"
+        app:fabAlignmentMode="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_bar_menu" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button_attack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="attack"
+        android:src="@drawable/athlete_boxing_fight_svgrepo_com"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:layout_anchor="@+id/bottom_app_bar_arene2"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_app_bar_arene2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bottom_app_bar_arene2"
+        app:layout_constraintTop_toTopOf="@+id/bottom_app_bar_arene2" />
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_arena2"
         android:layout_width="match_parent"
-        android:layout_height="559dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_arene"
-            android:layout_width="360dp"
-            android:layout_height="214dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageView_sprite_bot_arene2"
-                android:layout_width="56dp"
-                android:layout_height="41dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/brice" />
-
-            <VideoView
-                android:id="@+id/videoView_sprite_player_arene2"
-                android:layout_width="56dp"
-                android:layout_height="41dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="560dp">>
 
         <LinearLayout
-            android:layout_width="358dp"
-            android:layout_height="171dp"
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="207dp"
             android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -80,15 +77,16 @@
 
         </LinearLayout>
 
+
         <LinearLayout
-            android:layout_width="358dp"
-            android:layout_height="170dp"
-            android:layout_marginTop="1dp"
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="207dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_arene"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_arene">
 
             <LinearLayout
                 android:layout_width="177dp"
@@ -98,7 +96,7 @@
                 <ImageView
                     android:id="@+id/imageView_player_arene2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/abrabaseset43" />
             </LinearLayout>
@@ -124,28 +122,40 @@
 
         </LinearLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_arene"
+            android:layout_width="360dp"
+            android:layout_height="151dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <ImageView
+                android:id="@+id/imageView_sprite_bot_arene2"
+                android:layout_width="56dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/brice" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="56dp"
+                android:layout_height="41dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar_arene2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/gradient_list"
-        app:menu="@menu/bottom_bar_menu"
-        app:fabAlignmentMode="end"
-        app:fabCradleRoundedCornerRadius="10dp"
-        app:fabCradleMargin="2dp"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button_attack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="attack"
-        android:src="@drawable/athlete_boxing_fight_svgrepo_com"
-        app:backgroundTint="@android:color/holo_green_light"
-        app:layout_anchor="@+id/bottom_app_bar_arene2"
-        app:layout_anchorGravity="top|center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

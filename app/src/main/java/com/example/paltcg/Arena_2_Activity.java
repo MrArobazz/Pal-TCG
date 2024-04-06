@@ -39,11 +39,6 @@ public class Arena_2_Activity extends AppCompatActivity {
 
         progressBar_bot = findViewById(R.id.progressBar_pv_bot_arene2);
         progressBar_player = findViewById(R.id.progressBar_pv_player_arene2);
-        sprite_player = (VideoView)findViewById(R.id.videoView_sprite_player_arene2);
-        Uri uri= Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.charmander_back);
-        sprite_player.setVideoURI(uri);
-        sprite_player.start();
-
 
         AnimationDrawable animationDrawable = (AnimationDrawable) Page.getBackground();
         animationDrawable.setEnterFadeDuration(10);
