@@ -72,12 +72,20 @@ public class User implements Parcelable {
                 cardsIds.add(cardId);
     }
 
-    public String getUsername() {
-        return username;
+    public boolean activateCard(int cardPosition) {
+        if (getNbActiveCards() < 5) {
+            deckCardsIds.add(cardPosition);
+            return true;
+        }
+        return false;
     }
 
-    public Boolean getGender() {
-        return gender;
+    public void removeCard(int position) {
+        deckCardsIds.remove(Integer.valueOf(position));
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public Integer getProfilePicId() {
@@ -88,7 +96,11 @@ public class User implements Parcelable {
         return cardsIds.size();
     }
 
+    private int getNbActiveCards() { return deckCardsIds.size(); }
+
     public ArrayList<Integer> getCardsIds() {
         return cardsIds;
     }
+
+    public ArrayList<Integer> getDeckCardsIds() { return deckCardsIds;}
 }

@@ -7,19 +7,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.paltcg.dataclasses.User;
 
 import java.util.ArrayList;
 
 public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerViewAdapter.MyViewHolder> {
 
     Context context;
+    User user;
     ArrayList<Integer> cardsIds;
-    public PC_RecyclerViewAdapter(Context context, ArrayList<Integer> cards) {
+
+    public PC_RecyclerViewAdapter(Context context, User user) {
         this.context = context;
-        this.cardsIds = cards;
+        this.user = user;
+        this.cardsIds = user.getCardsIds();
     }
 
     @NonNull
@@ -35,17 +41,19 @@ public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerView
     public void onBindViewHolder(@NonNull PC_RecyclerViewAdapter.MyViewHolder holder, int position) {
         Log.i("TAG", "onBindViewHolder: " + position);
         holder.leftCard.setImageResource(cardsIds.get(position*2));
-        holder.isLeftEnabled.setChecked(false);
+        holder.isLeftEnabled.setChecked(user.getDeckCardsIds().contains(Integer.valueOf(position*2)));
         if (position*2+1 < cardsIds.size()) {
             holder.rightCard.setVisibility(View.VISIBLE);
             holder.isRightEnabled.setVisibility(View.VISIBLE);
             holder.rightCard.setImageResource(cardsIds.get(position*2 + 1));
-            holder.isRightEnabled.setChecked(false);
+            holder.isRightEnabled.setChecked(user.getDeckCardsIds().contains(Integer.valueOf(position*2+1)));
         }
         else {
             holder.rightCard.setVisibility(View.INVISIBLE);
             holder.isRightEnabled.setVisibility(View.INVISIBLE);
         }
+        holder.isLeftEnabled.setOnClickListener(v -> activateCard(v, position*2));
+        holder.isRightEnabled.setOnClickListener(v -> activateCard(v, position * 2 + 1));
     }
 
     @Override
@@ -65,5 +73,22 @@ public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerView
             isLeftEnabled = itemView.findViewById(R.id.checkBox_isLeftEnabled);
             isRightEnabled = itemView.findViewById(R.id.checkBox_isRightEnabled);
         }
+    }
+
+    private void activateCard(View v, int position) {
+        CheckBox cb = (CheckBox) v;
+
+        if (cb.isChecked()) {
+            if (!user.activateCard(position)) {
+                Toast.makeText(context, "Only 5 cards can be active.", Toast.LENGTH_SHORT).show();
+                cb.setChecked(false);
+            }
+        }
+        else {
+            user.removeCard(position);
+        }
+
+        for (int id : user.getDeckCardsIds())
+            Log.i("TAG", "activeCard : " + id);
     }
 }

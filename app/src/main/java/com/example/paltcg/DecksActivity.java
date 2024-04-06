@@ -1,8 +1,11 @@
 package com.example.paltcg;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,9 +26,21 @@ public class DecksActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_cards);
 
-        PC_RecyclerViewAdapter adapter = new PC_RecyclerViewAdapter(this,user.getCardsIds());
+        PC_RecyclerViewAdapter adapter = new PC_RecyclerViewAdapter(this, user);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent returnIntent = new Intent();
+                for (int id : user.getDeckCardsIds())
+                    Log.i("DecksActivity", "activeCard : " + id);
+                returnIntent.putExtra("the_user",user);
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+            }
+        });
     }
 }

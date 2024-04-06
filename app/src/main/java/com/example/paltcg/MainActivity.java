@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     MediaPlayer mainTheme;
     ActivityResultLauncher<Intent> signUpActivityResultLauncher;
+    ActivityResultLauncher<Intent> homeActivityResultLauncher;
 
     User user;
 
@@ -51,42 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO: check si sauvegarde existante ou non
         if (user == null) {
-            profilePic.setVisibility(View.GONE);
-            accountUsername.setText(R.string.need_to_create_a_account);
-            completion.setVisibility(View.GONE);
+            displayInfos();
 
             signUpActivityResultLauncher = registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
-                    result -> {
-                        Log.i("TAG", "onActivityResult: received");
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            Log.i("TAG", "onActivityResult: received result ok");
-                            Intent resultDatas = result.getData();
-                            if (resultDatas != null) {
-                                Log.i("TAG", "onActivityResult: received something");
-                                user = resultDatas.getParcelableExtra("the_user");
-                                assert user != null;
-                                Log.i("TAG", "onActivityResult: get those infos : " + user.getUsername() + " " + user.getProfilePicId() + " " + user.getGender());
-
-                                ImageView profilePic = findViewById(R.id.imageView_profilePic);
-                                profilePic.setVisibility(View.VISIBLE);
-
-                                profilePicsIds = getResources().obtainTypedArray(R.array.profils_pics_ids);
-                                profilePic.setImageResource(
-                                        profilePicsIds.getResourceId(user.getProfilePicId(), 0)
-                                );
-                                profilePicsIds.recycle();
-
-                                accountUsername.setText(user.getUsername());
-                                findViewById(R.id.textView_completion).setVisibility(View.VISIBLE);
-
-                                String toDisplay = user.getNbCards() + "/69";
-                                completion.setText(toDisplay);
-                            }
-                        }
-                    }
+                    this::handleActivityResult
             );
         }
+
+        homeActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                this::handleActivityResult
+        );
 
         ImageButton btnPlayOrCreate = findViewById(R.id.imageButton_playOrCreate);
         btnPlayOrCreate.setOnClickListener(this::playOrSignUp);
@@ -103,6 +81,19 @@ public class MainActivity extends AppCompatActivity {
         playMusic();
     }
 
+    private void handleActivityResult(ActivityResult result) {
+        Log.i("Returned value", "received result but not ok.");
+        if (result.getResultCode() == Activity.RESULT_OK) {
+            Intent resultDatas = result.getData();
+            Log.i("Returned value", "received result ok.");
+            if (resultDatas != null) {
+                user = resultDatas.getParcelableExtra("the_user");
+                Log.i("Returned value", "received user.");
+                displayInfos();
+            }
+        }
+    }
+
     private void deleteAccount(View view) {
         if (user != null) {
 
@@ -111,11 +102,7 @@ public class MainActivity extends AppCompatActivity {
             alert.setMessage(R.string.ask_to_delete);
             alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
                 user = null;
-                profilePic.setImageDrawable(null);
-                profilePic.setVisibility(View.GONE);
-                accountUsername.setText(R.string.need_to_create_a_account);
-                completion.setText("");
-                completion.setVisibility(View.GONE);
+                displayInfos();
             });
 
             alert.setNegativeButton(android.R.string.no, (dialog, which) -> dialog.cancel());
@@ -145,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             intent = new Intent(this, HomeActivity.class);
             intent.putExtra("the_user",user);
-            startActivity(intent);
+            homeActivityResultLauncher.launch(intent);
         }
     }
 
@@ -153,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         user = new User();
         user.setUsername("Admin");
         user.setGender(false);
-        user.setProfilePicId(R.drawable.pic5);
+        user.setProfilePicId(5);
         SortedSet<Integer> cards = new TreeSet<>();
         cards.add(R.drawable.arcaninebaseset23);
         cards.add(R.drawable.bulbasaurbaseset44);
@@ -162,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         cards.add(R.drawable.kadabrabaseset32);
         cards.add(R.drawable.machopbaseset52);
         user.addNewCards(cards);
+        displayInfos();
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("the_user",user);
         startActivity(intent);
@@ -185,5 +173,29 @@ public class MainActivity extends AppCompatActivity {
     public void leaveApp(android.view.View v) {
         finish();
         System.exit(0);
+    }
+
+    private void displayInfos() {
+        if (user != null) {
+            profilePic.setVisibility(View.VISIBLE);
+            profilePicsIds = getResources().obtainTypedArray(R.array.profils_pics_ids);
+            profilePic.setImageResource(
+                    profilePicsIds.getResourceId(user.getProfilePicId(), 0)
+            );
+            profilePicsIds.recycle();
+
+            accountUsername.setText(user.getUsername());
+            findViewById(R.id.textView_completion).setVisibility(View.VISIBLE);
+
+            String toDisplay = user.getNbCards() + "/69";
+            completion.setText(toDisplay);
+        }
+        else {
+            profilePic.setImageDrawable(null);
+            profilePic.setVisibility(View.GONE);
+            accountUsername.setText(R.string.need_to_create_a_account);
+            completion.setText("");
+            completion.setVisibility(View.GONE);
+        }
     }
 }
