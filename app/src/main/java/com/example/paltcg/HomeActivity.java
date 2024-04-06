@@ -6,7 +6,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
@@ -30,9 +29,6 @@ public class HomeActivity extends AppCompatActivity {
         user = intent.getParcelableExtra("the_user");
         if (user != null) Log.i("TAG", "onCreate: " + user.getUsername());
 
-        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayout_arene1);
-        ImageButton battleButton = findViewById(R.id.imageButton_battleButton);
-
         decksActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleActivityResult
@@ -48,16 +44,11 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+        ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2500);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
-
-        AnimationDrawable animationDrawable_2 = (AnimationDrawable) battleButton.getBackground();
-        animationDrawable_2.setEnterFadeDuration(10);
-        animationDrawable_2.setExitFadeDuration(5000);
-        animationDrawable_2.start();
     }
 
     private void handleActivityResult(ActivityResult result) {

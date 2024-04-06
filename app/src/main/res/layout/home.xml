@@ -1,95 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout_arene1"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_list">
 
     <ImageView
-        android:id="@+id/entete"
-        android:layout_width="360dp"
-        android:layout_height="115dp"
+        android:id="@+id/imageView_entete"
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:importantForAccessibility="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pok_mon_trading_card_game_logo_svg"
-        android:importantForAccessibility="no" />
+        app:srcCompat="@drawable/pok_mon_trading_card_game_logo_svg" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar_choixArena"
+    <ImageButton
+        android:id="@+id/imageButton_cards"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="?android:selectableItemBackground"
+        android:importantForAccessibility="no"
+        android:onClick="seeDeck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_entete"
+        app:srcCompat="@drawable/deck" />
+
+    <ImageButton
+        android:id="@+id/imageButton_profile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="?android:selectableItemBackground"
+        android:importantForAccessibility="no"
+        android:src="@drawable/big_brice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_entete" />
+
+    <ImageButton
+        android:id="@+id/imageButton_battle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:onClick="goArene"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/entete">
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_profile"
+        app:srcCompat="@drawable/battle"
+        android:importantForAccessibility="no" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/imageButton_battleButton"
-                android:layout_width="0dp"
-                android:layout_height="139dp"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/battle_list"
-                android:importantForAccessibility="no"
-                android:onClick="goArene"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/battle" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="364dp"
-                android:layout_height="158dp"
-                android:background="@drawable/deck_background"
-                android:onClick="seeDeck"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/deck" />
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="4dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton_battleButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.414"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
-                app:srcCompat="@drawable/stat"
-                android:background="@drawable/stat_background"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_choixArena"
-        android:layout_width="360dp"
-        android:layout_height="65dp"
-        android:background="@drawable/banner_pokeball"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+    <ImageButton
+        android:id="@+id/imageButton_home"
+        android:layout_width="132dp"
+        android:layout_height="116dp"
+        android:layout_marginBottom="16dp"
+        android:background="?android:selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageButton
-            android:id="@+id/home_button_home"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/home"
-            tools:layout_editor_absoluteX="155dp"
-            tools:layout_editor_absoluteY="8dp" />
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/home_button_for_interface_svgrepo_com"
+        android:importantForAccessibility="no" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
