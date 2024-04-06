@@ -48,11 +48,12 @@
                 android:id="@+id/imageView5"
                 android:layout_width="364dp"
                 android:layout_height="158dp"
+                android:background="@drawable/deck_background"
+                android:onClick="seeDeck"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/deck"
-                android:background="@drawable/deck_background"/>
+                app:srcCompat="@drawable/deck" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -85,8 +86,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:onClick="goHome"
-            app:srcCompat="@drawable/home" />
+            app:srcCompat="@drawable/home"
+            tools:layout_editor_absoluteX="155dp"
+            tools:layout_editor_absoluteY="8dp" />
     </androidx.appcompat.widget.Toolbar>
 
 

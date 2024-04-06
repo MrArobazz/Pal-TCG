@@ -150,9 +150,7 @@ public class MainActivity extends AppCompatActivity {
         cards.add(R.drawable.machopbaseset52);
         user.addNewCards(cards);
         displayInfos();
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("the_user",user);
-        startActivity(intent);
+        playOrSignUp(v);
     }
 
     private void playMusic() {
