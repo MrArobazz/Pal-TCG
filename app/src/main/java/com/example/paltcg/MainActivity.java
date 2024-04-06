@@ -20,6 +20,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.paltcg.dataclasses.User;
 
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 public class MainActivity extends AppCompatActivity {
 
     MediaPlayer mainTheme;
@@ -141,8 +144,27 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("the_user",user);
             startActivity(intent);
         }
+    }
+
+    public void adminSignUp(View v) {
+        user = new User();
+        user.setUsername("Admin");
+        user.setGender(false);
+        user.setProfilePicId(R.drawable.pic5);
+        SortedSet<Integer> cards = new TreeSet<>();
+        cards.add(R.drawable.arcaninebaseset23);
+        cards.add(R.drawable.bulbasaurbaseset44);
+        cards.add(R.drawable.dugtriobaseset19);
+        cards.add(R.drawable.diglettbaseset47);
+        cards.add(R.drawable.kadabrabaseset32);
+        cards.add(R.drawable.machopbaseset52);
+        user.addNewCards(cards);
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("the_user",user);
+        startActivity(intent);
     }
 
     private void playMusic() {
