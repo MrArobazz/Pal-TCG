@@ -10,9 +10,10 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_width="752dp"
+        android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pok_mon_trading_card_game_logo_svg" />
@@ -22,14 +23,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="52dp"
             android:orientation="horizontal">
 
             <TextView
@@ -41,7 +42,7 @@
 
             <SeekBar
                 android:id="@+id/seekBar_nb_victoire"
-                android:layout_width="209dp"
+                android:layout_width="432dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -52,7 +53,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="95dp"
+            android:layout_height="61dp"
             android:orientation="horizontal">
 
             <TextView
@@ -78,7 +79,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="61dp"
             android:orientation="horizontal">
 
             <TextView
@@ -103,7 +104,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="67dp"
             android:orientation="horizontal">
 
             <TextView
@@ -126,7 +127,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="66dp"
+            android:layout_height="59dp"
             android:orientation="horizontal">
 
             <TextView
@@ -171,14 +172,15 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="650dp"
         android:clickable="true"
         android:onClick="goHome"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
         app:srcCompat="@drawable/home_button_for_interface_svgrepo_com" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
