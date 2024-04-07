@@ -32,9 +32,6 @@
     <string name="Pokemons">My Pokemons</string>
 
 
-
-
-
     <string name="open_menu" translatable="false">Open</string>
     <string name="close_menu" translatable="false">Close</string>
     <string name="textView_pv_default">999/999</string>
