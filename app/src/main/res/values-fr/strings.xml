@@ -11,6 +11,7 @@
     <string name="textView_genDeckTitle_text">Générer un deck</string>
     <string name="button_validate_text">S\'INSCRIRE</string>
 
+
     <string-array name="pokemon_names">
         <item>Abra</item>
         <item>Alakazam</item>
