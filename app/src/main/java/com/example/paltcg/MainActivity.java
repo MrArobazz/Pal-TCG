@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -42,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
     TextView completion;
 
     @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        user = savedInstanceState.getParcelable("the_user");
+        mainTheme.seekTo(savedInstanceState.getInt("music_timestamp"));
+        mainTheme.start();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -51,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
         accountUsername = findViewById(R.id.textView_accountUsername);
         completion = findViewById(R.id.textView_completion);
 
+        displayInfos();
         //TODO: check si sauvegarde existante ou non
         if (user == null) {
-            displayInfos();
-
             signUpActivityResultLauncher = registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
                     this::handleActivityResult
@@ -79,6 +87,13 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.start();
 
         playMusic();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("the_user",user);
+        outState.putInt("music_timestamp", mainTheme.getCurrentPosition());
     }
 
     private void handleActivityResult(ActivityResult result) {
@@ -114,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        displayInfos();
         playMusic();
     }
 
