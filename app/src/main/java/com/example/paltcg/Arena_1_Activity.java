@@ -2,7 +2,9 @@ package com.example.paltcg;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -14,7 +16,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
     ConstraintLayout Arena,Page;
     ImageView carte_active_bot;
-    ImageView carte_bot , sprite_bot , sprite_player;
+    WebView sprite_bot , sprite_player;
     ProgressBar progressBar_bot,progressBar_player;
 
     private int pv_bot = 100;
@@ -36,14 +38,17 @@ public class Arena_1_Activity extends AppCompatActivity {
             Arena.setBackgroundResource(background);
         }
         carte_active_bot = (ImageView) findViewById(R.id.imageView_carte_active_bot);
-        sprite_bot = (ImageView) findViewById(R.id.imageView_sprite_bot);
-        sprite_player = (ImageView) findViewById(R.id.imageView_sprite_player);
-        sprite_bot.setImageResource(R.drawable.charmander);
-        sprite_player.setImageResource(R.drawable.charmander_back);
+
         AnimationDrawable animationDrawable = (AnimationDrawable) Page.getBackground();
         animationDrawable.setEnterFadeDuration(10);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
+
+        sprite_player = (WebView) findViewById(R.id.webView_sprite_player_arena1);
+        sprite_bot = (WebView) findViewById(R.id.webView_sprite_bot_arena1);
+
+        sprite_bot.loadUrl("https://projectpokemon.org/images/normal-sprite/charmander.gif");
+        sprite_player.loadUrl("https://projectpokemon.org/images/sprites-models/normal-back/charmander.gif");
 
         progressBar_player.setMax(100);
         progressBar_player.setMin(0);

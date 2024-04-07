@@ -34,22 +34,22 @@ public class ArenaChoiceActivity extends AppCompatActivity{
 
     public void goArene4(android.view.View v){
         Intent intent = new Intent(this,Arena_1_Activity.class);
-        intent.putExtra("background", R.drawable.arene4);
+        intent.putExtra("background", R.drawable.battlefield_2);
         startActivity(intent);
     }
     public void goArene3(android.view.View v){
         Intent intent = new Intent(this, Arena_3_Activity.class);
-        intent.putExtra("background", R.drawable.arene3);
+        intent.putExtra("background", R.drawable.battlefield_2);
         startActivity(intent);
     }
     public void goArene2(android.view.View v){
         Intent intent = new Intent(this,Arena_2_Activity.class);
-        intent.putExtra("background", R.drawable.arene2);
+        intent.putExtra("background", R.drawable.battlefield_2);
         startActivity(intent);
     }
     public void goArene1(android.view.View v){
         Intent intent = new Intent(this,Arena_1_Activity.class);
-        intent.putExtra("background", R.drawable.arene1);
+        intent.putExtra("background", R.drawable.battlefield_2);
         startActivity(intent);
     }
 

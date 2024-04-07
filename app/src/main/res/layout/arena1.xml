@@ -64,7 +64,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player" />
 
             <WebView
-                android:id="@+id/webView_sprite_player"
+                android:id="@+id/webView_sprite_player_arena1"
                 android:layout_width="92dp"
                 android:layout_height="75dp"
                 android:layout_marginBottom="90dp"
@@ -73,7 +73,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <WebView
-                android:id="@+id/webView_sprite_bot"
+                android:id="@+id/webView_sprite_bot_arena1"
                 android:layout_width="92dp"
                 android:layout_height="75dp"
                 android:layout_marginTop="90dp"
@@ -119,7 +119,6 @@
             android:id="@+id/linearLayout_player_choice"
             android:layout_width="match_parent"
             android:layout_height="86dp"
-            android:background=""
             android:orientation="horizontal">
 
             <ImageButton
