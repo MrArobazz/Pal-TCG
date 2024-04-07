@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -31,6 +32,42 @@ public class SignUpActivity extends AppCompatActivity {
     EditText usernameEditText;
 
     TypedArray pokemonCardsIds;
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        user = savedInstanceState.getParcelable("the_user");
+        int profilePicId = savedInstanceState.getInt("profile_pic_id");
+        if (profilePicId != -1) {
+            switch (profilePicId) {
+                case 1:
+                    profilePic = findViewById(R.id.imageButton_pic1);
+                    break;
+                case 2:
+                    profilePic = findViewById(R.id.imageButton_pic2);
+                    break;
+                case 3:
+                    profilePic = findViewById(R.id.imageButton_pic3);
+                    break;
+                case 4:
+                    profilePic = findViewById(R.id.imageButton_pic4);
+                    break;
+                case 5:
+                    profilePic = findViewById(R.id.imageButton_pic5);
+                    break;
+                case 6:
+                    profilePic = findViewById(R.id.imageButton_pic6);
+                    break;
+                case 7:
+                    profilePic = findViewById(R.id.imageButton_pic7);
+                    break;
+                case 8:
+                    profilePic = findViewById(R.id.imageButton_pic8);
+                    break;
+            }
+            profilePic.setBackgroundColor(Color.BLACK);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +81,16 @@ public class SignUpActivity extends AppCompatActivity {
 
         genders = findViewById(R.id.radioGroup_gender);
         usernameEditText = findViewById(R.id.editText_username);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("the_user",user);
+        int profilepicid = -1;
+        if (profilePic != null)
+            profilepicid = Integer.parseInt(profilePic.getTag().toString());
+        outState.putInt("profile_pic_id", profilepicid);
     }
 
     public void generateDeck(android.view.View v) {
