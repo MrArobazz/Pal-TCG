@@ -76,7 +76,7 @@
         android:layout_width="0dp"
         android:layout_height="140dp"
         android:background="@drawable/stat_background"
-        android:onClick="profile"
+        android:onClick="stats"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"

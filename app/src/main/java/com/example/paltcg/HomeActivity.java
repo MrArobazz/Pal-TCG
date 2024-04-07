@@ -105,6 +105,11 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void stats(android.view.View View){
+        Intent intent = new Intent(this,Stat_Activity.class);
+        startActivity(intent);
+    }
+
 
 
 
