@@ -3,6 +3,7 @@ package com.example.paltcg;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 
@@ -20,6 +21,8 @@ public class Arena_3_Activity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
+
+    WebView sprite_bot, sprite_player;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,12 @@ public class Arena_3_Activity extends AppCompatActivity {
         if (background != -1) {
             drawerLayout.setBackgroundResource(background);
         }
+
+
+        sprite_bot = (WebView) findViewById(R.id.WebView_sprite_bot_arene3);
+        sprite_player = (WebView) findViewById(R.id.WebView_sprite_player_arena3);
+
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Arena_3_Activity.this,drawerLayout,toolbar,R.string.open_menu,R.string.close_menu);
         drawerLayout.addDrawerListener(toggle);

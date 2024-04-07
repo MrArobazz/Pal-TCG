@@ -9,8 +9,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_arena3"
-        android:layout_width="357dp"
-        android:layout_height="67dp"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -42,7 +42,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_areana3_bot"
                 android:layout_width="match_parent"
-                android:layout_height="294dp">
+                android:layout_height="161dp">
 
                 <ProgressBar
                     android:id="@+id/progressBar_pv_bot_arene3"
@@ -65,6 +65,7 @@
                     app:layout_constraintTop_toTopOf="@+id/progressBar_pv_bot_arene3"
                     app:layout_constraintVertical_bias="0.0" />
 
+
                 <ImageView
                     android:id="@+id/imageView_bot_arena3"
                     android:layout_width="140dp"
@@ -77,24 +78,25 @@
                     android:id="@+id/WebView_sprite_bot_arene3"
                     android:layout_width="104dp"
                     android:layout_height="139dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="172dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </WebView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout_areana3_player"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="169dp">
 
                 <ProgressBar
                     android:id="@+id/progressBar_pv_player_arene3"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="130dp"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="20dp"
                     android:foregroundTint="#08830D"
                     android:progressDrawable="@drawable/progress_bar"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -111,24 +113,23 @@
                     app:layout_constraintTop_toTopOf="@+id/progressBar_pv_player_arene3"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <ImageView
-                    android:id="@+id/imageView_card_player_arena3"
-                    android:layout_width="140dp"
-                    android:layout_height="150dp"
-                    android:layout_marginBottom="20dp"
-                    android:src="@drawable/alakazambaseset1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <WebView
                     android:id="@+id/WebView_sprite_player_arena3"
                     android:layout_width="104dp"
                     android:layout_height="139dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginStart="172dp"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
+                <ImageView
+                    android:id="@+id/imageView_card_player_arena3"
+                    android:layout_width="212dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/alakazambaseset1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
