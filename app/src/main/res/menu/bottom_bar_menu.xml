@@ -4,11 +4,11 @@
 
     <item android:id="@+id/setting"
         android:title="Settings"
-        android:icon="@drawable/baseline_airplanemode_active_24"
+        android:icon="@drawable/replace_svgrepo_com"
         app:showAsAction="ifRoom"/>
     <item android:id="@+id/save"
         android:title="Save"
-        android:icon="@drawable/baseline_add_comment_24"
+        android:icon="@drawable/exit_icon_icons_com_70975"
         app:showAsAction="ifRoom"/>
 
 </menu>

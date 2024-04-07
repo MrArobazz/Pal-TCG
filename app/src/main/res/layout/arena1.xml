@@ -80,7 +80,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/textView_pv_player"
+            android:id="@+id/textView_pv_player_arena1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="11dp"
@@ -100,8 +100,8 @@
 
         <WebView
             android:id="@+id/webView_sprite_bot_arena1"
-            android:layout_width="92dp"
-            android:layout_height="75dp"
+            android:layout_width="104dp"
+            android:layout_height="119dp"
             android:layout_marginStart="87dp"
             android:layout_marginTop="100dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -119,11 +119,11 @@
 
         <WebView
             android:id="@+id/webView_sprite_player_arena1"
-            android:layout_width="92dp"
-            android:layout_height="75dp"
+            android:layout_width="104dp"
+            android:layout_height="119dp"
             android:layout_marginEnd="87dp"
             android:layout_marginBottom="80dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView_pv_player"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_pv_player_arena1"
             app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player"
             app:layout_constraintStart_toStartOf="parent" />
 

@@ -21,10 +21,9 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 public class Arena_2_Activity extends AppCompatActivity {
 
     ConstraintLayout Arena;
-    CoordinatorLayout Page;
     BottomAppBar bottomAppBar;
     ProgressBar progressBar_bot,progressBar_player;
-    VideoView sprite_player;
+    WebView sprite_bot , sprite_player;
 
     private int pv_bot = 100;
     private int pv_player = 100;
@@ -35,15 +34,17 @@ public class Arena_2_Activity extends AppCompatActivity {
         setContentView(R.layout.arena2);
 
         Arena = findViewById(R.id.constraint_layout_arena2);
-        Page = findViewById(R.id.coordinatorLayout_arene2);
 
         progressBar_bot = findViewById(R.id.progressBar_pv_bot_arene2);
         progressBar_player = findViewById(R.id.progressBar_pv_player_arene2);
 
-        AnimationDrawable animationDrawable = (AnimationDrawable) Page.getBackground();
-        animationDrawable.setEnterFadeDuration(10);
-        animationDrawable.setExitFadeDuration(5000);
-        animationDrawable.start();
+        sprite_player = (WebView) findViewById(R.id.webView_sprite_player_arena2);
+        sprite_bot = (WebView) findViewById(R.id.webView_sprite_bot_arena2);
+
+
+
+        sprite_bot.loadUrl("https://projectpokemon.org/images/normal-sprite/squirtle.gif");
+        sprite_player.loadUrl("https://projectpokemon.org/images/sprites-models/normal-back/squirtle.gif");
 
         Intent intent = getIntent();
         int background = intent.getIntExtra("background",-1);

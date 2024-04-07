@@ -42,9 +42,10 @@
             android:layout_width="104dp"
             android:layout_height="119dp"
             android:layout_marginStart="87dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="80dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.537"
             app:layout_constraintStart_toEndOf="@+id/imageView_carte_active_bot_arena2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,9 +64,10 @@
             android:layout_height="119dp"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="87dp"
-            android:layout_marginBottom="80dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView_pv_player_arena2"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player_arena2"
+            app:layout_constraintHorizontal_bias="0.426"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ProgressBar
@@ -107,7 +109,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout_arene2"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="83dp"
         android:background="@drawable/gradient_list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
