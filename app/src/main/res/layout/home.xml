@@ -49,10 +49,12 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:onClick="goHome"
-            app:srcCompat="@drawable/pokeball_icon_icons_com_67533"
+            android:background="@color/white"
+            android:onClick="leave"
             android:scaleType="fitCenter"
-            android:background="@color/white"/>
+            app:srcCompat="@drawable/pokeball_icon_icons_com_67533"
+            tools:layout_editor_absoluteX="171dp"
+            tools:layout_editor_absoluteY="7dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <ImageButton
@@ -60,6 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="155dp"
         android:background="@drawable/deck_background"
+        android:onClick="seeDeck"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

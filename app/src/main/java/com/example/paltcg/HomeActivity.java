@@ -36,19 +36,22 @@ public class HomeActivity extends AppCompatActivity {
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
-            public void handleOnBackPressed() {
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("the_user",user);
-                setResult(Activity.RESULT_OK, returnIntent);
-                finish();
-            }
+            public void handleOnBackPressed() { leave(null);}
         });
+
 
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2500);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
+    }
+
+    public void leave(View v) {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("the_user",user);
+        setResult(Activity.RESULT_OK, returnIntent);
+        finish();
     }
 
     private void handleActivityResult(ActivityResult result) {
