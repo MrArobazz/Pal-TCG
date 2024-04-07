@@ -11,30 +11,30 @@
 
     <Spinner
         android:id="@+id/spinner_poke_choice"
-        android:layout_width="match_parent"
-        android:layout_height="78dp"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_view_attack_choice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="204dp"
+        android:layout_height="90dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_attack_choice"
-        android:layout_width="match_parent"
-        android:layout_height="77dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout_player_choice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraint_layout_arena"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout_player_choice"
+        app:layout_constraintStart_toEndOf="@+id/spinner_poke_choice"
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/linearLayout_player_choice"
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:orientation="horizontal"
+        android:layout_width="111dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/imageButton_run"
@@ -71,13 +71,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_arena"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_poke_choice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="265dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout_player_choice"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/textView_pv_player"
@@ -102,10 +99,9 @@
             android:id="@+id/webView_sprite_bot_arena1"
             android:layout_width="92dp"
             android:layout_height="75dp"
-            android:layout_marginStart="87dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="100dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView_carte_active_bot"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -120,10 +116,9 @@
             android:id="@+id/webView_sprite_player_arena1"
             android:layout_width="92dp"
             android:layout_height="75dp"
-            android:layout_marginEnd="87dp"
-            android:layout_marginBottom="80dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView_pv_player"
-            app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player"
+            android:layout_marginStart="100dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ProgressBar
