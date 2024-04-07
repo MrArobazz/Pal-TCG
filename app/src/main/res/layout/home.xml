@@ -35,7 +35,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_choixArena"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
@@ -52,9 +52,11 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:onClick="goHome"
+            android:onClick="leave"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/pokeball_icon_icons_com_67533" />
+            app:srcCompat="@drawable/pokeball_icon_icons_com_67533"
+            tools:layout_editor_absoluteX="152dp"
+            tools:layout_editor_absoluteY="7dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <ImageButton
@@ -62,6 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="140dp"
         android:background="@drawable/deck_background"
+        android:onClick="seeDeck"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
