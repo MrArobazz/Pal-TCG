@@ -24,6 +24,14 @@
     <string name="Other">Other</string>
     <string name="Pokemon">Pokemon</string>
     <string name="BirthDay">Anniversary Date</string>
+    <string name="Victory">Victories</string>
+    <string name="Defeat">Defeats</string>
+    <string name="Notation">Notation</string>
+    <string name="Captured_pokemon">Catched Pokemon</string>
+    <string name="Lost_pokemon">Lost Pokemons</string>
+    <string name="Pokemons">My Pokemons</string>
+
+
 
 
 

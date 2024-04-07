@@ -18,6 +18,12 @@
     <string name="Other">Autre</string>
     <string name="Pokemon">Pokemon</string>
     <string name="BirthDay">Date d\'Anniversaire</string>
+    <string name="Victory">Victoires</string>
+    <string name="Defeat">Defaites</string>
+    <string name="Notation">Notation</string>
+    <string name="Captured_pokemon">Pokemons Attrappés</string>
+    <string name="Lost_pokemon">Pokemons Perdus</string>
+    <string name="Pokemons">Mes Pokemons</string>
 
 
     <string-array name="pokemon_names">
