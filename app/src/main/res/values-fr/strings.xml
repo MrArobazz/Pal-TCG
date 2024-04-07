@@ -10,6 +10,14 @@
     <string name="textView_pictureTitle">Choisir une photo de profil</string>
     <string name="textView_genDeckTitle_text">Générer un deck</string>
     <string name="button_validate_text">S\'INSCRIRE</string>
+    <string name="profile">Mon Profile</string>
+    <string name="pseudo">Pseudo:</string>
+    <string name="gender">Genre</string>
+    <string name="Man">Homme</string>
+    <string name="Woman">Femme</string>
+    <string name="Other">Autre</string>
+    <string name="Pokemon">Pokemon</string>
+    <string name="BirthDay">Date de Naissance</string>
 
 
     <string-array name="pokemon_names">

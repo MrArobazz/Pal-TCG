@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toolbar;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
@@ -20,14 +22,20 @@ public class HomeActivity extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> decksActivityResultLauncher;
     User user;
+
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+
+
         Intent intent = getIntent();
         user = intent.getParcelableExtra("the_user");
         if (user != null) Log.i("TAG", "onCreate: " + user.getUsername());
+
+
 
         decksActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -40,11 +48,28 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+
+
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2500);
         animationDrawable.setExitFadeDuration(5000);
         animationDrawable.start();
+
+
+
+        /*toolbar= (Toolbar) findViewById(R.id.toolbar_home);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if(item.getItemId()==R.id.profil_button){
+                   profile();
+                }
+                return true;
+            }
+        });*/
+
+
     }
 
     public void leave(View v) {
@@ -76,4 +101,15 @@ public class HomeActivity extends AppCompatActivity {
         intent.putExtra("the_user",user);
         decksActivityResultLauncher.launch(intent);
     }
+    public void profile(){
+        Intent intent = new Intent(this,ProfileActivity.class);
+        if(user!=null){
+            intent.putExtra("the_user",user);
+        }
+        startActivity(intent);
+    }
+
+
+
+
 }

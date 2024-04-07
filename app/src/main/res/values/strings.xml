@@ -14,6 +14,16 @@
     <string name="ask_to_delete">Are you sure you want to delete this account?</string>
     <string name="ask_to_delete_title">Delete account</string>
     <string name="error_rules">Error : can\'t show rules.</string>
+    <string name="profile">My Profile</string>
+    <string name="pseudo">Pseudo :</string>
+    <string name="gender">Gender</string>
+    <string name="Man">Man</string>
+    <string name="Woman">Woman</string>
+    <string name="Other">Other</string>
+    <string name="Pokemon">Pokemon</string>
+    <string name="BirthDay">BirthDay</string>
+
+
 
     <string name="open_menu" translatable="false">Open</string>
     <string name="close_menu" translatable="false">Close</string>

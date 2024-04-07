@@ -1,14 +1,12 @@
 package com.example.paltcg;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.widget.VideoView;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
