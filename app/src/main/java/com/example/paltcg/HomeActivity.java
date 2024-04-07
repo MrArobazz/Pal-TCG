@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> decksActivityResultLauncher;
     User user;
 
-    Toolbar toolbar;
+    androidx.appcompat.widget.Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,17 +58,16 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        /*toolbar= (Toolbar) findViewById(R.id.toolbar_home);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        toolbar= findViewById(R.id.toolbar_home);
+        toolbar.setOnMenuItemClickListener(new androidx.appcompat.widget.Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.profil_button){
-                   profile();
+                    profile();
                 }
                 return true;
             }
-        });*/
-
+        });
 
     }
 
@@ -103,9 +102,6 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void profile(){
         Intent intent = new Intent(this,ProfileActivity.class);
-        if(user!=null){
-            intent.putExtra("the_user",user);
-        }
         startActivity(intent);
     }
 

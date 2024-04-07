@@ -17,7 +17,7 @@
     <string name="Woman">Femme</string>
     <string name="Other">Autre</string>
     <string name="Pokemon">Pokemon</string>
-    <string name="BirthDay">Date de Naissance</string>
+    <string name="BirthDay">Date d\'Anniversaire</string>
 
 
     <string-array name="pokemon_names">

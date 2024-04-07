@@ -20,6 +20,9 @@
             android:name=".RulesActivity"
             android:exported="false" />
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Arena_2_Activity"
             android:exported="false" />
         <activity
