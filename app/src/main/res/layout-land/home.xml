@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView_entete"
         android:layout_width="0dp"
-        android:layout_height="130dp"
+        android:layout_height="81dp"
         android:importantForAccessibility="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,12 +21,11 @@
     <ImageButton
         android:id="@+id/imageButton_battleButton"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:background="@drawable/banner_pokeball"
         android:importantForAccessibility="no"
         android:onClick="goArene"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar_choixArena"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +34,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_choixArena"
-        android:layout_width="356dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
@@ -44,6 +43,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_battleButton"
+        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/toolbar_menu">
 
         <ImageButton
@@ -60,24 +61,24 @@
     <ImageButton
         android:id="@+id/imageButton_deck"
         android:layout_width="0dp"
-        android:layout_height="140dp"
+        android:layout_height="0dp"
         android:background="@drawable/deck_background"
         android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton_battleButton"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_stat"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_entete"
         app:srcCompat="@drawable/deck" />
 
     <ImageButton
         android:id="@+id/imageButton_stat"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
+        android:layout_width="329dp"
+        android:layout_height="104dp"
         android:background="@drawable/stat_background"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.326"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_deck"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_entete"
         app:srcCompat="@drawable/stat" />
 
 
