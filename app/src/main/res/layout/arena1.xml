@@ -43,9 +43,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/banner_pokeball"
-            android:onClick="change_card"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/esc_svgrepo_com" />
+            app:srcCompat="@drawable/esc_svgrepo_com"
+            android:importantForAccessibility="no" />
 
         <ImageButton
             android:id="@+id/imageButton_fight"
@@ -55,7 +55,8 @@
             android:background="@drawable/banner_pokeball"
             android:onClick="attack"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/battle" />
+            app:srcCompat="@drawable/battle"
+            android:importantForAccessibility="no" />
 
         <ImageButton
             android:id="@+id/imageButton_change"
@@ -63,9 +64,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/banner_pokeball"
-            android:onClick="change_card"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/pokeballs_icon_icons_com_67532" />
+            app:srcCompat="@drawable/pokeballs_icon_icons_com_67532"
+            android:importantForAccessibility="no" />
 
     </LinearLayout>
 
@@ -85,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="11dp"
-            android:text="TextView"
+            android:text="@string/textView_pv_default"
             app:layout_constraintBottom_toBottomOf="@+id/progressBar_pv_player_arene1"
             app:layout_constraintEnd_toEndOf="@+id/progressBar_pv_player_arene1"
             app:layout_constraintStart_toStartOf="@+id/progressBar_pv_player_arene1"
@@ -97,7 +98,7 @@
             android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/alakazambaseset1" />
+            android:importantForAccessibility="no" />
 
         <WebView
             android:id="@+id/webView_sprite_bot_arena1"
@@ -116,7 +117,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/abrabaseset43" />
+            android:importantForAccessibility="no" />
 
         <WebView
             android:id="@+id/webView_sprite_player_arena1"
@@ -154,7 +155,7 @@
             android:id="@+id/textView_pv_bot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="@string/textView_pv_default"
             app:layout_constraintBottom_toBottomOf="@+id/progressBar_pv_bot_arene1"
             app:layout_constraintEnd_toEndOf="@+id/progressBar_pv_bot_arene1"
             app:layout_constraintHorizontal_bias="0.402"

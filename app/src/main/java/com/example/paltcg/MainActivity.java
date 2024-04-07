@@ -165,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
         cards.add(R.drawable.kadabrabaseset32);
         cards.add(R.drawable.machopbaseset52);
         user.addNewCards(cards);
+        for (int i = 0; i < 5; i++)
+            user.activateCard(i);
         displayInfos();
         playOrSignUp(v);
     }

@@ -14,6 +14,8 @@
     <string name="ask_to_delete">Are you sure you want to delete this account?</string>
     <string name="ask_to_delete_title">Delete account</string>
     <string name="error_rules">Error : can\'t show rules.</string>
+    <string name="not_enough_active_cards_title">Not enough active cards</string>
+    <string name="not_enough_active_cards">You need to active 5 cards to fight.</string>
     <string name="profile">My Profile</string>
     <string name="pseudo">Pseudo :</string>
     <string name="gender">Gender</string>
@@ -27,76 +29,77 @@
 
     <string name="open_menu" translatable="false">Open</string>
     <string name="close_menu" translatable="false">Close</string>
+    <string name="textView_pv_default">999/999</string>
 
     <string-array name="pokemon_names">
-        <item>Abra</item>
         <item>Alakazam</item>
-        <item>Arcanine</item>
-        <item>Beedrill</item>
         <item>Blastoise</item>
-        <item>Bulbasaur</item>
-        <item>Caterpie</item>
         <item>Chansey</item>
         <item>Charizard</item>
-        <item>Charmander</item>
-        <item>Charmeleon</item>
         <item>Clefairy</item>
-        <item>Dewgong</item>
-        <item>Diglett</item>
-        <item>Doduo</item>
+        <item>Gyarados</item>
+        <item>Hitmonchan</item>
+        <item>Machamp</item>
+        <item>Magneton</item>
+        <item>Mewtwo</item>
+        <item>Nidoking</item>
+        <item>Ninetales</item>
+        <item>Poliwrath</item>
+        <item>Raichu</item>
+        <item>Venusaur</item>
+        <item>Zapdos</item>
+        <item>Beedrill</item>
         <item>Dragonair</item>
-        <item>Dratini</item>
-        <item>Drowzee</item>
         <item>Dugtrio</item>
         <item>Electabuzz</item>
         <item>Electrode</item>
+        <item>Pidgeotto</item>
+        <item>Arcanine</item>
+        <item>Charmeleon</item>
+        <item>Dewgong</item>
+        <item>Dratini</item>
         <item>Farfetch\'d</item>
-        <item>Gastly</item>
         <item>Growlithe</item>
-        <item>Gyarados</item>
         <item>Haunter</item>
-        <item>Hitmonchan</item>
         <item>Ivysaur</item>
         <item>Jynx</item>
         <item>Kadabra</item>
         <item>Kakuna</item>
-        <item>Koffing</item>
-        <item>Machamp</item>
         <item>Machoke</item>
-        <item>Machop</item>
         <item>Magikarp</item>
         <item>Magmar</item>
-        <item>Magnemite</item>
-        <item>Magneton</item>
-        <item>Metapod</item>
-        <item>Mewtwo</item>
-        <item>Nidoking</item>
-        <item>Nidoran</item>
         <item>Nidorino</item>
-        <item>Ninetales</item>
+        <item>Poliwhirl</item>
+        <item>Porygon</item>
+        <item>Raticate</item>
+        <item>Seel</item>
+        <item>Wartortle</item>
+        <item>Abra</item>
+        <item>Bulbasaur</item>
+        <item>Caterpie</item>
+        <item>Charmander</item>
+        <item>Diglett</item>
+        <item>Doduo</item>
+        <item>Drowzee</item>
+        <item>Gastly</item>
+        <item>Koffing</item>
+        <item>Machop</item>
+        <item>Magnemite</item>
+        <item>Metapod</item>
+        <item>Nidoran♂</item>
         <item>Onix</item>
-        <item>Pidgeotto</item>
         <item>Pidgey</item>
         <item>Pikachu</item>
         <item>Poliwag</item>
-        <item>Poliwhirl</item>
-        <item>Poliwrath</item>
         <item>Ponyta</item>
-        <item>Porygon</item>
-        <item>Raichu</item>
-        <item>Raticate</item>
         <item>Rattata</item>
         <item>Sandshrew</item>
-        <item>Seel</item>
         <item>Squirtle</item>
         <item>Starmie</item>
         <item>Staryu</item>
         <item>Tangela</item>
-        <item>Venusaur</item>
         <item>Voltorb</item>
         <item>Vulpix</item>
-        <item>Wartortle</item>
         <item>Weedle</item>
-        <item>Zapdos</item>
     </string-array>
 </resources>

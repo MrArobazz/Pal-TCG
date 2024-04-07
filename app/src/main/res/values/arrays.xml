@@ -13,74 +13,74 @@
     </integer-array>
 
     <integer-array name="pokemon_cards_ids">
-        <item>@drawable/abrabaseset43</item>
         <item>@drawable/alakazambaseset1</item>
-        <item>@drawable/arcaninebaseset23</item>
-        <item>@drawable/beedrillbaseset17</item>
         <item>@drawable/blastoisebaseset2</item>
-        <item>@drawable/bulbasaurbaseset44</item>
-        <item>@drawable/caterpieevolutions3</item>
         <item>@drawable/chanseybaseset2</item>
         <item>@drawable/charizardstormfront103</item>
-        <item>@drawable/charmanderstormfront101</item>
-        <item>@drawable/charmeleonstormfront102</item>
         <item>@drawable/clefairybaseset5</item>
-        <item>@drawable/dewgongbaseset25</item>
-        <item>@drawable/diglettbaseset47</item>
-        <item>@drawable/doduobaseset48</item>
+        <item>@drawable/gyaradosbaseset6</item>
+        <item>@drawable/hitmonchanbaseset7</item>
+        <item>@drawable/machampbaseset8</item>
+        <item>@drawable/magnetonbaseset9</item>
+        <item>@drawable/mewtwobaseset10</item>
+        <item>@drawable/nidokingbaseset11</item>
+        <item>@drawable/ninetalesbaseset12</item>
+        <item>@drawable/poliwrathbaseset13</item>
+        <item>@drawable/raichubaseset14</item>
+        <item>@drawable/venusaurvenusaurdeck3</item>
+        <item>@drawable/zapdosbaseset16</item>
+        <item>@drawable/beedrillbaseset17</item>
         <item>@drawable/dragonairbaseset18</item>
-        <item>@drawable/dratinibaseset26</item>
-        <item>@drawable/drowzeebaseset49</item>
         <item>@drawable/dugtriobaseset19</item>
         <item>@drawable/electabuzz</item>
         <item>@drawable/electrodebaseset21</item>
+        <item>@drawable/pidgeottobaseset22</item>
+        <item>@drawable/arcaninebaseset23</item>
+        <item>@drawable/charmeleonstormfront102</item>
+        <item>@drawable/dewgongbaseset25</item>
+        <item>@drawable/dratinibaseset26</item>
         <item>@drawable/farfetch_dbaseset27</item>
-        <item>@drawable/gastlybaseset50</item>
         <item>@drawable/growlithebaseset28</item>
-        <item>@drawable/gyaradosbaseset6</item>
         <item>@drawable/haunterbaseset29</item>
-        <item>@drawable/hitmonchanbaseset7</item>
         <item>@drawable/ivysaurbaseset30</item>
         <item>@drawable/jynxbaseset31</item>
         <item>@drawable/kadabrabaseset32</item>
         <item>@drawable/kakunabaseset33</item>
-        <item>@drawable/koffingbaseset51</item>
-        <item>@drawable/machampbaseset8</item>
         <item>@drawable/machokebaseset34</item>
-        <item>@drawable/machopbaseset52</item>
         <item>@drawable/magikarpbaseset35</item>
         <item>@drawable/magmarbaseset36</item>
-        <item>@drawable/magnemitebaseset53</item>
-        <item>@drawable/magnetonbaseset9</item>
-        <item>@drawable/metapodbaseset54</item>
-        <item>@drawable/mewtwobaseset10</item>
-        <item>@drawable/nidokingbaseset11</item>
-        <item>@drawable/nidoranbaseset55</item>
         <item>@drawable/nidorinobaseset37</item>
-        <item>@drawable/ninetalesbaseset12</item>
+        <item>@drawable/poliwhirlbaseset38</item>
+        <item>@drawable/porygonbaseset39</item>
+        <item>@drawable/raticatebaseset40</item>
+        <item>@drawable/seelbaseset41</item>
+        <item>@drawable/wartortlebaseset42</item>
+        <item>@drawable/abrabaseset43</item>
+        <item>@drawable/bulbasaurbaseset44</item>
+        <item>@drawable/caterpieevolutions3</item>
+        <item>@drawable/charmanderstormfront101</item>
+        <item>@drawable/diglettbaseset47</item>
+        <item>@drawable/doduobaseset48</item>
+        <item>@drawable/drowzeebaseset49</item>
+        <item>@drawable/gastlybaseset50</item>
+        <item>@drawable/koffingbaseset51</item>
+        <item>@drawable/machopbaseset52</item>
+        <item>@drawable/magnemitebaseset53</item>
+        <item>@drawable/metapodbaseset54</item>
+        <item>@drawable/nidoranbaseset55</item>
         <item>@drawable/onixbaseset56</item>
-        <item>@drawable/pidgeottobaseset22</item>
         <item>@drawable/pidgeybaseset57</item>
         <item>@drawable/pikachurisingrivals112</item>
         <item>@drawable/poliwagbaseset59</item>
-        <item>@drawable/poliwhirlbaseset38</item>
-        <item>@drawable/poliwrathbaseset13</item>
         <item>@drawable/ponytabaseset60</item>
-        <item>@drawable/porygonbaseset39</item>
-        <item>@drawable/raichubaseset14</item>
-        <item>@drawable/raticatebaseset40</item>
         <item>@drawable/rattatabaseset61</item>
         <item>@drawable/sandshrewbaseset62</item>
-        <item>@drawable/seelbaseset41</item>
         <item>@drawable/squirtlebaseset63</item>
         <item>@drawable/starmiebaseset64</item>
         <item>@drawable/staryubaseset65</item>
         <item>@drawable/tangelabaseset66</item>
-        <item>@drawable/venusaurvenusaurdeck3</item>
         <item>@drawable/voltorbbaseset67</item>
         <item>@drawable/vulpixbaseset68</item>
-        <item>@drawable/wartortlebaseset42</item>
         <item>@drawable/weedlebaseset69</item>
-        <item>@drawable/zapdosbaseset16</item>
     </integer-array>
 </resources>
