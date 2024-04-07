@@ -21,75 +21,75 @@
 
 
     <string-array name="pokemon_names">
-        <item>Abra</item>
         <item>Alakazam</item>
-        <item>Arcanin</item>
-        <item>Dardargnan</item>
         <item>Tortank</item>
-        <item>Bulbizarre</item>
-        <item>Chenipan</item>
         <item>Leveinard</item>
         <item>Dracaufeu</item>
-        <item>Salamèche</item>
-        <item>Reptincel</item>
         <item>Mélofée</item>
-        <item>Lamantine</item>
-        <item>Taupiqueur</item>
-        <item>Doduo</item>
+        <item>Léviator</item>
+        <item>Tygnon</item>
+        <item>Mackogneur</item>
+        <item>Magnéton</item>
+        <item>Mewtwo</item>
+        <item>Nidoking</item>
+        <item>Feunard</item>
+        <item>Tartard</item>
+        <item>Raichu</item>
+        <item>Florizarre</item>
+        <item>Électhor</item>
+        <item>Dardargnan</item>
         <item>Draco</item>
-        <item>Minidraco</item>
-        <item>Soporifik</item>
         <item>Triopikeur</item>
         <item>Élektek</item>
         <item>Électrode</item>
+        <item>Roucoups</item>
+        <item>Arcanin</item>
+        <item>Reptincel</item>
+        <item>Lamantine</item>
+        <item>Minidraco</item>
         <item>Canarticho</item>
-        <item>Fantominus</item>
         <item>Caninos</item>
-        <item>Léviator</item>
         <item>Spectrum</item>
-        <item>Tygnon</item>
         <item>Herbizarre</item>
         <item>Lippoutou</item>
         <item>Kadabra</item>
         <item>Coconfort</item>
-        <item>Smogo</item>
-        <item>Mackogneur</item>
         <item>Machopeur</item>
-        <item>Machoc</item>
         <item>Magicarpe</item>
         <item>Magmar</item>
-        <item>Magnéti</item>
-        <item>Magnéton</item>
-        <item>Chrysacier</item>
-        <item>Mewtwo</item>
-        <item>Nidoking</item>
-        <item>Nidoran</item>
         <item>Nidorino</item>
-        <item>Feunard</item>
+        <item>Têtarte</item>
+        <item>Porygon</item>
+        <item>Rattatac</item>
+        <item>Otaria</item>
+        <item>Carabaffe</item>
+        <item>Abra</item>
+        <item>Bulbizarre</item>
+        <item>Chenipan</item>
+        <item>Salamèche</item>
+        <item>Taupiqueur</item>
+        <item>Doduo</item>
+        <item>Soporifik</item>
+        <item>Fantominus</item>
+        <item>Smogo</item>
+        <item>Machoc</item>
+        <item>Magneti</item>
+        <item>Chrysacier</item>
+        <item>Nidoran♂</item>
         <item>Onix</item>
-        <item>Roucoups</item>
         <item>Roucool</item>
         <item>Pikachu</item>
         <item>Ptitard</item>
-        <item>Têtarte</item>
-        <item>Tartard</item>
         <item>Ponyta</item>
-        <item>Porygon</item>
-        <item>Raichu</item>
-        <item>Rattatac</item>
         <item>Rattata</item>
         <item>Sabelette</item>
-        <item>Otaria</item>
         <item>Carapuce</item>
         <item>Staross</item>
         <item>Stari</item>
         <item>Saquedeneu</item>
-        <item>Florizarre</item>
         <item>Voltorbe</item>
         <item>Goupix</item>
-        <item>Carabaffe</item>
         <item>Aspicot</item>
-        <item>Électhor</item>
     </string-array>
     <string name="need_to_create_a_account">CREER UN PROFIL</string>
     <string name="ask_to_delete">Êtes-vous sûrs de vouloir supprimer ce compte?</string>
@@ -97,4 +97,7 @@
 
     <string name="ask_to_delete_title">Supprimer le compte</string>
     <string name="error_rules">Erreur : impossible d\'afficher les règles.</string>
+    <string name="not_enough_active_cards_title">Pas assez de cartes actives</string>
+    <string name="not_enough_active_cards">Vous devez activer 5 cartes pour les combats.</string>
+    <string name="textView_pv_default">999/999</string>
 </resources>

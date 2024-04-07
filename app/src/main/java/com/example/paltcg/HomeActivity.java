@@ -1,13 +1,13 @@
 package com.example.paltcg;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toolbar;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
@@ -20,7 +20,8 @@ import com.example.paltcg.dataclasses.User;
 
 public class HomeActivity extends AppCompatActivity {
 
-    ActivityResultLauncher<Intent> decksActivityResultLauncher;
+    ActivityResultLauncher<Intent> activityResultLauncher;
+
     User user;
 
     androidx.appcompat.widget.Toolbar toolbar;
@@ -37,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        decksActivityResultLauncher = registerForActivityResult(
+        activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleActivityResult
         );
@@ -91,14 +92,27 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void goArene(android.view.View v){
-        Intent intent = new Intent(this,ArenaChoiceActivity.class);
-        startActivity(intent);
+        if (user.getDeckCardsIds().size() == 5)
+            goNextActivity(new Intent(this, ArenaChoiceActivity.class));
+        else {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle(R.string.not_enough_active_cards_title);
+            alert.setMessage(R.string.not_enough_active_cards);
+            alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                seeDeck(v);
+            });
+
+            alert.show();
+        }
     }
 
     public void seeDeck(View v) {
-        Intent intent = new Intent(this, DecksActivity.class);
-        intent.putExtra("the_user",user);
-        decksActivityResultLauncher.launch(intent);
+        goNextActivity(new Intent(this, DecksActivity.class));
+    }
+
+    public void goNextActivity(Intent intent) {
+        intent.putExtra("the_user", user);
+        activityResultLauncher.launch(intent);
     }
     public void profile(){
         Intent intent = new Intent(this,ProfileActivity.class);

@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_list"
-    android:onClick="goHome"
     tools:context=".ArenaChoiceActivity">
 
     <ImageView
@@ -17,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/battle" />
+        app:srcCompat="@drawable/battle"
+        android:importantForAccessibility="no" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -29,20 +29,13 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <ImageButton
-            android:id="@+id/imageButton_arene4"
+            android:id="@+id/imageButton_arene1"
             android:layout_width="match_parent"
             android:layout_height="88dp"
-            android:onClick="goArene4"
+            android:onClick="goArene1"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene4" />
-
-        <ImageButton
-            android:id="@+id/imageButton_arene3"
-            android:layout_width="match_parent"
-            android:layout_height="88dp"
-            android:onClick="goArene3"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene3" />
+            app:srcCompat="@drawable/arene1"
+            android:importantForAccessibility="no" />
 
         <ImageButton
             android:id="@+id/imageButton_arene2"
@@ -50,15 +43,18 @@
             android:layout_height="88dp"
             android:onClick="goArene2"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene2" />
+            app:srcCompat="@drawable/arene2"
+            android:importantForAccessibility="no" />
 
         <ImageButton
-            android:id="@+id/imageButton_arene1"
+            android:id="@+id/imageButton_arene3"
             android:layout_width="match_parent"
             android:layout_height="88dp"
-            android:onClick="goArene1"
+            android:onClick="goArene3"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene1" />
+            app:srcCompat="@drawable/arene3"
+            android:importantForAccessibility="no" />
+
     </LinearLayout>
 
     <Space
@@ -85,7 +81,10 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/home" />
+            android:onClick="goHome"
+            app:srcCompat="@drawable/home"
+            tools:layout_editor_absoluteX="155dp"
+            tools:layout_editor_absoluteY="15dp" />
     </androidx.appcompat.widget.Toolbar>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
