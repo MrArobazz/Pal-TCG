@@ -38,6 +38,8 @@
     <string name="open_menu" translatable="false">Open</string>
     <string name="close_menu" translatable="false">Close</string>
     <string name="textView_pv_default">999/999</string>
+    <string name="run_away_battle_title">Run away</string>
+    <string name="run_away_battle">Are you sure? This will lead to the permanent loss of your KO cards.</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>

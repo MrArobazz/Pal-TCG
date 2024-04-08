@@ -18,6 +18,7 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
 
     Integer id_in_set;
 
+    Integer max_pv;
     Integer pv;
 
     Type type;
@@ -39,6 +40,7 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
 
     public String getName() { return name;}
 
+    public Integer getMaxPv() { return max_pv;}
     public Integer getPv() { return pv;}
 
     public boolean isNotReady() { return !ready;}
@@ -48,6 +50,36 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
         for (Attack attack : attacks)
             result.add(attack.getName());
         return result;
+    }
+
+    public String getBestAttackName() {
+        int max = -1;
+        String bestName = "";
+        for (Attack attack : attacks) {
+            int tmp_dgts = attack.getDegats();
+            if (tmp_dgts > max) {
+                max = tmp_dgts;
+                bestName = attack.getName();
+            }
+        }
+        return bestName;
+    }
+
+    public Integer getDgtsFromAttackName(String attkName) {
+        for (Attack attack : attacks)
+            if (attack.getName().equals(attkName))
+                return attack.getDegats();
+        return -1;
+    }
+
+    public void attackPokemon(Pokemon opponent, int degats) {
+        if (opponent.weakness == this.type)
+            opponent.pv -= degats * 2;
+        else if (opponent.resistance == this.type)
+            opponent.pv -= (Math.max(degats - 30, 0));
+        else opponent.pv -= degats;
+        if (opponent.pv < 0)
+            opponent.pv = 0;
     }
 
     @NonNull
@@ -86,6 +118,7 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
                             else if (a.text().equals("HP")) {
                                 Element td = row.selectFirst("td");
                                 pv = Integer.parseInt(td.text());
+                                max_pv = pv;
                             }
                         }
                     }

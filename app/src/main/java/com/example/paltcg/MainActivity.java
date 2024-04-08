@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         SortedSet<Integer> cards = new TreeSet<>();
         cards.add(R.drawable.arcaninebaseset23);
         cards.add(R.drawable.bulbasaurbaseset44);
-        cards.add(R.drawable.dugtriobaseset19);
+        cards.add(R.drawable.nidoranbaseset55);
         cards.add(R.drawable.diglettbaseset47);
         cards.add(R.drawable.kadabrabaseset32);
         cards.add(R.drawable.machopbaseset52);

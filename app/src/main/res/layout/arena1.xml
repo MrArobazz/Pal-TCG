@@ -127,6 +127,7 @@
             android:foregroundTint="#08830D"
             android:min="0"
             android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="#00FF00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player" />
 
@@ -148,8 +149,10 @@
             android:layout_height="30dp"
             android:layout_marginTop="24dp"
             android:foregroundTint="#08830D"
+            android:indeterminateBehavior="repeat"
             android:min="0"
             android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="#00FF00"
             app:layout_constraintStart_toEndOf="@+id/imageView_carte_active_bot"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,6 +167,7 @@
             app:layout_constraintStart_toStartOf="@+id/progressBar_pv_bot_arene1"
             app:layout_constraintTop_toTopOf="@+id/progressBar_pv_bot_arene1"
             app:layout_constraintVertical_bias="0.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

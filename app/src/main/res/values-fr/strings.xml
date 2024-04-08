@@ -108,4 +108,6 @@
     <string name="not_enough_active_cards">Vous devez activer 5 cartes pour les combats.</string>
     <string name="textView_pv_default">999/999</string>
     <string name="choose_a_pokemon">Choisir un pokémon</string>
+    <string name="run_away_battle_title">Fuir</string>
+    <string name="run_away_battle">Êtes-vous sûrs? Cela conduira à la perte définitive de vos cartes mises KO.</string>
 </resources>
