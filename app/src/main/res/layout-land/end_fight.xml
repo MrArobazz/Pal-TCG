@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content" />
 
             <VideoView
-                android:id="@+id/videoView2"
+                android:id="@+id/videoView_endFight"
                 android:layout_width="match_parent"
                 android:layout_height="109dp" />
 
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content" />
 
             <RatingBar
-                android:id="@+id/ratingBar"
+                android:id="@+id/ratingBar_endfight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

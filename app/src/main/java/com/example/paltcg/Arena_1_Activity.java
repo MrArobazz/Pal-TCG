@@ -63,11 +63,23 @@ public class Arena_1_Activity extends AppCompatActivity {
 
     public void attack(android.view.View v){
         pv_bot -= 10;
-        pv_player -=10;
+        pv_player -=1;
         progressBar_bot.setProgress(pv_bot);
         progressBar_player.setProgress(pv_player);
+        if(pv_bot <= 0 || pv_player <= 0){
+            goBilan();
+        }
     }
 
+    public void goBilan(){
+        boolean to_send = false;
+        Intent intent = new Intent(this,End_Fight_Activity.class);
+        if(pv_player==0) {
+            to_send = true;
+        }
+        intent.putExtra("result",to_send);
+        startActivity(intent);
 
+    }
 
 }

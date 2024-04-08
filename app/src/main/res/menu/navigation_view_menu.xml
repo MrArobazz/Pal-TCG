@@ -10,7 +10,7 @@
             android:title="Attack"/>
         <item android:id="@+id/defense_arena3"
             android:icon="@drawable/shield_reflect_svgrepo_com"
-            android:title="Defense"/>
+            android:title="Run"/>
         <item android:id="@+id/change_arena3"
             android:icon="@drawable/replace_svgrepo_com"
             android:title="Change"/>

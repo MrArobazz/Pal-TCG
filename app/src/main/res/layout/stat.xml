@@ -37,13 +37,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/Victory" />
+                android:text="@string/Victory"
+                android:textAlignment="center" />
 
             <SeekBar
                 android:id="@+id/seekBar_nb_victoire"
                 android:layout_width="209dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:clickable="false"/>
         </LinearLayout>
 
         <Space
@@ -60,7 +62,8 @@
                 android:layout_width="5dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/Defeat" />
+                android:text="@string/Defeat"
+                android:textAlignment="center" />
 
             <SeekBar
                 android:id="@+id/seekBar_nb_defaite"
@@ -69,7 +72,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:max="10"
-                android:progress="3" />
+                android:progress="0"
+                android:clickable="false"/>
         </LinearLayout>
 
         <Space
@@ -86,7 +90,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Pokemons" />
+                android:text="@string/Pokemons"
+                android:textAlignment="center" />
 
             <EditText
                 android:id="@+id/editTextNumber_nb_pokemon"
@@ -111,13 +116,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/Notation" />
+                android:text="@string/Notation"
+                android:textAlignment="center" />
 
             <RatingBar
                 android:id="@+id/ratingBar_evaluation_combat"
                 android:layout_width="253dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:numStars="5"
+                android:isIndicator="true"/>
+
         </LinearLayout>
 
         <Space
@@ -131,10 +140,11 @@
 
             <TextView
                 android:id="@+id/textView_nb_pokemon_perdu"
-                android:layout_width="wrap_content"
+                android:layout_width="59dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/Lost_pokemon" />
+                android:text="@string/Lost_pokemon"
+                android:textAlignment="center" />
 
             <ProgressBar
                 android:id="@+id/progressBar_nb_pokemon_perdu"
@@ -158,7 +168,8 @@
                 android:layout_width="34dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/Captured_pokemon" />
+                android:text="@string/Captured_pokemon"
+                android:textAlignment="center" />
 
             <ProgressBar
                 android:id="@+id/progressBar_nb_pokemon_gagne"
@@ -173,7 +184,7 @@
         android:id="@+id/floatingActionButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="30dp"
         android:clickable="true"
         android:onClick="goHome"
         app:layout_constraintBottom_toBottomOf="parent"

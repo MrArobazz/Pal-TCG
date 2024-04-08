@@ -26,34 +26,35 @@
         android:layout_marginTop="1dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <ImageButton
             android:id="@+id/imageButton_arene1"
             android:layout_width="match_parent"
             android:layout_height="88dp"
+            android:importantForAccessibility="no"
             android:onClick="goArene1"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene1"
-            android:importantForAccessibility="no" />
+            app:srcCompat="@drawable/arene1" />
 
         <ImageButton
             android:id="@+id/imageButton_arene2"
             android:layout_width="match_parent"
             android:layout_height="88dp"
+            android:importantForAccessibility="no"
             android:onClick="goArene2"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene2"
-            android:importantForAccessibility="no" />
+            app:srcCompat="@drawable/arene2" />
 
         <ImageButton
             android:id="@+id/imageButton_arene3"
             android:layout_width="match_parent"
             android:layout_height="88dp"
+            android:importantForAccessibility="no"
             android:onClick="goArene3"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene3"
-            android:importantForAccessibility="no" />
+            app:srcCompat="@drawable/arene3" />
 
     </LinearLayout>
 
@@ -62,6 +63,8 @@
         android:layout_width="360dp"
         android:layout_height="25dp"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -70,19 +73,24 @@
         android:id="@+id/toolbar_home"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/banner_pokeball"
+        android:layout_marginBottom="25dp"
+        android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/toolbar_menu">
 
         <ImageButton
             android:id="@+id/home_button_choixArena"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:background="@color/white"
             android:onClick="goHome"
-            app:srcCompat="@drawable/home"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/pokeball"
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="15dp" />
     </androidx.appcompat.widget.Toolbar>
