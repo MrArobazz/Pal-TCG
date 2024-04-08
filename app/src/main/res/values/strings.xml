@@ -30,6 +30,7 @@
     <string name="Captured_pokemon">Catched Pokemon</string>
     <string name="Lost_pokemon">Lost Pokemons</string>
     <string name="Pokemons">My Pokemons</string>
+    <string name="evaluation">Evaluate Your Battle</string>
 
 
     <string name="open_menu" translatable="false">Open</string>

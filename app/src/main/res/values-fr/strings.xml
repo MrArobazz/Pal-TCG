@@ -24,6 +24,7 @@
     <string name="Captured_pokemon">Pokemons Attrappés</string>
     <string name="Lost_pokemon">Pokemons Perdus</string>
     <string name="Pokemons">Mes Pokemons</string>
+    <string name="evaluation">Evaluer Votre Combat</string>
 
 
     <string-array name="pokemon_names">
