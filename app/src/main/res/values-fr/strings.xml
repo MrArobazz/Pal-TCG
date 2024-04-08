@@ -27,7 +27,7 @@
     <string name="evaluation">Evaluer Votre Combat</string>
 
 
-    <string-array name="pokemon_names">
+    <!--<string-array name="pokemon_names">
         <item>Alakazam</item>
         <item>Tortank</item>
         <item>Leveinard</item>
@@ -97,7 +97,7 @@
         <item>Voltorbe</item>
         <item>Goupix</item>
         <item>Aspicot</item>
-    </string-array>
+    </string-array>-->
     <string name="need_to_create_a_account">CREER UN PROFIL</string>
     <string name="ask_to_delete">Êtes-vous sûrs de vouloir supprimer ce compte?</string>
 
@@ -107,4 +107,5 @@
     <string name="not_enough_active_cards_title">Pas assez de cartes actives</string>
     <string name="not_enough_active_cards">Vous devez activer 5 cartes pour les combats.</string>
     <string name="textView_pv_default">999/999</string>
+    <string name="choose_a_pokemon">Choisir un pokémon</string>
 </resources>

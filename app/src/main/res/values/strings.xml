@@ -24,6 +24,8 @@
     <string name="Other">Other</string>
     <string name="Pokemon">Pokemon</string>
     <string name="BirthDay">Anniversary Date</string>
+    <string name="choose_a_pokemon">Choose a pokemon</string>
+
     <string name="Victory">Victories</string>
     <string name="Defeat">Defeats</string>
     <string name="Notation">Notation</string>
@@ -37,7 +39,7 @@
     <string name="close_menu" translatable="false">Close</string>
     <string name="textView_pv_default">999/999</string>
 
-    <string-array name="pokemon_names">
+    <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>
         <item>Blastoise</item>
         <item>Chansey</item>

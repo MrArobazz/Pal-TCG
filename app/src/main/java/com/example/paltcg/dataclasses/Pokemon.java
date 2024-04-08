@@ -28,13 +28,27 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
 
     ArrayList<Attack> attacks;
 
+    boolean ready = false;
+
     public Pokemon(String name, Integer id_in_set) {
         this.name = name;
         this.id_in_set = id_in_set;
         this.attacks = new ArrayList<>();
-        execute();
+        execute().isCancelled();
     }
 
+    public String getName() { return name;}
+
+    public Integer getPv() { return pv;}
+
+    public boolean isNotReady() { return !ready;}
+
+    public ArrayList<String> getAttackNames() {
+        ArrayList<String> result = new ArrayList<>();
+        for (Attack attack : attacks)
+            result.add(attack.getName());
+        return result;
+    }
 
     @NonNull
     @Override
@@ -117,11 +131,12 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
                     }
                 }
             }
-            Log.i("TAG", "doInBackground: " + name + pv + type + weakness + resistance + attacks);
         } catch (IOException e) {
             Log.e("POKEMON_FETCH_DATAS", "Error during connection...",e);
+        } finally {
+            ready = true;
+            Log.i("TAG", "Pokemon: end do in background");
         }
-        Log.i("TAG", "Pokemon: end do in background");
         return null;
     }
 }
