@@ -13,19 +13,17 @@
         android:id="@+id/spinner_poke_choice"
         android:layout_width="match_parent"
         android:layout_height="78dp"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_view_attack_choice"
+        app:layout_constraintBottom_toTopOf="@+id/listView_attackChoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_attack_choice"
+    <ListView
+        android:id="@+id/listView_attackChoice"
         android:layout_width="match_parent"
         android:layout_height="77dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout_player_choice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout_player_choice"
@@ -43,9 +41,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/banner_pokeball"
+            android:importantForAccessibility="no"
+            android:onClick="run_away"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/esc_svgrepo_com"
-            android:importantForAccessibility="no" />
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
         <ImageButton
             android:id="@+id/imageButton_fight"
@@ -53,10 +52,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/banner_pokeball"
-            android:onClick="attack"
+            android:importantForAccessibility="no"
+            android:onClick="displayAttackChoice"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/battle"
-            android:importantForAccessibility="no" />
+            app:srcCompat="@drawable/battle" />
 
         <ImageButton
             android:id="@+id/imageButton_change"
@@ -64,9 +63,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/banner_pokeball"
+            android:importantForAccessibility="no"
+            android:onClick="displayPokemonsChoice"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/pokeballs_icon_icons_com_67532"
-            android:importantForAccessibility="no" />
+            app:srcCompat="@drawable/pokeballs_icon_icons_com_67532" />
 
     </LinearLayout>
 
@@ -80,17 +80,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/textView_pv_player_arena1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="11dp"
-            android:text="@string/textView_pv_default"
-            app:layout_constraintBottom_toBottomOf="@+id/progressBar_pv_player_arene1"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar_pv_player_arene1"
-            app:layout_constraintStart_toStartOf="@+id/progressBar_pv_player_arene1"
-            app:layout_constraintTop_toTopOf="@+id/progressBar_pv_player_arene1" />
 
         <ImageView
             android:id="@+id/imageView_carte_active_player"
@@ -136,9 +125,22 @@
             android:layout_height="30dp"
             android:layout_marginBottom="4dp"
             android:foregroundTint="#08830D"
+            android:min="0"
             android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="#00FF00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player" />
+
+        <TextView
+            android:id="@+id/textView_pv_player_arena1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:text="@string/textView_pv_default"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_pv_player_arene1"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar_pv_player_arene1"
+            app:layout_constraintStart_toStartOf="@+id/progressBar_pv_player_arene1"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_pv_player_arene1" />
 
         <ProgressBar
             android:id="@+id/progressBar_pv_bot_arene1"
@@ -147,7 +149,10 @@
             android:layout_height="30dp"
             android:layout_marginTop="24dp"
             android:foregroundTint="#08830D"
+            android:indeterminateBehavior="repeat"
+            android:min="0"
             android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="#00FF00"
             app:layout_constraintStart_toEndOf="@+id/imageView_carte_active_bot"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,6 +167,7 @@
             app:layout_constraintStart_toStartOf="@+id/progressBar_pv_bot_arene1"
             app:layout_constraintTop_toTopOf="@+id/progressBar_pv_bot_arene1"
             app:layout_constraintVertical_bias="0.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

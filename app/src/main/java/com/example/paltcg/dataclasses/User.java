@@ -102,5 +102,7 @@ public class User implements Parcelable {
         return cardsIds;
     }
 
+    public Integer getCardId(int position) { return cardsIds.get(position);}
+
     public ArrayList<Integer> getDeckCardsIds() { return deckCardsIds;}
 }
