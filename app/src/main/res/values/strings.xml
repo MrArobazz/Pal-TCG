@@ -31,6 +31,14 @@
     <string name="Lost_pokemon">Lost Pokemons</string>
     <string name="Pokemons">My Pokemons</string>
     <string name="evaluation">Evaluate Your Battle</string>
+    <string name="Save">Save</string>
+    <string name="Mute">Mute</string>
+    <string name="Profil">Profil</string>
+    <string name="Choice">CHOICE</string>
+    <string name="Attack">Attack</string>
+    <string name="Run">Run</string>
+    <string name="Change">Change</string>
+    <string name="home">Home</string>
 
 
     <string name="open_menu" translatable="false">Open</string>

@@ -4,16 +4,16 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single"
         android:id="@+id/groupe_navigation_view_menu">
-        <item android:title="CHOICE"/>
+        <item android:title="@string/Choice"/>
         <item android:id="@+id/attack_arena3"
             android:icon="@drawable/fight_svgrepo_com"
-            android:title="Attack"/>
+            android:title="@string/Attack"/>
         <item android:id="@+id/defense_arena3"
             android:icon="@drawable/shield_reflect_svgrepo_com"
-            android:title="Run"/>
+            android:title="@string/Run"/>
         <item android:id="@+id/change_arena3"
             android:icon="@drawable/replace_svgrepo_com"
-            android:title="Change"/>
+            android:title="@string/Change"/>
     </group>
 
 </menu>

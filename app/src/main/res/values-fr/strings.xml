@@ -25,6 +25,14 @@
     <string name="Lost_pokemon">Pokemons Perdus</string>
     <string name="Pokemons">Mes Pokemons</string>
     <string name="evaluation">Evaluer Votre Combat</string>
+    <string name="Save">Sauvegarder</string>
+    <string name="Mute">Silence</string>
+    <string name="Profil">Profil</string>
+    <string name="Choice">CHOIX</string>
+    <string name="Attack">Attaquer</string>
+    <string name="Run">Fuire</string>
+    <string name="Change">Changer</string>
+    <string name="home">Acceuil</string>
 
 
     <string-array name="pokemon_names">

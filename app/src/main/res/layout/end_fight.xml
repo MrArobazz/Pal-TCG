@@ -11,6 +11,7 @@
         android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="169dp"
+        android:contentDescription="header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,12 +32,13 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="52dp" />
 
             <VideoView
                 android:id="@+id/videoView_endFight"
                 android:layout_width="match_parent"
-                android:layout_height="169dp" />
+                android:layout_height="169dp"
+                android:layout_gravity="center"/>
 
             <Space
                 android:layout_width="match_parent"

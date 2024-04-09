@@ -19,61 +19,10 @@
         app:srcCompat="@drawable/battle"
         android:importantForAccessibility="no" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="357dp"
-        android:layout_height="352dp"
-        android:layout_marginTop="1dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-        <ImageButton
-            android:id="@+id/imageButton_arene1"
-            android:layout_width="match_parent"
-            android:layout_height="88dp"
-            android:importantForAccessibility="no"
-            android:onClick="goArene1"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene1" />
-
-        <ImageButton
-            android:id="@+id/imageButton_arene2"
-            android:layout_width="match_parent"
-            android:layout_height="88dp"
-            android:importantForAccessibility="no"
-            android:onClick="goArene2"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene2" />
-
-        <ImageButton
-            android:id="@+id/imageButton_arene3"
-            android:layout_width="match_parent"
-            android:layout_height="88dp"
-            android:importantForAccessibility="no"
-            android:onClick="goArene3"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/arene3" />
-
-    </LinearLayout>
-
-    <Space
-        android:id="@+id/space"
-        android:layout_width="360dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar_home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_home"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginBottom="25dp"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -94,5 +43,49 @@
             tools:layout_editor_absoluteX="155dp"
             tools:layout_editor_absoluteY="15dp" />
     </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.996">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButton_arene3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:onClick="goArene3"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/arene3" />
+
+            <ImageButton
+                android:id="@+id/imageButton_arene2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:onClick="goArene2"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/arene2" />
+
+            <ImageButton
+                android:id="@+id/imageButton_arene1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:onClick="goArene1"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/arene1" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

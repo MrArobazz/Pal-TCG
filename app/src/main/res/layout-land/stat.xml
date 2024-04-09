@@ -12,6 +12,7 @@
         android:id="@+id/imageView3"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:contentDescription="header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -183,5 +184,16 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="goHome"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/home_button_for_interface_svgrepo_com" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
