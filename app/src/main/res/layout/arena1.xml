@@ -12,19 +12,18 @@
     <Spinner
         android:id="@+id/spinner_poke_choice"
         android:layout_width="match_parent"
-        android:layout_height="78dp"
-        app:layout_constraintBottom_toTopOf="@+id/listView_attackChoice"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_layout_arena" />
 
     <ListView
         android:id="@+id/listView_attackChoice"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout_player_choice"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_poke_choice" />
 
     <LinearLayout
         android:id="@+id/linearLayout_player_choice"
@@ -73,14 +72,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_arena"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="350dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_poke_choice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView_carte_active_player"

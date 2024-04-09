@@ -56,8 +56,7 @@ public class Stat_Activity extends AppCompatActivity {
 
 
     public void goHome(android.view.View View){
-        Intent intent = new Intent(this,HomeActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override
