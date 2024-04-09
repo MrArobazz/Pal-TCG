@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity {
         user.setGender(false);
         user.setProfilePicId(5);
         SortedSet<Integer> cards = new TreeSet<>();
-        cards.add(R.drawable.arcaninebaseset23);
-        cards.add(R.drawable.bulbasaurbaseset44);
+        cards.add(R.drawable.farfetch_dbaseset27);
+        cards.add(R.drawable.charizardstormfront103);
         cards.add(R.drawable.nidoranbaseset55);
         cards.add(R.drawable.diglettbaseset47);
         cards.add(R.drawable.kadabrabaseset32);

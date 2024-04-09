@@ -35,7 +35,21 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
         this.name = name;
         this.id_in_set = id_in_set;
         this.attacks = new ArrayList<>();
-        execute().isCancelled();
+        //execute();
+    }
+
+    public void fetchDatas() {
+        if (!ready)
+            if (name.equals("Charizard")) {
+                pv = 120;
+                max_pv = pv;
+                type = Type.Fire;
+                weakness = Type.Water;
+                resistance = Type.Fighting;
+                attacks.add(new Attack("Fire Spin",100));
+                ready = true;
+            }
+            else execute();
     }
 
     public String getName() { return name;}
@@ -102,6 +116,8 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
 
             Element elem = doc.getElementById("mw-content-text");
             if (elem != null) {
+                Elements tables = elem.select("table");
+
                 Element datasTable = elem.selectFirst("table");
 
                 // Find the type
