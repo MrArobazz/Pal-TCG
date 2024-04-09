@@ -29,7 +29,6 @@ public class Arena_3_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //EdgeToEdge.enable(this);
         setContentView(R.layout.arena3);
         navigationView = findViewById(R.id.navigationView_arena3);
         toolbar = findViewById(R.id.toolbar_arena3);

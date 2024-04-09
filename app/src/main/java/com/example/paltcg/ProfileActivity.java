@@ -41,7 +41,6 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.profile);
 
         birthday = (CalendarView) findViewById(R.id.calendarView_birthday);

@@ -69,7 +69,6 @@ public class Arena_1_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.arena1);
         findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
         random = new Random();
