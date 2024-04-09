@@ -2,6 +2,7 @@ package com.example.paltcg.dataclasses;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -84,8 +85,31 @@ public class User implements Parcelable {
         return false;
     }
 
-    public void removeCard(int position) {
+    public void removeDeckCard(int position) {
+        Log.i("TAG", "removeDeckCard: remove " + position);
         deckCardsIds.remove(Integer.valueOf(position));
+    }
+
+    public void removeCards(ArrayList<Integer> cardsToRemove) {
+        cardsIds.removeAll(cardsToRemove);
+        deckCardsIds = new ArrayList<>();
+    }
+
+    public void removeActiveCards() {
+        int nb_removed = 0;
+        for (int pos : deckCardsIds) {
+            Log.i("TAG", "removeActiveCards: " + pos);
+            cardsIds.remove(pos-nb_removed);
+            nb_removed ++;
+        }
+        deckCardsIds = new ArrayList<>();
+    }
+
+    public void addNewCards(ArrayList<Integer> newCards) {
+        for (Integer newCard : newCards) {
+            if (!cardsIds.contains(newCard))
+                cardsIds.add(newCard);
+        }
     }
 
     public String getUsername() {

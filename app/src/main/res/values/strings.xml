@@ -41,8 +41,8 @@
     <string name="Run">Run</string>
     <string name="Change">Change</string>
     <string name="home">Home</string>
-    <string name="wonPoke">You have won those Pokemons :</string>
-    <string name="loosedPoke">You have loosed those Pokemons :</string>
+    <string name="wonPoke">You won these Pokemons :</string>
+    <string name="loosedPoke">You lost these Pokemons :</string>
 
 
     <string name="open_menu" translatable="false">Open</string>
@@ -56,6 +56,7 @@
     <string name="is_dead">" is dead"</string>
     <string name="escape_failed">Escape failed</string>
     <string name="end_of_turn">End of turn</string>
+    <string name="try_to_press_back_button">You cannot leave the fight like this. Use escape button.</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>

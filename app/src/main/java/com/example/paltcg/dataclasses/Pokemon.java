@@ -1,6 +1,8 @@
 package com.example.paltcg.dataclasses;
 
 import android.os.AsyncTask;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,7 +15,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Pokemon extends AsyncTask<Void,Integer,Void> {
+public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable {
     String name;
 
     Integer id_in_set;
@@ -35,8 +37,58 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> {
         this.name = name;
         this.id_in_set = id_in_set;
         this.attacks = new ArrayList<>();
-        //execute();
     }
+
+    protected Pokemon(Parcel in) {
+        name = in.readString();
+        id_in_set = in.readInt();
+        max_pv = in.readInt();
+        pv = in.readInt();
+        type = Type.values()[in.readInt()];
+        weakness = Type.values()[in.readInt()];
+        resistance = Type.values()[in.readInt()];
+        int nb_attacks = in.readInt();
+        for (int i = 0 ; i < nb_attacks ; i++)
+            attacks.add(new Attack(in.readString(),in.readInt()));
+        byte tmp_ready = in.readByte();
+        ready = tmp_ready != 0;
+        if (!ready)
+            fetchDatas();
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(id_in_set);
+        dest.writeInt(max_pv);
+        dest.writeInt(pv);
+        dest.writeInt(type.ordinal());
+        dest.writeInt(weakness.ordinal());
+        dest.writeInt(resistance.ordinal());
+        dest.writeInt(attacks.size());
+        for (Attack attk : attacks) {
+            dest.writeString(attk.getName());
+            dest.writeInt(attk.getDegats());
+        }
+        dest.writeByte((byte) (ready ? 1 : 0));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Pokemon> CREATOR = new Creator<Pokemon>() {
+        @Override
+        public Pokemon createFromParcel(Parcel in) {
+            return new Pokemon(in);
+        }
+
+        @Override
+        public Pokemon[] newArray(int size) {
+            return new Pokemon[size];
+        }
+    };
 
     public void fetchDatas() {
         if (!ready)

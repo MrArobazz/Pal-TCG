@@ -3,13 +3,12 @@ package com.example.paltcg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,7 +22,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -32,14 +34,16 @@ import com.example.paltcg.dataclasses.Pokemon;
 import com.example.paltcg.dataclasses.User;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
 
 public class Arena_1_Activity extends AppCompatActivity {
+
+    ActivityResultLauncher<Intent> activityResultLauncher;
     Random random;
 
     ConstraintLayout arena;
     ImageView botActiveCard, playerActiveCard;
+    Integer playerActiveCardResId;
     WebView botPokemonSprite , playerPokemonSprite;
     ProgressBar progressBar_bot,progressBar_player;
     TextView player_hp, bot_hp;
@@ -59,12 +63,33 @@ public class Arena_1_Activity extends AppCompatActivity {
 
     TypedArray pokemonCardsIds;
     ArrayList<Integer> player_pokemonCards = new ArrayList<>();
+    ArrayList<Integer> player_pokemonCardsToRemove = new ArrayList<>(); // si le joueur fuit
     ArrayList<Integer> bot_pokemonCards = new ArrayList<>();
 
     boolean begin = true;
     boolean change_by_ko = false;
+    boolean player_turn = true;
     private int nb_attempts = 0;
     private String TAG = "COMBAT";
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        player = savedInstanceState.getParcelable("player");
+        playerPokemons = savedInstanceState.getParcelableArrayList("playerPokemons");
+        playerPokemons_original = savedInstanceState.getParcelableArrayList("playerPokemons_original");
+        botPokemons = savedInstanceState.getParcelableArrayList("botPokemons");
+        active_player_pokemon = savedInstanceState.getParcelable("active_player_pokemon");
+        active_bot_pokemon = savedInstanceState.getParcelable("active_bot_pokemon");
+        player_pokemonCards = savedInstanceState.getIntegerArrayList("player_pokemonCards");
+        player_pokemonCardsToRemove = savedInstanceState.getIntegerArrayList("player_pokemonCardsToRemove");
+        bot_pokemonCards = savedInstanceState.getIntegerArrayList("bot_pokemonCards");
+        begin = savedInstanceState.getBoolean("begin");
+        change_by_ko = savedInstanceState.getBoolean("change_by_ko");
+        player_turn = savedInstanceState.getBoolean("player_turn");
+        nb_attempts = savedInstanceState.getInt("nb_attempts");
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,10 +117,11 @@ public class Arena_1_Activity extends AppCompatActivity {
         playerActiveCard = findViewById(R.id.imageView_carte_active_player);
         botActiveCard = findViewById(R.id.imageView_carte_active_bot);
 
+
         // Get the player and his cards
         Intent intent = getIntent();
         player = intent.getParcelableExtra("the_user");
-        int background = intent.getIntExtra("background",-1);
+        int background = intent.getIntExtra("background", -1);
         if (background != -1) {
             arena.setBackgroundResource(background);
         }
@@ -104,9 +130,9 @@ public class Arena_1_Activity extends AppCompatActivity {
         pokemonCardsIds = getResources().obtainTypedArray(R.array.pokemon_cards_ids);
         String[] pokemonNames = getResources().getStringArray(R.array.pokemon_names);
         for (int cardid : player.getDeckCardsIds()) {
-            for (int i = 0 ; i < pokemonCardsIds.length(); i++) {
-                if (player.getCardId(cardid) == pokemonCardsIds.getResourceId(i,-1)) {
-                    Pokemon pokemon = new Pokemon(pokemonNames[i],i+1);
+            for (int i = 0; i < pokemonCardsIds.length(); i++) {
+                if (player.getCardId(cardid) == pokemonCardsIds.getResourceId(i, -1)) {
+                    Pokemon pokemon = new Pokemon(pokemonNames[i], i + 1);
                     pokemon.fetchDatas();
 
                     player_pokemonCards.add(player.getCardId(cardid));
@@ -127,7 +153,7 @@ public class Arena_1_Activity extends AppCompatActivity {
                 randomCardsIds.add(card);
                 Log.i("TAG", "onCreate: " + card);
                 bot_pokemonCards.add(card);
-                Pokemon pokemon = new Pokemon(pokemonNames[randomId], randomId+1);
+                Pokemon pokemon = new Pokemon(pokemonNames[randomId], randomId + 1);
                 pokemon.fetchDatas();
                 botPokemons.add(pokemon);
             }
@@ -147,7 +173,6 @@ public class Arena_1_Activity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pokemonsChoice = (Spinner) findViewById(R.id.spinner_poke_choice);
         pokemonsChoice.setAdapter(adapter);
-
         pokemonsChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -179,9 +204,50 @@ public class Arena_1_Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() { Toast.makeText(Arena_1_Activity.this, getString(R.string.try_to_press_back_button), Toast.LENGTH_SHORT).show();}
+        });
+
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                this::handleActivityResult
+        );
+
         attacksChoice.setOnItemClickListener(attack_action);
 
         Log.i(TAG, "onCreate: Début combat");
+    }
+
+    private void handleActivityResult(ActivityResult result) {
+        if (result.getResultCode() == Activity.RESULT_OK) {
+            Intent resultDatas = result.getData();
+            if (resultDatas != null) {
+                player = resultDatas.getParcelableExtra("the_user");
+            }
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("the_user",player);
+            setResult(Activity.RESULT_OK, returnIntent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("player",player);
+        outState.putParcelableArrayList("playerPokemons",playerPokemons);
+        outState.putParcelableArrayList("playerPokemons_original",playerPokemons_original);
+        outState.putParcelableArrayList("botPokemons",botPokemons);
+        outState.putParcelable("active_player_pokemon",active_player_pokemon);
+        outState.putParcelable("active_bot_pokemon",active_bot_pokemon);
+        outState.putIntegerArrayList("player_pokemonCards",player_pokemonCards);
+        outState.putIntegerArrayList("player_pokemonCardsToRemove",player_pokemonCardsToRemove);
+        outState.putIntegerArrayList("bot_pokemonCards",bot_pokemonCards);
+        outState.putBoolean("begin",begin);
+        outState.putBoolean("change_by_ko",change_by_ko);
+        outState.putBoolean("player_turn",player_turn);
+        outState.putInt("nb_attempts",nb_attempts);
     }
 
     void beginBattleWith(int position) {
@@ -228,6 +294,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         botPokemonSprite.loadUrl("https://projectpokemon.org/images/normal-sprite/" + rightName.toLowerCase() + ".gif");
 
         playerActiveCard.setImageResource(player_pokemonCards.get(position));
+        playerActiveCardResId = player_pokemonCards.get(position);
         botActiveCard.setImageResource(bot_pokemonCards.get(0));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -261,12 +328,29 @@ public class Arena_1_Activity extends AppCompatActivity {
             String pv_display = active_player_pokemon.getPv() + "/" + active_player_pokemon.getMaxPv();
             player_hp.setText(pv_display);
 
-            String tmpStringForNidoran = active_player_pokemon.getName().toLowerCase();
+            String rightName = active_player_pokemon.getName();
+            if (rightName.equals("Nidoran♂"))
+                rightName = rightName.replace("Nidoran♂","Nidoran_m");
+            else if (rightName.equals("Farfetch'd"))
+                rightName = rightName.replace("Farfetch'd","Farfetchd");
+
             playerPokemonSprite.loadUrl(
                     "https://projectpokemon.org/images/sprites-models/normal-back/"
-                            + tmpStringForNidoran.replace("nidoran♂","nidoran_m") + ".gif");
+                            + rightName.toLowerCase() + ".gif");
 
-            playerActiveCard.setImageResource(player_pokemonCards.get(position));
+
+
+            int ind = 0;
+            for (int i = 0 ; i < playerPokemons_original.size(); i ++) {
+                if (playerPokemons_original.get(i).getName().equals(active_player_pokemon.getName())) {
+                    ind = i;
+                    break;
+                }
+            }
+
+            playerActiveCard.setImageResource(player_pokemonCards.get(ind));
+            playerActiveCardResId = player_pokemonCards.get(ind);
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                     this, android.R.layout.simple_list_item_1, active_player_pokemon.getAttackNames());
 
@@ -286,6 +370,9 @@ public class Arena_1_Activity extends AppCompatActivity {
 
     private final ListView.OnItemClickListener attack_action =
             (parent, view, position, id) -> {
+                attacksChoice.setVisibility(View.GONE);
+                findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
+
                 Log.i(TAG, "choix attaquer ");
                 Log.i("TAG", "here.");
                 String attkName = (String)parent.getItemAtPosition(position);
@@ -353,9 +440,14 @@ public class Arena_1_Activity extends AppCompatActivity {
             String pv_display = active_bot_pokemon.getPv() + "/" + active_bot_pokemon.getMaxPv();
             bot_hp.setText(pv_display);
 
-            String tmpStringForNidoran = active_bot_pokemon.getName().toLowerCase();
-            botPokemonSprite.loadUrl("https://projectpokemon.org/images/normal-sprite/" +
-                    tmpStringForNidoran.replace("nidoran♂", "nidoran_m") + ".gif");
+            String rightName = active_bot_pokemon.getName();
+            if (rightName.equals("Nidoran♂"))
+                rightName = rightName.replace("Nidoran♂","Nidoran_m");
+            else if (rightName.equals("Farfetch'd"))
+                rightName = rightName.replace("Farfetch'd","Farfetchd");
+            botPokemonSprite.loadUrl(
+                    "https://projectpokemon.org/images/normal-sprite/"
+                            + rightName.toLowerCase() + ".gif");
 
             int next_card = bot_pokemonCards.size() - botPokemons.size();
             botActiveCard.setImageResource(bot_pokemonCards.get(next_card));
@@ -460,6 +552,7 @@ public class Arena_1_Activity extends AppCompatActivity {
                     if (active_player_pokemon.getPv() == 0) {
                         Log.i(TAG, "fin_tour: joueur mort");
                         playerPokemons.remove(active_player_pokemon);
+                        player_pokemonCardsToRemove.add(playerActiveCardResId);
                         String toastText = active_player_pokemon.getName() + getString(R.string.is_dead);
                         Toast.makeText(Arena_1_Activity.this, toastText, Toast.LENGTH_SHORT).show();
                         if (playerPokemons.isEmpty()) {
@@ -541,7 +634,8 @@ public class Arena_1_Activity extends AppCompatActivity {
             }
         }
         Log.i(TAG, "replacePlayerPokemonWith: " + ind);
-        playerActiveCard.setImageResource(player_pokemonCards.get(ind)); // pas bon
+        playerActiveCard.setImageResource(player_pokemonCards.get(ind));
+        playerActiveCardResId = player_pokemonCards.get(ind);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, active_player_pokemon.getAttackNames());
@@ -550,22 +644,31 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     public void goBilan(int end) {
-        switch (end) {
-            case 0 :
-                Toast.makeText(this, "defaite", Toast.LENGTH_SHORT).show();
-                break;
-            case 1 :
-                Toast.makeText(this, "fuite", Toast.LENGTH_SHORT).show();
-                break;
-            case 2 :
-                Toast.makeText(this, "victoire", Toast.LENGTH_SHORT).show();
-                break;
-        }
 
         Intent intent = new Intent(this,End_Fight_Activity.class);
         intent.putExtra("result",end);
+        Log.i(TAG, "goBilan: nb cartes : " + player.getCardsIds().size());
+        ArrayList<Integer> oldCards = new ArrayList<>(player.getCardsIds());
+        intent.putExtra("old_list",oldCards);
+
+        switch (end) {
+            case 0 :
+                Toast.makeText(this, "defaite", Toast.LENGTH_SHORT).show();
+                player.removeActiveCards();
+                break;
+            case 1 :
+                Toast.makeText(this, "fuite", Toast.LENGTH_SHORT).show();
+                player.removeCards(player_pokemonCardsToRemove);
+
+                break;
+            case 2 :
+                Toast.makeText(this, "victoire", Toast.LENGTH_SHORT).show();
+                player.addNewCards(bot_pokemonCards);
+                break;
+        }
+
         intent.putExtra("the_user",player);
-        startActivity(intent);
+        activityResultLauncher.launch(intent);
     }
 
 }

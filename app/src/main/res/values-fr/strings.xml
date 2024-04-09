@@ -126,4 +126,5 @@
     <string name="is_dead">" est mort"</string>
     <string name="escape_failed">La fuite a échouée</string>
     <string name="end_of_turn">Fin du tour</string>
+    <string name="try_to_press_back_button">Vous ne pouvez pas quitter le combat de cette manière. Utilisez le bouton \"Fuite\".</string>
 </resources>

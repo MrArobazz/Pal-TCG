@@ -85,7 +85,7 @@ public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerView
             }
         }
         else {
-            user.removeCard(position);
+            user.removeDeckCard(position);
         }
 
         for (int id : user.getDeckCardsIds())

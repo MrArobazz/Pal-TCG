@@ -58,13 +58,10 @@ public class ArenaChoiceActivity extends AppCompatActivity{
     }
 
     private void handleActivityResult(ActivityResult result) {
-        Log.i("Returned value", "received result but not ok.");
         if (result.getResultCode() == Activity.RESULT_OK) {
             Intent resultDatas = result.getData();
-            Log.i("Returned value", "received result ok.");
             if (resultDatas != null) {
                 user = resultDatas.getParcelableExtra("the_user");
-                Log.i("Returned value", "received user.");
             }
             leave(null);
         }
