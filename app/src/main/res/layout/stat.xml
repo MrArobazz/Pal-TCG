@@ -47,13 +47,19 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Victory"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <SeekBar
                     android:id="@+id/seekBar_nb_victoire"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="auto"
+                    android:max="10"
+                    android:progressTint="#38BA3E" />
             </LinearLayout>
 
             <Space
@@ -72,15 +78,18 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Pokemons"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/editTextNumber_nb_pokemon"
+                    android:id="@+id/editText_nb_pokemon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="number" />
+                    android:inputType="text"
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <Space
@@ -95,20 +104,23 @@
                 <TextView
                     android:id="@+id/textView_nb_defaites"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Defeat"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <SeekBar
                     android:id="@+id/seekBar_nb_defaite"
                     style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:max="10"
-                    android:progress="0" />
+                    android:progress="0"
+                    android:progressTint="#771212" />
             </LinearLayout>
 
             <Space
@@ -123,19 +135,22 @@
                 <TextView
                     android:id="@+id/textView_evaluation_combat"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="58dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Notation"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <RatingBar
                     android:id="@+id/ratingBar_evaluation_combat"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:isIndicator="true"
-                    android:numStars="5" />
+                    android:numStars="4"
+                    android:progressTint="#4A731B" />
 
             </LinearLayout>
 
@@ -150,19 +165,23 @@
 
                 <TextView
                     android:id="@+id/textView_nb_pokemon_perdu"
-                    android:layout_width="wrap_content"
+                    android:layout_width="8dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Lost_pokemon"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <ProgressBar
                     android:id="@+id/progressBar_nb_pokemon_perdu"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:max="50"
+                    android:progressTint="#650928" />
             </LinearLayout>
 
             <Space
@@ -176,19 +195,23 @@
 
                 <TextView
                     android:id="@+id/textView_nb_pokemon_gagne"
-                    android:layout_width="wrap_content"
+                    android:layout_width="16dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Captured_pokemon"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <ProgressBar
                     android:id="@+id/progressBar_nb_pokemon_gagne"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:max="50"
+                    android:progressTint="#192A87" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

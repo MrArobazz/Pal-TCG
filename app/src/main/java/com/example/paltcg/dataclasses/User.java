@@ -17,6 +17,10 @@ public class User implements Parcelable {
 
     ArrayList<Integer> deckCardsIds = new ArrayList<>();
 
+    //Champs pour les stats
+    Integer  loosed_poke = 20  , won_poke = 30 , won_battles = 4 , loosed_battles = 5;
+    Double evaluationMoy = 2.5 ;
+
     public User() {}
 
     protected User(Parcel in) {
@@ -105,4 +109,49 @@ public class User implements Parcelable {
     public Integer getCardId(int position) { return cardsIds.get(position);}
 
     public ArrayList<Integer> getDeckCardsIds() { return deckCardsIds;}
+
+    public void setEvaluation(int evaluation){
+        double tmp =  evaluationMoy * (won_battles + loosed_battles - 1);
+        evaluationMoy = (double)(tmp + evaluation) / (double)(won_battles + loosed_battles);
+    }
+
+    public void addWonBattle(){
+        won_battles++;
+    }
+
+    public void addLoosedBattle(){
+        loosed_battles++;
+    }
+
+    public void addLoosedPoke(int nb_losed){
+        loosed_poke += nb_losed;
+    }
+
+    public void addWonPoke(int nb_won){
+        won_poke += nb_won;
+    }
+
+    public int getNbWonBattle(){
+        return won_battles;
+    }
+
+    public int getLoosedBattle(){
+        return loosed_battles;
+    }
+
+    public int getWonPoke(){
+        return won_poke;
+    }
+
+    public int getLoosedPoke(){
+        return loosed_poke;
+    }
+
+    public int getNbBattles(){
+        return won_battles + loosed_battles;
+    }
+
+    public double getEvaluation(){
+        return  evaluationMoy;
+    }
 }
