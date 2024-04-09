@@ -1,5 +1,7 @@
 package com.example.paltcg;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -106,6 +108,7 @@ public class Arena_1_Activity extends AppCompatActivity {
             for (int i = 0 ; i < pokemonCardsIds.length(); i++) {
                 if (player.getCardId(cardid) == pokemonCardsIds.getResourceId(i,-1)) {
                     Pokemon pokemon = new Pokemon(pokemonNames[i],i+1);
+                    pokemon.fetchDatas();
 
                     player_pokemonCards.add(player.getCardId(cardid));
                     Log.i(TAG, "onCreate: " + pokemon.getName() + " " + player.getCardId(cardid));
@@ -126,6 +129,7 @@ public class Arena_1_Activity extends AppCompatActivity {
                 Log.i("TAG", "onCreate: " + card);
                 bot_pokemonCards.add(card);
                 Pokemon pokemon = new Pokemon(pokemonNames[randomId], randomId+1);
+                pokemon.fetchDatas();
                 botPokemons.add(pokemon);
             }
         }
@@ -134,9 +138,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         // Add the pokemons to the choice list
         ArrayList<String> playerSpinnerArray = new ArrayList<String>();
         playerSpinnerArray.add(getResources().getString(R.string.choose_a_pokemon));
-        // WAIT DEGUEULASSE
         for (Pokemon pokemon : playerPokemons) {
-            while (pokemon.isNotReady()) {}
             playerSpinnerArray.add(pokemon.getName());
         }
 
@@ -146,10 +148,6 @@ public class Arena_1_Activity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pokemonsChoice = (Spinner) findViewById(R.id.spinner_poke_choice);
         pokemonsChoice.setAdapter(adapter);
-        for (Pokemon pokemon : botPokemons) {
-            while (pokemon.isNotReady()) {}
-        }
-        // FIN WAIT DEGUEULASSE
 
         pokemonsChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -193,6 +191,8 @@ public class Arena_1_Activity extends AppCompatActivity {
         Log.i(TAG, "beginBattleWith: " + botPokemons);
         active_bot_pokemon = botPokemons.get(0);
 
+        while (active_player_pokemon.isNotReady() || active_bot_pokemon.isNotReady()) {}
+
         /*for (Pokemon bot : botPokemons) {
             Log.i("TAG", "beginBattleWith: " + bot.getName());
         }*/
@@ -209,13 +209,24 @@ public class Arena_1_Activity extends AppCompatActivity {
         pv_display = active_bot_pokemon.getPv() + "/" + active_bot_pokemon.getMaxPv();
         bot_hp.setText(pv_display);
 
-        String tmpStringForNidoran = active_player_pokemon.getName().toLowerCase();
+        String rightName = active_player_pokemon.getName();
+        if (rightName.equals("Nidoran♂"))
+            rightName = rightName.replace("Nidoran♂","Nidoran_m");
+        else if (rightName.equals("Farfetch'd"))
+            rightName = rightName.replace("Farfetch'd","Farfetchd");
+
         playerPokemonSprite.loadUrl(
                 "https://projectpokemon.org/images/sprites-models/normal-back/"
-                        + tmpStringForNidoran.replace("nidoran♂","nidoran_m") + ".gif");
-        tmpStringForNidoran = active_bot_pokemon.getName().toLowerCase();
+                        + rightName.toLowerCase() + ".gif");
 
-        botPokemonSprite.loadUrl("https://projectpokemon.org/images/normal-sprite/" + tmpStringForNidoran.replace("nidoran♂","nidoran_m") + ".gif");
+
+        rightName = active_bot_pokemon.getName();
+        if (rightName.equals("Nidoran♂"))
+            rightName = rightName.replace("Nidoran♂","Nidoran_m");
+        else if (rightName.equals("Farfetch'd"))
+            rightName = rightName.replace("Farfetch'd","Farfetchd");
+
+        botPokemonSprite.loadUrl("https://projectpokemon.org/images/normal-sprite/" + rightName.toLowerCase() + ".gif");
 
         playerActiveCard.setImageResource(player_pokemonCards.get(position));
         botActiveCard.setImageResource(bot_pokemonCards.get(0));
@@ -239,6 +250,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         Log.i(TAG, "changePokemonWith: choix changer pokemon");
         if (active_player_pokemon != playerPokemons.get(position)) {
             active_player_pokemon = playerPokemons.get(position);
+            while (active_player_pokemon.isNotReady()) {}
 
             progressBar_player.setMax(active_player_pokemon.getMaxPv());
             progressBar_player.setProgress(active_player_pokemon.getPv());
@@ -298,16 +310,20 @@ public class Arena_1_Activity extends AppCompatActivity {
                         bot_hp.setText(hpText);
                     }
                 });
+                animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        if (active_bot_pokemon.getPv() == 0) {
+                            botPokemons.remove(active_bot_pokemon);
+                            replaceBotPokemon();
+                        }
+                        nb_attempts = 0;
+                        fin_tour();
+                    }
+                });
 
                 animator.start();
-
-                if (active_bot_pokemon.getPv() == 0) {
-                    animator.end();
-                    botPokemons.remove(active_bot_pokemon);
-                    replaceBotPokemon();
-                }
-                nb_attempts = 0;
-                fin_tour();
             };
 
     private void replaceBotPokemon() {
@@ -315,6 +331,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         if (!botPokemons.isEmpty()) {
             Log.i(TAG, "replaceBotPokemon: il lui reste des pokemons");
             active_bot_pokemon = botPokemons.get(0);
+            while (active_bot_pokemon.isNotReady()) {}
 
             progressBar_bot.setMax(active_bot_pokemon.getMaxPv());
             progressBar_bot.setProgress(active_bot_pokemon.getPv());
@@ -367,6 +384,7 @@ public class Arena_1_Activity extends AppCompatActivity {
             }
             if (success) {
                 goBilan(1); // fuite
+                findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
             }
             else {
                 Toast.makeText(this, "Escape failed.", Toast.LENGTH_SHORT).show();
@@ -422,26 +440,33 @@ public class Arena_1_Activity extends AppCompatActivity {
                 }
             });
 
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    Log.i(TAG, "fin_tour: fin attaque");
+                    if (active_player_pokemon.getPv() == 0) {
+                        Log.i(TAG, "fin_tour: joueur mort");
+                        playerPokemons.remove(active_player_pokemon);
+                        if (playerPokemons.isEmpty()) {
+                            Log.i(TAG, "fin_tour: joueur a plus de pokemons");
+                            goBilan(0); //defaite
+                        }
+                        else {
+                            Log.i(TAG, "fin_tour: le joueur a encore des pokemons");
+                            adapter.remove(active_player_pokemon.getName());
+                            Log.i(TAG, "fin_tour: on retire le pokemon ko du choix");
+                            change_by_ko = true;
+                            pokemonsChoice.setVisibility(View.VISIBLE);
+                            Log.i(TAG, "fin_tour: on affiche la liste de choix");
+                        }
+                    }
+                    else findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
+                }
+            });
+
             animator.start();
-            Log.i(TAG, "fin_tour: fin attaque");
-            if (active_player_pokemon.getPv() == 0) {
-                Log.i(TAG, "fin_tour: joueur mort");
-                animator.end();
-                playerPokemons.remove(active_player_pokemon);
-                if (playerPokemons.isEmpty()) {
-                    Log.i(TAG, "fin_tour: joueur a plus de pokemons");
-                    goBilan(0); //defaite
-                }
-                else {
-                    Log.i(TAG, "fin_tour: le joueur a encore des pokemons");
-                    adapter.remove(active_player_pokemon.getName());
-                    Log.i(TAG, "fin_tour: on retire le pokemon ko du choix");
-                    change_by_ko = true;
-                    pokemonsChoice.setVisibility(View.VISIBLE);
-                    Log.i(TAG, "fin_tour: on affiche la liste de choix");
-                }
-            }
-            else findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -450,6 +475,8 @@ public class Arena_1_Activity extends AppCompatActivity {
         change_by_ko = false;
         findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
         active_player_pokemon = playerPokemons.get(position);
+        active_player_pokemon.fetchDatas();
+        while (active_player_pokemon.isNotReady()) {}
 
         progressBar_player.setMax(active_player_pokemon.getMaxPv());
         progressBar_player.setProgress(active_player_pokemon.getPv());
@@ -468,10 +495,15 @@ public class Arena_1_Activity extends AppCompatActivity {
         String pv_display = active_player_pokemon.getPv() + "/" + active_player_pokemon.getMaxPv();
         player_hp.setText(pv_display);
 
-        String tmpStringForNidoran = active_player_pokemon.getName().toLowerCase();
+        String rightName = active_player_pokemon.getName();
+        if (rightName.equals("Nidoran♂"))
+            rightName = rightName.replace("Nidoran♂","Nidoran_m");
+        else if (rightName.equals("Farfetch'd"))
+            rightName = rightName.replace("Farfetch'd","Farfetchd");
+
         playerPokemonSprite.loadUrl(
                 "https://projectpokemon.org/images/sprites-models/normal-back/"
-                        + tmpStringForNidoran.replace("nidoran♂","nidoran_m") + ".gif");
+                        + rightName.toLowerCase() + ".gif");
 
         int ind = 0;
         Log.i(TAG, "replacePlayerPokemonWith: " + playerPokemons_original.size());
