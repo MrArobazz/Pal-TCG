@@ -33,6 +33,8 @@
     <string name="Run">Fuire</string>
     <string name="Change">Changer</string>
     <string name="home">Acceuil</string>
+    <string name="wonPoke">Vous avez gagné ces Pokemons:</string>
+    <string name="loosedPoke">Vous avez perdu ces Pokemons:</string>
 
 
     <!--<string-array name="pokemon_names">

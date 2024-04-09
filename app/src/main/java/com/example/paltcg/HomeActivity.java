@@ -116,11 +116,13 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void profile(){
         Intent intent = new Intent(this,ProfileActivity.class);
+        intent.putExtra("the_user",user);
         startActivity(intent);
     }
 
     public void stats(android.view.View View){
         Intent intent = new Intent(this,Stat_Activity.class);
+        intent.putExtra("the_user",user);
         startActivity(intent);
     }
 

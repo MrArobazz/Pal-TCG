@@ -32,7 +32,8 @@ public class Stat_Activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.stat);
 
-
+        Intent intent  = getIntent();
+        user = intent.getParcelableExtra("the_user");
 
         wonPoke = (ProgressBar) findViewById(R.id.progressBar_nb_pokemon_gagne);
         loosedPoke = (ProgressBar) findViewById(R.id.progressBar_nb_pokemon_perdu);
@@ -66,6 +67,12 @@ public class Stat_Activity extends AppCompatActivity {
         }else{
             user = null;
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("the_user",user);
     }
 
     public void UserNull(){

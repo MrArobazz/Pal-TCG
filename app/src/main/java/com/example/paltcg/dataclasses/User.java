@@ -18,8 +18,8 @@ public class User implements Parcelable {
     ArrayList<Integer> deckCardsIds = new ArrayList<>();
 
     //Champs pour les stats
-    Integer  loosed_poke = 20  , won_poke = 30 , won_battles = 4 , loosed_battles = 5;
-    Double evaluationMoy = 2.5 ;
+    Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0;
+    Double evaluationMoy = 0.0 ;
 
     public User() {}
 
@@ -110,7 +110,7 @@ public class User implements Parcelable {
 
     public ArrayList<Integer> getDeckCardsIds() { return deckCardsIds;}
 
-    public void setEvaluation(int evaluation){
+    public void setEvaluation(double evaluation){
         double tmp =  evaluationMoy * (won_battles + loosed_battles - 1);
         evaluationMoy = (double)(tmp + evaluation) / (double)(won_battles + loosed_battles);
     }

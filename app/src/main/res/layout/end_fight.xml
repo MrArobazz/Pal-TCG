@@ -48,7 +48,7 @@
                 android:id="@+id/textView_pokemon_won"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/wonPoke" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_pokemon_won"
@@ -57,13 +57,13 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="35dp" />
 
             <TextView
                 android:id="@+id/textView_pokemon_loosed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/loosedPoke" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerVew_loosed_pokemon"
@@ -90,11 +90,12 @@
 
             <RatingBar
                 android:id="@+id/ratingBar_endfight"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:numStars="5"
                 android:rating="0"
-                android:stepSize="0.5"/>
+                android:stepSize="0.5" />
 
         </LinearLayout>
     </ScrollView>

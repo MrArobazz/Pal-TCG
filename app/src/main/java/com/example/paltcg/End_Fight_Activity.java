@@ -9,12 +9,16 @@ import android.widget.VideoView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.paltcg.dataclasses.User;
+
 
 public class End_Fight_Activity extends AppCompatActivity {
 
     VideoView video;
 
     RatingBar ratingBar;
+
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,7 @@ public class End_Fight_Activity extends AppCompatActivity {
         int result = 0;
         if(intent != null){
             result = intent.getIntExtra("result",0);
+            user = intent.getParcelableExtra("the_user");
         }
         Uri uri;
         if(result == 2){
@@ -38,16 +43,30 @@ public class End_Fight_Activity extends AppCompatActivity {
             }
         }
 
+        if(user!=null){
+            if(result == 2){
+                user.addWonBattle();
+            }else{
+                if(result == 0){
+                    user.addLoosedBattle();
+                }
+            }
+        }
+
         video = (VideoView) findViewById(R.id.videoView_endFight);
         video.setVideoURI(uri);
 
         ratingBar = (RatingBar) findViewById(R.id.ratingBar_endfight);
         ratingBar.setMax(5);
 
+
+
     }
 
     public void goHome(android.view.View v){
+        user.setEvaluation((double)ratingBar.getRating());
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("the_user",user);
         startActivity(intent);
     }
 
@@ -68,4 +87,7 @@ public class End_Fight_Activity extends AppCompatActivity {
         super.onPause();
         video.suspend();
     }
+
+
+
 }

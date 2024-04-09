@@ -41,6 +41,8 @@
     <string name="Run">Run</string>
     <string name="Change">Change</string>
     <string name="home">Home</string>
+    <string name="wonPoke">You have won those Pokemons :</string>
+    <string name="loosedPoke">You have loosed those Pokemons :</string>
 
 
     <string name="open_menu" translatable="false">Open</string>

@@ -509,6 +509,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         Intent intent = new Intent(this,End_Fight_Activity.class);
         intent.putExtra("result",end);
+        intent.putExtra("the_user",player);
         startActivity(intent);
     }
 
