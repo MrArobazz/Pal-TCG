@@ -23,16 +23,19 @@ public class End_Fight_Activity extends AppCompatActivity {
         setContentView(R.layout.end_fight);
 
         Intent intent =getIntent();
-        boolean result = false;
+        int result = 0;
         if(intent != null){
-            result = intent.getBooleanExtra("result",false);
+            result = intent.getIntExtra("result",0);
         }
         Uri uri;
-        if(!result){
+        if(result == 2){
             uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.win);
         }else{
-            uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.game_over);
-
+            if(result == 0) {
+                uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.game_over);
+            }else{
+                uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.game_over);
+            }
         }
 
         video = (VideoView) findViewById(R.id.videoView_endFight);

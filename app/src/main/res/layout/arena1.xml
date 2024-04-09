@@ -21,6 +21,7 @@
         android:id="@+id/listView_attackChoice"
         android:layout_width="match_parent"
         android:layout_height="77dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout_player_choice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -29,7 +30,6 @@
         android:id="@+id/linearLayout_player_choice"
         android:layout_width="match_parent"
         android:layout_height="86dp"
-        android:layout_marginBottom="30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +74,7 @@
         android:id="@+id/constraint_layout_arena"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toTopOf="@+id/spinner_poke_choice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -85,17 +86,18 @@
             android:id="@+id/imageView_carte_active_player"
             android:layout_width="140dp"
             android:layout_height="150dp"
+            android:importantForAccessibility="no"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:importantForAccessibility="no" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <WebView
             android:id="@+id/webView_sprite_bot_arena1"
             android:layout_width="104dp"
             android:layout_height="119dp"
             android:layout_marginStart="87dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="68dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.448"
             app:layout_constraintStart_toEndOf="@+id/imageView_carte_active_bot"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -104,18 +106,19 @@
             android:layout_width="140dp"
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
+            android:importantForAccessibility="no"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:importantForAccessibility="no" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <WebView
             android:id="@+id/webView_sprite_player_arena1"
             android:layout_width="104dp"
             android:layout_height="119dp"
             android:layout_marginEnd="87dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView_pv_player_arena1"
             app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player"
+            app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ProgressBar

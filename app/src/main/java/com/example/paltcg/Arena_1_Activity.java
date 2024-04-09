@@ -506,6 +506,10 @@ public class Arena_1_Activity extends AppCompatActivity {
                 Toast.makeText(this, "victoire", Toast.LENGTH_SHORT).show();
                 break;
         }
+
+        Intent intent = new Intent(this,End_Fight_Activity.class);
+        intent.putExtra("result",end);
+        startActivity(intent);
     }
 
 }
