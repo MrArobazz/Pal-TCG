@@ -50,6 +50,12 @@
     <string name="textView_pv_default">999/999</string>
     <string name="run_away_battle_title">Run away</string>
     <string name="run_away_battle">Are you sure? This will lead to the permanent loss of your KO cards.</string>
+    <string name="replace">" replaces "</string>
+    <string name="use">" uses "</string>
+    <string name="inflicts">" and inflicts "</string>
+    <string name="is_dead">" is dead"</string>
+    <string name="escape_failed">Escape failed</string>
+    <string name="end_of_turn">End of turn</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>

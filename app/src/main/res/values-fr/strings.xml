@@ -120,4 +120,10 @@
     <string name="choose_a_pokemon">Choisir un pokémon</string>
     <string name="run_away_battle_title">Fuir</string>
     <string name="run_away_battle">Êtes-vous sûrs? Cela conduira à la perte définitive de vos cartes mises KO.</string>
+    <string name="replace">" remplace "</string>
+    <string name="use">" utilise "</string>
+    <string name="inflicts">" et inflige "</string>
+    <string name="is_dead">" est mort"</string>
+    <string name="escape_failed">La fuite a échouée</string>
+    <string name="end_of_turn">Fin du tour</string>
 </resources>

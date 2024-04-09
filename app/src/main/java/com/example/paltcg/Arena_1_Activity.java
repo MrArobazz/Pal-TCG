@@ -248,8 +248,12 @@ public class Arena_1_Activity extends AppCompatActivity {
     void changePokemonWith(int position) {
         Log.i(TAG, "changePokemonWith: choix changer pokemon");
         if (active_player_pokemon != playerPokemons.get(position)) {
+            String oldPokemonName = active_player_pokemon.getName();
             active_player_pokemon = playerPokemons.get(position);
             while (active_player_pokemon.isNotReady()) {}
+
+            String toastTest = active_player_pokemon.getName() + getString(R.string.replace) + oldPokemonName;
+            Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
 
             progressBar_player.setMax(active_player_pokemon.getMaxPv());
             progressBar_player.setProgress(active_player_pokemon.getPv());
@@ -314,6 +318,8 @@ public class Arena_1_Activity extends AppCompatActivity {
                     public void onAnimationEnd(Animator animation) {
                         super.onAnimationEnd(animation);
                         if (active_bot_pokemon.getPv() == 0) {
+                            String toastText = active_bot_pokemon.getName() + getString(R.string.is_dead);
+                            Toast.makeText(Arena_1_Activity.this, toastText, Toast.LENGTH_SHORT).show();
                             botPokemons.remove(active_bot_pokemon);
                             replaceBotPokemon();
                         }
@@ -323,14 +329,21 @@ public class Arena_1_Activity extends AppCompatActivity {
                 });
 
                 animator.start();
+                String toastText = active_player_pokemon.getName() + getString(R.string.use) + attkName + getString(R.string.inflicts) + dgts;
+                Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
             };
 
     private void replaceBotPokemon() {
         Log.i(TAG, "replaceBotPokemon: changmeent du pokemon du bot");
         if (!botPokemons.isEmpty()) {
             Log.i(TAG, "replaceBotPokemon: il lui reste des pokemons");
+            String oldPokemonName = active_bot_pokemon.getName();
+
             active_bot_pokemon = botPokemons.get(0);
             while (active_bot_pokemon.isNotReady()) {}
+
+            String toastTest = active_bot_pokemon.getName() + getString(R.string.replace) + oldPokemonName;
+            Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
 
             progressBar_bot.setMax(active_bot_pokemon.getMaxPv());
             progressBar_bot.setProgress(active_bot_pokemon.getPv());
@@ -386,7 +399,7 @@ public class Arena_1_Activity extends AppCompatActivity {
                 findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
             }
             else {
-                Toast.makeText(this, "Escape failed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.escape_failed), Toast.LENGTH_SHORT).show();
                 nb_attempts ++;
                 fin_tour();
             }
@@ -406,7 +419,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         pokemonsChoice.setSelection(0);
         findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
 
-        Toast.makeText(this, "Turn end.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.end_of_turn), Toast.LENGTH_SHORT).show();
 
         if (botPokemons.isEmpty()) {
             goBilan(2); // victoire
@@ -447,6 +460,8 @@ public class Arena_1_Activity extends AppCompatActivity {
                     if (active_player_pokemon.getPv() == 0) {
                         Log.i(TAG, "fin_tour: joueur mort");
                         playerPokemons.remove(active_player_pokemon);
+                        String toastText = active_player_pokemon.getName() + getString(R.string.is_dead);
+                        Toast.makeText(Arena_1_Activity.this, toastText, Toast.LENGTH_SHORT).show();
                         if (playerPokemons.isEmpty()) {
                             Log.i(TAG, "fin_tour: joueur a plus de pokemons");
                             goBilan(0); //defaite
@@ -456,16 +471,19 @@ public class Arena_1_Activity extends AppCompatActivity {
                             adapter.remove(active_player_pokemon.getName());
                             Log.i(TAG, "fin_tour: on retire le pokemon ko du choix");
                             change_by_ko = true;
+
                             pokemonsChoice.setVisibility(View.VISIBLE);
                             Log.i(TAG, "fin_tour: on affiche la liste de choix");
                         }
                     }
                     else findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
+                    Toast.makeText(Arena_1_Activity.this, getString(R.string.end_of_turn), Toast.LENGTH_SHORT).show();
                 }
             });
 
             animator.start();
-
+            String toastText = active_bot_pokemon.getName() + getString(R.string.use) + attkName + getString(R.string.inflicts) + dgts;
+            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -473,9 +491,15 @@ public class Arena_1_Activity extends AppCompatActivity {
         Log.i(TAG, "replacePlayerPokemonWith: pokemon mort, go le replace");
         change_by_ko = false;
         findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
+
+        String oldPokemonName = active_player_pokemon.getName();
+
         active_player_pokemon = playerPokemons.get(position);
         active_player_pokemon.fetchDatas();
         while (active_player_pokemon.isNotReady()) {}
+
+        String toastTest = active_player_pokemon.getName() + getString(R.string.replace) + oldPokemonName;
+        Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
 
         progressBar_player.setMax(active_player_pokemon.getMaxPv());
         progressBar_player.setProgress(active_player_pokemon.getPv());
