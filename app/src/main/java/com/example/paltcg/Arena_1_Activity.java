@@ -70,7 +70,6 @@ public class Arena_1_Activity extends AppCompatActivity {
 
     boolean begin = true;
     boolean change_by_ko = false;
-    boolean player_turn = true;
     private int nb_attempts = 0;
     private String TAG = "COMBAT";
 
@@ -88,7 +87,6 @@ public class Arena_1_Activity extends AppCompatActivity {
         bot_pokemonCards = savedInstanceState.getIntegerArrayList("bot_pokemonCards");
         begin = savedInstanceState.getBoolean("begin");
         change_by_ko = savedInstanceState.getBoolean("change_by_ko");
-        player_turn = savedInstanceState.getBoolean("player_turn");
         nb_attempts = savedInstanceState.getInt("nb_attempts");
 
     }
@@ -101,6 +99,60 @@ public class Arena_1_Activity extends AppCompatActivity {
         random = new Random();
 
         //Get the compoents
+        getComponentsdqdqd();
+
+
+        // Get the player and his cards
+        Intent intent = getIntent();
+        player = intent.getParcelableExtra("the_user");
+        int background = intent.getIntExtra("background", -1);
+        if (background != -1) {
+            arena.setBackgroundResource(background);
+        }
+
+        // Find pokemons of the player cards
+        generatePlayerTeam();
+        generateBotTeam();
+        pokemonCardsIds.recycle();
+
+        // Add the pokemons to the choice list
+        ArrayList<String> playerSpinnerArray = new ArrayList<>();
+        playerSpinnerArray.add(getResources().getString(R.string.choose_a_pokemon));
+        for (Pokemon pokemon : playerPokemons) {
+            playerSpinnerArray.add(pokemon.getName());
+        }
+
+        adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, playerSpinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pokemonsChoice = (Spinner) findViewById(R.id.spinner_poke_choice);
+        pokemonsChoice.setAdapter(adapter);
+        pokemonsChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                handleItemSelected(position);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() { showToast(Arena_1_Activity.this, getString(R.string.try_to_press_back_button),2500);}
+        });
+
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                this::handleActivityResult
+        );
+
+        attacksChoice.setOnItemClickListener(attack_action);
+
+        Log.i(TAG, "onCreate: Début combat");
+    }
+
+    private void getComponentsdqdqd() {
         arena = findViewById(R.id.constraint_layout_arena);
 
         progressBar_bot = findViewById(R.id.progressBar_pv_bot_arene1);
@@ -118,17 +170,9 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         playerActiveCard = findViewById(R.id.imageView_carte_active_player);
         botActiveCard = findViewById(R.id.imageView_carte_active_bot);
+    }
 
-
-        // Get the player and his cards
-        Intent intent = getIntent();
-        player = intent.getParcelableExtra("the_user");
-        int background = intent.getIntExtra("background", -1);
-        if (background != -1) {
-            arena.setBackgroundResource(background);
-        }
-
-        // Find pokemons of the player cards
+    private void generatePlayerTeam() {
         pokemonCardsIds = getResources().obtainTypedArray(R.array.pokemon_cards_ids);
         String[] pokemonNames = getResources().getStringArray(R.array.pokemon_names);
         for (int cardid : player.getDeckCardsIds()) {
@@ -144,9 +188,11 @@ public class Arena_1_Activity extends AppCompatActivity {
                 }
             }
         }
+    }
 
-        // Generate the deck of the bot and the pokemons
+    private void generateBotTeam() {
         ArrayList<Integer> randomCardsIds = new ArrayList<>();
+        String[] pokemonNames = getResources().getStringArray(R.array.pokemon_names);
         while (randomCardsIds.size() != 5) {
             int randomId = random.nextInt(pokemonCardsIds.length());
             Log.i("TAG", "onCreate: " + randomId);
@@ -160,62 +206,28 @@ public class Arena_1_Activity extends AppCompatActivity {
                 botPokemons.add(pokemon);
             }
         }
-        pokemonCardsIds.recycle();
+    }
 
-        // Add the pokemons to the choice list
-        ArrayList<String> playerSpinnerArray = new ArrayList<String>();
-        playerSpinnerArray.add(getResources().getString(R.string.choose_a_pokemon));
-        for (Pokemon pokemon : playerPokemons) {
-            playerSpinnerArray.add(pokemon.getName());
+    private void handleItemSelected(int position) {
+        if (position == 0) {
+            return; // Handle default selection or no action
         }
-
-        adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, playerSpinnerArray);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pokemonsChoice = (Spinner) findViewById(R.id.spinner_poke_choice);
-        pokemonsChoice.setAdapter(adapter);
-        pokemonsChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("TAG", "onItemSelected: test with " + position);
-                if (position != 0) {
-                    Log.i(TAG, "onItemSelected: " + begin);
-                    Log.i(TAG, "onItemSelected: " + change_by_ko);
-
-                    if (change_by_ko) {
-                        replacePlayerPokemonWith(position - 1);
-                        pokemonsChoice.setVisibility(View.GONE);
-                        pokemonsChoice.setSelection(0);
-                        begin = false;
-                    }
-                    else {
-                        if (begin) {
-                            beginBattleWith(position - 1);
-                        }
-                        else
-                            changePokemonWith(position-1);
-                    }
-                }
+        Log.i("TAG", "onItemSelected: test with " + position);
+        handleBattleOrChange(position - 1);
+    }
+    private void handleBattleOrChange(int selectedIndex) {
+        if (change_by_ko) {
+            replacePlayerPokemonWith(selectedIndex);
+            pokemonsChoice.setVisibility(View.GONE);
+            pokemonsChoice.setSelection(0);
+            begin = false;
+        } else {
+            if (begin) {
+                beginBattleWith(selectedIndex);
+            } else {
+                changePokemonWith(selectedIndex);
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
-
-        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() { Toast.makeText(Arena_1_Activity.this, getString(R.string.try_to_press_back_button), Toast.LENGTH_SHORT).show();}
-        });
-
-        activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                this::handleActivityResult
-        );
-
-        attacksChoice.setOnItemClickListener(attack_action);
-
-        Log.i(TAG, "onCreate: Début combat");
+        }
     }
 
     private void handleActivityResult(ActivityResult result) {
@@ -245,10 +257,12 @@ public class Arena_1_Activity extends AppCompatActivity {
         outState.putIntegerArrayList("bot_pokemonCards",bot_pokemonCards);
         outState.putBoolean("begin",begin);
         outState.putBoolean("change_by_ko",change_by_ko);
-        outState.putBoolean("player_turn",player_turn);
         outState.putInt("nb_attempts",nb_attempts);
     }
 
+    void showToast(Context ctx, String message) {
+        showToast(ctx,message,1000);
+    }
     void showToast(Context ctx, String message, int duration) {
         final Toast toast = Toast.makeText(ctx, message,Toast.LENGTH_SHORT);
         toast.show();
@@ -304,7 +318,8 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     void setUpBotCard() {
-        botActiveCard.setImageResource(bot_pokemonCards.get(0));
+        int nextCard = bot_pokemonCards.size() - botPokemons.size();
+        botActiveCard.setImageResource(bot_pokemonCards.get(nextCard));
     }
 
     void setUpPlayerAttacksChoice() {
@@ -332,6 +347,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         // we set up the widgets
         setUpProgressBar(progressBar_bot, active_bot_pokemon);
+        progressBar_bot.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         setUpTextView(bot_hp, active_bot_pokemon);
         setUpSprite(botPokemonSprite, active_bot_pokemon, false);
         setUpBotCard();
@@ -365,6 +381,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         if (active_player_pokemon != playerPokemons.get(position)) {
             // Hide menus
             pokemonsChoice.setVisibility(View.GONE);
+            pokemonsChoice.setSelection(0);
             findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
 
             // Get old name
@@ -375,8 +392,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
             // New pokemon name replaces old pokemon name
             String toastTest = active_player_pokemon.getName() + getString(R.string.replace) + oldPokemonName;
-            showToast(this, toastTest, 1000);
-            //Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
+            showToast(this, toastTest);
 
             // End of turn
             fin_tour();
@@ -391,10 +407,80 @@ public class Arena_1_Activity extends AppCompatActivity {
         attacksChoice.setVisibility(View.VISIBLE);
     }
 
-    void attackAPokemon(Pokemon attacker, String attkName, Pokemon receiver) {
+    void attackAPokemon(Pokemon attacker, boolean isPlayer, String attkName, Pokemon receiver) {
+        int dgts = attacker.getDgtsFromAttackName(attkName);
+        attacker.attackPokemon(receiver, dgts);
+        ProgressBar healthbar;
+        TextView healthText;
+        if (isPlayer) {
+            healthbar = progressBar_bot;
+            healthText = bot_hp;
+        }
+        else {
+            healthbar = progressBar_player;
+            healthText = player_hp;
+        }
+        ValueAnimator animator = ValueAnimator.ofInt(healthbar.getProgress(),receiver.getPv());
+        animator.setDuration(2000);
 
+        animator.addUpdateListener(animation -> {
+            int progress = (int) animation.getAnimatedValue();
+            String hpText = progress + "/" + receiver.getMaxPv();
+            float ratio = (float) progress / (float) receiver.getMaxPv();
+
+            int color;
+            if (ratio <= 0.2)
+                color = Color.RED;
+            else if (ratio <= 0.5)
+                color = Color.rgb(255,165,0);
+            else color = Color.GREEN;
+
+            healthbar.setProgressTintList(ColorStateList.valueOf(color));
+            healthbar.setProgress(progress);
+            healthText.setText(hpText);
+        });
+
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (receiver.getPv() == 0) {
+                    String toastText = receiver.getName() + getString(R.string.is_dead);
+                    showToast(Arena_1_Activity.this, toastText);
+                    if (isPlayer) {
+                        nb_attempts = 0;
+                        botPokemons.remove(receiver); //active_bot_pokemon
+                        replaceBotPokemon();
+                        fin_tour();
+                    }
+                    else {
+                        playerPokemons.remove(receiver); //active_player_pokemon
+                        player_pokemonCardsToRemove.add(playerActiveCardResId);
+                        if (playerPokemons.isEmpty()) {
+                            goBilan(0);
+                        }
+                        else {
+                            adapter.remove(active_player_pokemon.getName());
+                            change_by_ko = true;
+                            pokemonsChoice.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+                else if (isPlayer) {
+                    nb_attempts = 0;
+                    fin_tour();
+                }
+                else {
+                    findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
+                }
+                showToast(Arena_1_Activity.this, getString(R.string.end_of_turn));
+            }
+        });
+
+        animator.start();
+        String toastText = attacker.getName() + getString(R.string.use) + attkName + getString(R.string.inflicts) + dgts;
+        Log.i(TAG, "attackAPokemon: " + toastText);
+        showToast(this,toastText,10000);
     }
-
     private final ListView.OnItemClickListener attack_action =
             (parent, view, position, id) -> {
                 // Hide menus
@@ -404,48 +490,8 @@ public class Arena_1_Activity extends AppCompatActivity {
                 Log.i(TAG, "choix attaquer ");
                 Log.i("TAG", "here.");
                 String attkName = (String)parent.getItemAtPosition(position);
-                int dgts = active_player_pokemon.getDgtsFromAttackName(attkName);
-                active_player_pokemon.attackPokemon(active_bot_pokemon, dgts);
-                ValueAnimator animator = ValueAnimator.ofInt(progressBar_bot.getProgress(),active_bot_pokemon.getPv());
-                animator.setDuration(2000);
+                attackAPokemon(active_player_pokemon,true,attkName,active_bot_pokemon);
 
-                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-                        int progress = (int) animation.getAnimatedValue();
-                        String hpText = progress + "/" + active_bot_pokemon.getMaxPv();
-                        float ratio = (float) progress / (float) active_bot_pokemon.getMaxPv();
-
-                        int couleur;
-                        if (ratio <= 0.2)
-                            couleur = Color.RED;
-                        else if (ratio <= 0.5)
-                            couleur = Color.rgb(255,165,0);
-                        else couleur = Color.GREEN;
-
-                        progressBar_bot.setProgressTintList(ColorStateList.valueOf(couleur));
-                        progressBar_bot.setProgress(progress);
-                        bot_hp.setText(hpText);
-                    }
-                });
-                animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        if (active_bot_pokemon.getPv() == 0) {
-                            String toastText = active_bot_pokemon.getName() + getString(R.string.is_dead);
-                            Toast.makeText(Arena_1_Activity.this, toastText, Toast.LENGTH_SHORT).show();
-                            botPokemons.remove(active_bot_pokemon);
-                            replaceBotPokemon();
-                        }
-                        nb_attempts = 0;
-                        fin_tour();
-                    }
-                });
-
-                animator.start();
-                String toastText = active_player_pokemon.getName() + getString(R.string.use) + attkName + getString(R.string.inflicts) + dgts;
-                Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
             };
 
     private void replaceBotPokemon() {
@@ -454,31 +500,10 @@ public class Arena_1_Activity extends AppCompatActivity {
             Log.i(TAG, "replaceBotPokemon: il lui reste des pokemons");
             String oldPokemonName = active_bot_pokemon.getName();
 
-            active_bot_pokemon = botPokemons.get(0);
-            while (active_bot_pokemon.isNotReady()) {}
+            changeBotDisplay();
 
             String toastTest = active_bot_pokemon.getName() + getString(R.string.replace) + oldPokemonName;
-            Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
-
-            progressBar_bot.setMax(active_bot_pokemon.getMaxPv());
-            progressBar_bot.setProgress(active_bot_pokemon.getPv());
-
-            progressBar_bot.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-
-            String pv_display = active_bot_pokemon.getPv() + "/" + active_bot_pokemon.getMaxPv();
-            bot_hp.setText(pv_display);
-
-            String rightName = active_bot_pokemon.getName();
-            if (rightName.equals("Nidoran♂"))
-                rightName = rightName.replace("Nidoran♂","Nidoran_m");
-            else if (rightName.equals("Farfetch'd"))
-                rightName = rightName.replace("Farfetch'd","Farfetchd");
-            botPokemonSprite.loadUrl(
-                    "https://projectpokemon.org/images/normal-sprite/"
-                            + rightName.toLowerCase() + ".gif");
-
-            int next_card = bot_pokemonCards.size() - botPokemons.size();
-            botActiveCard.setImageResource(bot_pokemonCards.get(next_card));
+            showToast(this,toastTest);
         }
         else {
             Log.i(TAG, "replaceBotPokemon: il ne lui reste pas des pokemons");
@@ -500,6 +525,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         alert.setTitle(R.string.run_away_battle_title);
         alert.setMessage(R.string.run_away_battle);
         alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+            findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
             boolean success = false;
             int very_lucky = (active_player_pokemon.getMaxPv()/4)%256;
             if (very_lucky == 0)
@@ -516,10 +542,9 @@ public class Arena_1_Activity extends AppCompatActivity {
             }
             if (success) {
                 goBilan(1); // fuite
-                findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
             }
             else {
-                Toast.makeText(this, getString(R.string.escape_failed), Toast.LENGTH_SHORT).show();
+                showToast(this, getString(R.string.escape_failed));
                 nb_attempts ++;
                 fin_tour();
             }
@@ -531,99 +556,29 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     private void fin_tour() {
-        Log.i(TAG, "fin_tour: du joueur");
-        // Fin du tour du joueur, go pour le tour du bot
-        attacksChoice.setVisibility(View.GONE);
-        Log.i(TAG, "fin_tour: virer visibilite du choix");
-        pokemonsChoice.setVisibility(View.GONE);
-        pokemonsChoice.setSelection(0);
-        findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
 
-        Toast.makeText(this, getString(R.string.end_of_turn), Toast.LENGTH_SHORT).show();
+        showToast(this, getString(R.string.end_of_turn));
 
         if (botPokemons.isEmpty()) {
             goBilan(2); // victoire
         }
         else {
             String attkName = active_bot_pokemon.getBestAttackName();
-            Log.i("TAG", "fin_tour: " + attkName);
-            int dgts = active_bot_pokemon.getDgtsFromAttackName(attkName);
-            active_bot_pokemon.attackPokemon(active_player_pokemon, dgts);
-            ValueAnimator animator = ValueAnimator.ofInt(progressBar_player.getProgress(),active_player_pokemon.getPv());
-            animator.setDuration(2000);
-
-            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-                    int progress = (int) animation.getAnimatedValue();
-                    String hpText = progress + "/" + active_player_pokemon.getMaxPv();
-                    float ratio = (float) progress / (float) active_player_pokemon.getMaxPv();
-
-                    int couleur;
-                    if (ratio <= 0.2)
-                        couleur = Color.RED;
-                    else if (ratio <= 0.5)
-                        couleur = Color.rgb(255,165,0);
-                    else couleur = Color.GREEN;
-
-                    progressBar_player.setProgressTintList(ColorStateList.valueOf(couleur));
-                    progressBar_player.setProgress(progress);
-                    player_hp.setText(hpText);
-                }
-            });
-
-            animator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    super.onAnimationEnd(animation);
-                    Log.i(TAG, "fin_tour: fin attaque");
-                    if (active_player_pokemon.getPv() == 0) {
-                        Log.i(TAG, "fin_tour: joueur mort");
-                        playerPokemons.remove(active_player_pokemon);
-                        player_pokemonCardsToRemove.add(playerActiveCardResId);
-                        String toastText = active_player_pokemon.getName() + getString(R.string.is_dead);
-                        Toast.makeText(Arena_1_Activity.this, toastText, Toast.LENGTH_SHORT).show();
-                        if (playerPokemons.isEmpty()) {
-                            Log.i(TAG, "fin_tour: joueur a plus de pokemons");
-                            goBilan(0); //defaite
-                        }
-                        else {
-                            Log.i(TAG, "fin_tour: le joueur a encore des pokemons");
-                            adapter.remove(active_player_pokemon.getName());
-                            Log.i(TAG, "fin_tour: on retire le pokemon ko du choix");
-                            change_by_ko = true;
-
-                            pokemonsChoice.setVisibility(View.VISIBLE);
-                            Log.i(TAG, "fin_tour: on affiche la liste de choix");
-                        }
-                    }
-                    else findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
-                    Toast.makeText(Arena_1_Activity.this, getString(R.string.end_of_turn), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            animator.start();
-            String toastText = active_bot_pokemon.getName() + getString(R.string.use) + attkName + getString(R.string.inflicts) + dgts;
-            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+            attackAPokemon(active_bot_pokemon, false, attkName, active_player_pokemon);
         }
     }
 
     public void replacePlayerPokemonWith(int position) {
         Log.i(TAG, "replacePlayerPokemonWith: pokemon mort, go le replace");
+
         change_by_ko = false;
-        findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
 
         String oldPokemonName = active_player_pokemon.getName();
 
-        active_player_pokemon = playerPokemons.get(position);
-        active_player_pokemon.fetchDatas();
-        while (active_player_pokemon.isNotReady()) {}
+        changePlayerDisplay(position);
 
         String toastTest = active_player_pokemon.getName() + getString(R.string.replace) + oldPokemonName;
-        Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
-
-        progressBar_player.setMax(active_player_pokemon.getMaxPv());
-        progressBar_player.setProgress(active_player_pokemon.getPv());
+        showToast(this,toastTest);
 
         float ratio = (float) active_player_pokemon.getPv() / (float) active_player_pokemon.getMaxPv();
 
@@ -636,39 +591,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         progressBar_player.setProgressTintList(ColorStateList.valueOf(couleur));
 
-        String pv_display = active_player_pokemon.getPv() + "/" + active_player_pokemon.getMaxPv();
-        player_hp.setText(pv_display);
-
-        String rightName = active_player_pokemon.getName();
-        if (rightName.equals("Nidoran♂"))
-            rightName = rightName.replace("Nidoran♂","Nidoran_m");
-        else if (rightName.equals("Farfetch'd"))
-            rightName = rightName.replace("Farfetch'd","Farfetchd");
-
-        playerPokemonSprite.loadUrl(
-                "https://projectpokemon.org/images/sprites-models/normal-back/"
-                        + rightName.toLowerCase() + ".gif");
-
-        int ind = 0;
-        Log.i(TAG, "replacePlayerPokemonWith: " + playerPokemons_original.size());
-        for (int i = 0 ; i < playerPokemons_original.size(); i ++) {
-            if (playerPokemons_original.get(i).getName().equals(active_player_pokemon.getName())) {
-                Log.i(TAG, "replacePlayerPokemonWith: " +playerPokemons_original.get(i).getName());
-                Log.i(TAG, "replacePlayerPokemonWith: " +active_player_pokemon.getName());
-                Log.i(TAG, "replacePlayerPokemonWith: " +player_pokemonCards.get(i));
-                Log.i(TAG, "replacePlayerPokemonWith: " + i);
-                ind = i;
-                break;
-            }
-        }
-        Log.i(TAG, "replacePlayerPokemonWith: " + ind);
-        playerActiveCard.setImageResource(player_pokemonCards.get(ind));
-        playerActiveCardResId = player_pokemonCards.get(ind);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_1, active_player_pokemon.getAttackNames());
-
-        attacksChoice.setAdapter(adapter);
+        findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
     }
 
     public void goBilan(int end) {
@@ -681,16 +604,12 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         switch (end) {
             case 0 :
-                Toast.makeText(this, "defaite", Toast.LENGTH_SHORT).show();
                 player.removeActiveCards();
                 break;
             case 1 :
-                Toast.makeText(this, "fuite", Toast.LENGTH_SHORT).show();
                 player.removeCards(player_pokemonCardsToRemove);
-
                 break;
             case 2 :
-                Toast.makeText(this, "victoire", Toast.LENGTH_SHORT).show();
                 player.addNewCards(bot_pokemonCards);
                 break;
         }
