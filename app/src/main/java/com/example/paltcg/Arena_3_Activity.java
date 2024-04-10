@@ -35,10 +35,6 @@ public class Arena_3_Activity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout_arena3);
 
         Intent intent = getIntent();
-        int background = intent.getIntExtra("background",-1);
-        if (background != -1) {
-            drawerLayout.setBackgroundResource(background);
-        }
 
 
         sprite_bot = (WebView) findViewById(R.id.WebView_sprite_bot_arene3);

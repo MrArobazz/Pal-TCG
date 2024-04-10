@@ -27,7 +27,7 @@
 
         <ImageView
             android:id="@+id/imageView_carte_active_player_arena2"
-            android:layout_width="140dp"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,8 +35,8 @@
 
         <WebView
             android:id="@+id/webView_sprite_bot_arena2"
-            android:layout_width="104dp"
-            android:layout_height="119dp"
+            android:layout_width="128dp"
+            android:layout_height="127dp"
             android:layout_marginStart="87dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="80dp"
@@ -46,7 +46,7 @@
 
         <ImageView
             android:id="@+id/imageView_carte_active_bot_arena2"
-            android:layout_width="140dp"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,8 +54,8 @@
 
         <WebView
             android:id="@+id/webView_sprite_player_arena2"
-            android:layout_width="104dp"
-            android:layout_height="119dp"
+            android:layout_width="128dp"
+            android:layout_height="127dp"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="87dp"
             android:layout_marginBottom="60dp"

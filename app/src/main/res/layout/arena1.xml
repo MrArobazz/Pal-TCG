@@ -73,7 +73,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_arena"
         android:layout_width="0dp"
-        android:layout_height="350dp"
+        android:layout_height="513dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +110,7 @@
         <WebView
             android:id="@+id/webView_sprite_player_arena1"
             android:layout_width="128dp"
-            android:layout_height="130dp"
+            android:layout_height="127dp"
             android:layout_marginEnd="70dp"
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView_pv_player_arena1"
