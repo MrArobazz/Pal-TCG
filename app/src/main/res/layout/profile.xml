@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:text="@string/pseudo"
-                android:textAlignment="viewStart"
+                android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 
@@ -59,7 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:editable="true"
-                android:text="NoName" />
+                android:text="NoName"
+                android:textAlignment="center" />
 
             <Space
                 android:layout_width="match_parent"
@@ -99,16 +100,17 @@
                         android:text="@string/Woman" />
 
                     <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Pokemon" />
+
+                    <RadioButton
                         android:id="@+id/radioButton2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/Other" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Pokemon" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -120,7 +122,12 @@
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/BirthDay" />
+                android:fontFamily="sans-serif"
+                android:text="@string/BirthDay"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editTextDate_birthday"

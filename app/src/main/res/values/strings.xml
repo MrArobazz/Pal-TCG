@@ -23,7 +23,7 @@
     <string name="Woman">Woman</string>
     <string name="Other">Other</string>
     <string name="Pokemon">Pokemon</string>
-    <string name="BirthDay">Anniversary Date</string>
+    <string name="BirthDay">BirthDay</string>
     <string name="choose_a_pokemon">Choose a pokemon</string>
 
     <string name="Victory">Victories</string>
