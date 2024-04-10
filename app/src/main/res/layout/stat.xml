@@ -48,18 +48,88 @@
                     android:gravity="center"
                     android:text="@string/Victory"
                     android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#40C4FF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <SeekBar
-                    android:id="@+id/seekBar_nb_victoire"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:progressTint="#63A517"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.491" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView_nb_defaites"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:clickable="false"
-                    android:focusable="auto"
-                    android:max="10"
-                    android:progressTint="#38BA3E" />
+                    android:gravity="center"
+                    android:text="@string/Defeat"
+                    android:textAlignment="center"
+                    android:textColor="#40C4FF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:progressTint="#E60C0C"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
             <Space
@@ -79,6 +149,7 @@
                     android:gravity="center"
                     android:text="@string/Pokemons"
                     android:textAlignment="center"
+                    android:textColor="#40C4FF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -102,44 +173,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView_nb_defaites"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/Defeat"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <SeekBar
-                    android:id="@+id/seekBar_nb_defaite"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:max="10"
-                    android:progress="0"
-                    android:progressTint="#771212" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:orientation="horizontal">
-
-                <TextView
                     android:id="@+id/textView_evaluation_combat"
                     android:layout_width="wrap_content"
-                    android:layout_height="58dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/Notation"
                     android:textAlignment="center"
+                    android:textColor="#40C4FF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -147,10 +188,12 @@
                     android:id="@+id/ratingBar_evaluation_combat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:isIndicator="true"
                     android:numStars="4"
-                    android:progressTint="#4A731B" />
+                    android:progressTint="#1D58BC"
+                    android:textAlignment="center" />
 
             </LinearLayout>
 
@@ -171,6 +214,7 @@
                     android:gravity="center"
                     android:text="@string/Lost_pokemon"
                     android:textAlignment="center"
+                    android:textColor="#40C4FF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -201,6 +245,7 @@
                     android:gravity="center"
                     android:text="@string/Captured_pokemon"
                     android:textAlignment="center"
+                    android:textColor="#40C4FF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
