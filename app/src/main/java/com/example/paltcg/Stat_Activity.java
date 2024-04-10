@@ -21,8 +21,7 @@ public class Stat_Activity extends AppCompatActivity {
 
     User user;
 
-    ProgressBar wonPoke, loosedPoke;
-    SeekBar wonBattles,loosedBattles;
+    ProgressBar wonPoke, loosedPoke,wonBattles,loosedBattles;
     RatingBar evaluation;
     EditText my_Poke;
 
@@ -34,10 +33,10 @@ public class Stat_Activity extends AppCompatActivity {
         Intent intent  = getIntent();
         user = intent.getParcelableExtra("the_user");
 
-        wonPoke = (ProgressBar) findViewById(R.id.progressBar_nb_pokemon_gagne);
-        loosedPoke = (ProgressBar) findViewById(R.id.progressBar_nb_pokemon_perdu);
-        loosedBattles = (SeekBar) findViewById(R.id.seekBar_nb_defaite);
-        wonBattles = (SeekBar) findViewById(R.id.seekBar_nb_victoire);
+        //wonPoke = (ProgressBar) findViewById(R.id.progressBar_nb_pokemon_gagne);
+        //loosedPoke = (ProgressBar) findViewById(R.id.progressBar_nb_pokemon_perdu);
+        loosedBattles = (ProgressBar) findViewById(R.id.progressBar_Defeats);
+        wonBattles = (ProgressBar) findViewById(R.id.progressBar_Victories);
         evaluation = (RatingBar) findViewById(R.id.ratingBar_evaluation_combat);
         my_Poke = (EditText) findViewById(R.id.editText_nb_pokemon);
 
@@ -76,18 +75,18 @@ public class Stat_Activity extends AppCompatActivity {
     public void UserNull(){
         wonBattles.setProgress(0);
         loosedBattles.setProgress(0);
-        wonPoke.setProgress(0);
-        loosedPoke.setProgress(0);
+        //wonPoke.setProgress(0);
+        //loosedPoke.setProgress(0);
         evaluation.setRating(0);
-        my_Poke.setText(0+"/69");
+        my_Poke.setText(0+" / 69");
     }
 
     public void UserNotNull(){
         wonBattles.setProgress(user.getNbWonBattle());
         loosedBattles.setProgress(user.getLoosedBattle());
-        wonPoke.setProgress(user.getWonPoke());
-        loosedPoke.setProgress(user.getLoosedPoke());
+        //wonPoke.setProgress(user.getWonPoke());
+        //loosedPoke.setProgress(user.getLoosedPoke());
         evaluation.setRating((float)user.getEvaluation());
-        my_Poke.setText(user.getNbCards()+"/69");
+        my_Poke.setText(user.getNbCards()+" / 69");
     }
 }
