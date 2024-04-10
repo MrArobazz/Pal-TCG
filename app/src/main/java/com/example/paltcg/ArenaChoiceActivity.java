@@ -12,6 +12,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -22,6 +23,12 @@ public class ArenaChoiceActivity extends AppCompatActivity{
     ActivityResultLauncher<Intent> activityResultLauncher;
 
     User user;
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        user = savedInstanceState.getParcelable("the_user");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +57,16 @@ public class ArenaChoiceActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("the_user",user);
+    }
+
     public void leave(View v) {
         Intent returnIntent = new Intent();
         returnIntent.putExtra("the_user",user);
+        Log.i("TAG", "leave: " + user.getEvaluation());
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
@@ -62,6 +76,7 @@ public class ArenaChoiceActivity extends AppCompatActivity{
             Intent resultDatas = result.getData();
             if (resultDatas != null) {
                 user = resultDatas.getParcelableExtra("the_user");
+                Log.i("TAG", "handleActivityResult: " + user.getEvaluation());
             }
             leave(null);
         }

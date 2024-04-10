@@ -1,10 +1,12 @@
 package com.example.paltcg;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,6 +18,7 @@ import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.paltcg.dataclasses.User;
@@ -36,6 +39,16 @@ public class End_Fight_Activity extends AppCompatActivity {
     User user;
 
     String TAG = "blabla";
+
+    boolean rated = false;
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        user = savedInstanceState.getParcelable("the_user");
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +92,7 @@ public class End_Fight_Activity extends AppCompatActivity {
         else video.setVideoURI(uri);
 
         textView_winOrLose = findViewById(R.id.textView_winOrLose);
+        Log.i(TAG, "onCreate: " + textView_winOrLose);
         ArrayList<Integer> cardsToDisplay = new ArrayList<>();
         if (result < 2) {
             textView_winOrLose.setText(R.string.loosedPoke);
@@ -90,6 +104,7 @@ public class End_Fight_Activity extends AppCompatActivity {
             }
         }
         else {
+            Log.i(TAG, "onCreate: " + R.string.wonPoke);
             textView_winOrLose.setText(R.string.wonPoke);
             if (oldCards != null) {
                 cardsToDisplay = new ArrayList<>(user.getCardsIds());
@@ -122,19 +137,36 @@ public class End_Fight_Activity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar_endfight);
         ratingBar.setMax(5);
 
+        ratingBar.setOnTouchListener((v, event) -> {
+            rated = true;
+            return ratingBar.onTouchEvent(event);
+        });
+
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() { goHome(null);}
         });
 
     }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("the_user", user);
+    }
+
 
     public void goHome(android.view.View v){
-        user.setEvaluation(ratingBar.getRating());
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("the_user",user);
-        setResult(Activity.RESULT_OK, returnIntent);
-        finish();
+        Log.i(TAG, "goHome: " + rated);
+        if (!rated)
+            Toast.makeText(this,getString(R.string.need_to_rate), Toast.LENGTH_SHORT).show();
+        else {
+            user.setEvaluation(ratingBar.getRating());
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("the_user", user);
+            Log.i(TAG, "goHome: " + user.getEvaluation());
+            setResult(Activity.RESULT_OK, returnIntent);
+            finish();
+        }
     }
 
     @Override
