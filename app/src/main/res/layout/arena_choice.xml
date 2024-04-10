@@ -37,7 +37,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:onClick="goHome"
+            android:onClick="leave"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/pokeball"
             tools:layout_editor_absoluteX="155dp"
@@ -60,13 +60,13 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButton_arene3"
+                android:id="@+id/imageButton_arene1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:importantForAccessibility="no"
-                android:onClick="goArene3"
+                android:onClick="goArene1"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/arene3" />
+                app:srcCompat="@drawable/arene1" />
 
             <ImageButton
                 android:id="@+id/imageButton_arene2"
@@ -78,13 +78,14 @@
                 app:srcCompat="@drawable/arene2" />
 
             <ImageButton
-                android:id="@+id/imageButton_arene1"
+                android:id="@+id/imageButton_arene3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:importantForAccessibility="no"
-                android:onClick="goArene1"
+                android:onClick="goArene3"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/arene1" />
+                app:srcCompat="@drawable/arene3" />
+
         </LinearLayout>
     </ScrollView>
 

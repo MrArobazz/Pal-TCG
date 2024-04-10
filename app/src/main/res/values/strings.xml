@@ -57,6 +57,7 @@
     <string name="escape_failed">Escape failed</string>
     <string name="end_of_turn">End of turn</string>
     <string name="try_to_press_back_button">You cannot leave the fight like this. Use escape button.</string>
+    <string name="need_to_rate">You need to rate.</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>
