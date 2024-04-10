@@ -5,11 +5,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -191,9 +193,6 @@ public class Arena_1_Activity extends AppCompatActivity {
                     else {
                         if (begin) {
                             beginBattleWith(position - 1);
-                            pokemonsChoice.setVisibility(View.GONE);
-                            pokemonsChoice.setSelection(0);
-                            begin = false;
                         }
                         else
                             changePokemonWith(position-1);
@@ -250,112 +249,136 @@ public class Arena_1_Activity extends AppCompatActivity {
         outState.putInt("nb_attempts",nb_attempts);
     }
 
-    void beginBattleWith(int position) {
-        active_player_pokemon = playerPokemons.get(position);
-        Log.i(TAG, "beginBattleWith: " + playerPokemons);
-        Log.i(TAG, "beginBattleWith: " + botPokemons);
-        active_bot_pokemon = botPokemons.get(0);
+    void showToast(Context ctx, String message, int duration) {
+        final Toast toast = Toast.makeText(ctx, message,Toast.LENGTH_SHORT);
+        toast.show();
 
-        while (active_player_pokemon.isNotReady() || active_bot_pokemon.isNotReady()) {}
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toast.cancel();
+            }
+        }, duration);
+    }
 
-        /*for (Pokemon bot : botPokemons) {
-            Log.i("TAG", "beginBattleWith: " + bot.getName());
-        }*/
+    void setUpProgressBar(ProgressBar progressBar, Pokemon pokemon) {
+        progressBar.setMax(pokemon.getMaxPv());
+        progressBar.setProgress(pokemon.getPv());
+    }
 
-        progressBar_player.setMax(active_player_pokemon.getMaxPv());
-        progressBar_bot.setMax(active_bot_pokemon.getMaxPv());
+    void setUpTextView(TextView healthBar, Pokemon pokemon) {
+        String pv_display = pokemon.getPv() + "/" + pokemon.getMaxPv();
+        healthBar.setText(pv_display);
+    }
 
-        progressBar_player.setProgress(active_player_pokemon.getPv());
-        progressBar_bot.setProgress(active_bot_pokemon.getPv());
-
-        String pv_display = active_player_pokemon.getPv() + "/" + active_player_pokemon.getMaxPv();
-        player_hp.setText(pv_display);
-
-        pv_display = active_bot_pokemon.getPv() + "/" + active_bot_pokemon.getMaxPv();
-        bot_hp.setText(pv_display);
-
-        String rightName = active_player_pokemon.getName();
+    void setUpSprite(WebView sprite, Pokemon pokemon, boolean isPlayer) {
+        String rightName = pokemon.getName();
         if (rightName.equals("Nidoran♂"))
             rightName = rightName.replace("Nidoran♂","Nidoran_m");
         else if (rightName.equals("Farfetch'd"))
             rightName = rightName.replace("Farfetch'd","Farfetchd");
 
-        playerPokemonSprite.loadUrl(
-                "https://projectpokemon.org/images/sprites-models/normal-back/"
-                        + rightName.toLowerCase() + ".gif");
+        if (isPlayer)
+            sprite.loadUrl("https://projectpokemon.org/images/sprites-models/normal-back/"
+                    + rightName.toLowerCase()
+                    + ".gif");
+        else sprite.loadUrl("https://projectpokemon.org/images/normal-sprite/"
+                + rightName.toLowerCase() + ".gif");
+    }
 
+    void setUpPlayerCard() {
+        int ind = 0;
+        for (int i = 0 ; i < playerPokemons_original.size(); i ++) {
+            if (playerPokemons_original.get(i).getName().equals(active_player_pokemon.getName())) {
+                ind = i;
+                break;
+            }
+        }
 
-        rightName = active_bot_pokemon.getName();
-        if (rightName.equals("Nidoran♂"))
-            rightName = rightName.replace("Nidoran♂","Nidoran_m");
-        else if (rightName.equals("Farfetch'd"))
-            rightName = rightName.replace("Farfetch'd","Farfetchd");
+        playerActiveCard.setImageResource(player_pokemonCards.get(ind));
+        playerActiveCardResId = player_pokemonCards.get(ind);
 
-        botPokemonSprite.loadUrl("https://projectpokemon.org/images/normal-sprite/" + rightName.toLowerCase() + ".gif");
+        //playerActiveCard.setImageResource(player_pokemonCards.get(position));
+        //playerActiveCardResId = player_pokemonCards.get(position);
+    }
 
-        playerActiveCard.setImageResource(player_pokemonCards.get(position));
-        playerActiveCardResId = player_pokemonCards.get(position);
+    void setUpBotCard() {
         botActiveCard.setImageResource(bot_pokemonCards.get(0));
+    }
 
+    void setUpPlayerAttacksChoice() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, active_player_pokemon.getAttackNames());
 
         attacksChoice.setAdapter(adapter);
+    }
+
+    void changePlayerDisplay(int position) {
+        active_player_pokemon = playerPokemons.get(position);
+        while (active_player_pokemon.isNotReady()) {}
+        setUpProgressBar(progressBar_player, active_player_pokemon);
+        setUpTextView(player_hp,active_player_pokemon);
+        setUpSprite(playerPokemonSprite, active_player_pokemon, true);
+        setUpPlayerCard();
+        setUpPlayerAttacksChoice();
+    }
+
+    void changeBotDisplay() {
+        // we consider the new pokemon
+        active_bot_pokemon = botPokemons.get(0);
+        // if we still don't have the datas, we wait (with a ugly, but working, way)
+        while (active_bot_pokemon.isNotReady()) {}
+
+        // we set up the widgets
+        setUpProgressBar(progressBar_bot, active_bot_pokemon);
+        setUpTextView(bot_hp, active_bot_pokemon);
+        setUpSprite(botPokemonSprite, active_bot_pokemon, false);
+        setUpBotCard();
+    }
+
+    void beginBattleWith(int position) {
+        // set up player display with first player pokemon
+        changePlayerDisplay(position);
+        // set up bot display with first bot pokemon
+        changeBotDisplay();
+
+        // Show only main menu
         attacksChoice.setVisibility(View.GONE);
+        pokemonsChoice.setVisibility(View.GONE);
         findViewById(R.id.linearLayout_player_choice).setVisibility(View.VISIBLE);
+        pokemonsChoice.setSelection(0);
+
+        // To avoid to call this method again
+        begin = false;
     }
 
     public void displayPokemonsChoice(View v) {
         Log.i(TAG, "displayPokemonsChoice: attack gone pokemon visible");
         attacksChoice.setVisibility(View.GONE);
         pokemonsChoice.setVisibility(View.VISIBLE);
-        Log.i(TAG, "displayPokemonsChoice: trigger listener ?");
+        //Log.i(TAG, "displayPokemonsChoice: trigger listener ?");
     }
 
     void changePokemonWith(int position) {
         Log.i(TAG, "changePokemonWith: choix changer pokemon");
         if (active_player_pokemon != playerPokemons.get(position)) {
+            // Hide menus
+            pokemonsChoice.setVisibility(View.GONE);
+            findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
+
+            // Get old name
             String oldPokemonName = active_player_pokemon.getName();
-            active_player_pokemon = playerPokemons.get(position);
-            while (active_player_pokemon.isNotReady()) {}
 
+            // setup display with new
+            changePlayerDisplay(position);
+
+            // New pokemon name replaces old pokemon name
             String toastTest = active_player_pokemon.getName() + getString(R.string.replace) + oldPokemonName;
-            Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
+            showToast(this, toastTest, 1000);
+            //Toast.makeText(this, toastTest, Toast.LENGTH_SHORT).show();
 
-            progressBar_player.setMax(active_player_pokemon.getMaxPv());
-            progressBar_player.setProgress(active_player_pokemon.getPv());
-
-            String pv_display = active_player_pokemon.getPv() + "/" + active_player_pokemon.getMaxPv();
-            player_hp.setText(pv_display);
-
-            String rightName = active_player_pokemon.getName();
-            if (rightName.equals("Nidoran♂"))
-                rightName = rightName.replace("Nidoran♂","Nidoran_m");
-            else if (rightName.equals("Farfetch'd"))
-                rightName = rightName.replace("Farfetch'd","Farfetchd");
-
-            playerPokemonSprite.loadUrl(
-                    "https://projectpokemon.org/images/sprites-models/normal-back/"
-                            + rightName.toLowerCase() + ".gif");
-
-
-
-            int ind = 0;
-            for (int i = 0 ; i < playerPokemons_original.size(); i ++) {
-                if (playerPokemons_original.get(i).getName().equals(active_player_pokemon.getName())) {
-                    ind = i;
-                    break;
-                }
-            }
-
-            playerActiveCard.setImageResource(player_pokemonCards.get(ind));
-            playerActiveCardResId = player_pokemonCards.get(ind);
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                    this, android.R.layout.simple_list_item_1, active_player_pokemon.getAttackNames());
-
-            attacksChoice.setAdapter(adapter);
-
+            // End of turn
             fin_tour();
         }
         else Log.i(TAG, "changePokemonWith: choix changer mais rien s'est passe");
@@ -368,8 +391,13 @@ public class Arena_1_Activity extends AppCompatActivity {
         attacksChoice.setVisibility(View.VISIBLE);
     }
 
+    void attackAPokemon(Pokemon attacker, String attkName, Pokemon receiver) {
+
+    }
+
     private final ListView.OnItemClickListener attack_action =
             (parent, view, position, id) -> {
+                // Hide menus
                 attacksChoice.setVisibility(View.GONE);
                 findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
 
