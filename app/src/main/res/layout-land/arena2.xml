@@ -7,8 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_arena2"
-        android:layout_width="439dp"
-        android:layout_height="275dp"
+        android:layout_width="485dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout_arene2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,7 +37,7 @@
             android:id="@+id/webView_sprite_bot_arena2"
             android:layout_width="97dp"
             android:layout_height="101dp"
-            android:layout_marginStart="104dp"
+            android:layout_marginStart="124dp"
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toEndOf="@+id/imageView_carte_active_bot_arena2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
             android:id="@+id/webView_sprite_player_arena2"
             android:layout_width="97dp"
             android:layout_height="101dp"
-            android:layout_marginEnd="104dp"
+            android:layout_marginEnd="124dp"
             android:layout_marginBottom="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player_arena2" />
@@ -108,7 +108,7 @@
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottom_app_bar_arene2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@drawable/gradient_list"
             app:fabAlignmentMode="end"

@@ -27,7 +27,6 @@ public class Arena_2_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.arena2);
 
         Arena = findViewById(R.id.constraint_layout_arena2);
