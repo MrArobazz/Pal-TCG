@@ -21,6 +21,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="364dp"
         android:layout_height="318dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_end_fight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
@@ -38,7 +39,7 @@
                 android:id="@+id/videoView_endFight"
                 android:layout_width="match_parent"
                 android:layout_height="169dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center" />
 
             <Space
                 android:id="@+id/space"
@@ -131,6 +132,5 @@
         android:text="@string/home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

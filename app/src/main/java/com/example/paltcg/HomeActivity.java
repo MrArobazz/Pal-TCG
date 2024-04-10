@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
@@ -65,6 +66,10 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.profil_button){
                     profile();
+                }else{
+                    if(item.getItemId()==R.id.save){
+                        Toast.makeText(HomeActivity.this,user.getEvaluation()+" nb etoiles",Toast.LENGTH_LONG).show();
+                    }
                 }
                 return true;
             }
@@ -125,8 +130,5 @@ public class HomeActivity extends AppCompatActivity {
         intent.putExtra("the_user",user);
         startActivity(intent);
     }
-
-
-
 
 }

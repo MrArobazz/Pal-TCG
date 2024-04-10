@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
@@ -85,6 +86,7 @@ public class End_Fight_Activity extends AppCompatActivity {
                 cardsToDisplay = new ArrayList<>(oldCards);
                 cardsToDisplay.removeAll(user.getCardsIds());
                 Log.i(TAG, "onCreate: nb a afficher " + cardsToDisplay.size());
+                user.addLoosedPoke(cardsToDisplay.size());
             }
         }
         else {
@@ -93,6 +95,7 @@ public class End_Fight_Activity extends AppCompatActivity {
                 cardsToDisplay = new ArrayList<>(user.getCardsIds());
                 cardsToDisplay.removeAll(oldCards);
                 Log.i(TAG, "onCreate: nb a afficher " + cardsToDisplay.size());
+                user.addLoosedPoke(cardsToDisplay.size());
             }
         }
 
@@ -123,6 +126,7 @@ public class End_Fight_Activity extends AppCompatActivity {
             @Override
             public void handleOnBackPressed() { goHome(null);}
         });
+
     }
 
     public void goHome(android.view.View v){
