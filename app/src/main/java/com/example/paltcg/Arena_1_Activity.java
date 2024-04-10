@@ -71,7 +71,7 @@ public class Arena_1_Activity extends AppCompatActivity {
     boolean begin = true;
     boolean change_by_ko = false;
     private int nb_attempts = 0;
-    private String TAG = "COMBAT";
+    private final String TAG = "COMBAT";
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
@@ -99,7 +99,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         random = new Random();
 
         //Get the compoents
-        getComponentsdqdqd();
+        getComponents();
 
 
         // Get the player and his cards
@@ -126,7 +126,7 @@ public class Arena_1_Activity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, playerSpinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pokemonsChoice = (Spinner) findViewById(R.id.spinner_poke_choice);
+        pokemonsChoice = findViewById(R.id.spinner_poke_choice);
         pokemonsChoice.setAdapter(adapter);
         pokemonsChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -152,7 +152,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         Log.i(TAG, "onCreate: Début combat");
     }
 
-    private void getComponentsdqdqd() {
+    private void getComponents() {
         arena = findViewById(R.id.constraint_layout_arena);
 
         progressBar_bot = findViewById(R.id.progressBar_pv_bot_arene1);
@@ -162,6 +162,10 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         playerPokemonSprite = findViewById(R.id.webView_sprite_player_arena1);
         botPokemonSprite = findViewById(R.id.webView_sprite_bot_arena1);
+        playerPokemonSprite.getSettings().setUseWideViewPort(true);
+        playerPokemonSprite.getSettings().setLoadWithOverviewMode(true);
+        botPokemonSprite.getSettings().setUseWideViewPort(true);
+        botPokemonSprite.getSettings().setLoadWithOverviewMode(true);
 
         attacksChoice = findViewById(R.id.listView_attackChoice);
 
@@ -268,12 +272,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         toast.show();
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                toast.cancel();
-            }
-        }, duration);
+        handler.postDelayed(toast::cancel, duration);
     }
 
     void setUpProgressBar(ProgressBar progressBar, Pokemon pokemon) {
@@ -312,9 +311,6 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         playerActiveCard.setImageResource(player_pokemonCards.get(ind));
         playerActiveCardResId = player_pokemonCards.get(ind);
-
-        //playerActiveCard.setImageResource(player_pokemonCards.get(position));
-        //playerActiveCardResId = player_pokemonCards.get(position);
     }
 
     void setUpBotCard() {
@@ -323,7 +319,7 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     void setUpPlayerAttacksChoice() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, active_player_pokemon.getAttackNames());
 
         attacksChoice.setAdapter(adapter);
@@ -331,6 +327,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
     void changePlayerDisplay(int position) {
         active_player_pokemon = playerPokemons.get(position);
+
         while (active_player_pokemon.isNotReady()) {}
         setUpProgressBar(progressBar_player, active_player_pokemon);
         setUpTextView(player_hp,active_player_pokemon);
