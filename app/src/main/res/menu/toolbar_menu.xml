@@ -4,7 +4,7 @@
         android:title="@string/Profil"
         android:icon="@drawable/pokemon_trainer_boy_icon_icons_com_67516"/>
     <item android:id="@+id/save"
-        android:title="@string/Save"
+        android:title="@string/Send"
         android:icon="@drawable/pokemon_view_virtual_reality_icon_icons_com_67514"/>
     <item android:id="@+id/mute"
         android:title="@string/Mute"

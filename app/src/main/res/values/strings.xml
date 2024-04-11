@@ -33,7 +33,7 @@
     <string name="Lost_pokemon">Lost Pokemons</string>
     <string name="Pokemons">My Pokemons</string>
     <string name="evaluation">Evaluate Your Battle</string>
-    <string name="Save">Save</string>
+    <string name="Send">Send Mail</string>
     <string name="Mute">Mute</string>
     <string name="Profil">Profil</string>
     <string name="Choice">CHOICE</string>
@@ -43,6 +43,7 @@
     <string name="home">Home</string>
     <string name="wonPoke">You won these Pokemons :</string>
     <string name="loosedPoke">You lost these Pokemons :</string>
+    <string name="flee">Flee</string>
 
 
     <string name="open_menu" translatable="false">Open</string>

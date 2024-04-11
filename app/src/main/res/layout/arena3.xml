@@ -9,7 +9,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_arena3"
-        android:layout_width="357dp"
+        android:layout_width="0dp"
         android:layout_height="67dp"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"

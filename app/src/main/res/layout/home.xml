@@ -8,6 +8,53 @@
     android:background="@drawable/gradient_list">
 
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_entete">
+
+        <ImageButton
+            android:id="@+id/imageButton_deck"
+            android:layout_width="237dp"
+            android:layout_height="133dp"
+            android:background="@drawable/deck_background"
+            android:onClick="seeDeck"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/deck" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton_stat"
+            android:layout_width="237dp"
+            android:layout_height="133dp"
+            android:background="@drawable/stat_background"
+            android:onClick="stats"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/stat" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton_battleButton"
+            android:layout_width="237dp"
+            android:layout_height="133dp"
+            android:background="@drawable/banner_pokeball"
+            android:importantForAccessibility="no"
+            android:onClick="goArene"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/battle" />
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/imageView_entete"
         android:layout_width="0dp"
@@ -17,20 +64,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pok_mon_trading_card_game_logo_svg" />
-
-    <ImageButton
-        android:id="@+id/imageButton_battleButton"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:background="@drawable/banner_pokeball"
-        android:importantForAccessibility="no"
-        android:onClick="goArene"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_stat"
-        app:srcCompat="@drawable/battle" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_home"
@@ -57,31 +90,6 @@
             tools:layout_editor_absoluteX="152dp"
             tools:layout_editor_absoluteY="7dp" />
     </androidx.appcompat.widget.Toolbar>
-
-    <ImageButton
-        android:id="@+id/imageButton_deck"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:background="@drawable/deck_background"
-        android:onClick="seeDeck"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_entete"
-        app:srcCompat="@drawable/deck" />
-
-    <ImageButton
-        android:id="@+id/imageButton_stat"
-        android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:background="@drawable/stat_background"
-        android:onClick="stats"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.326"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_deck"
-        app:srcCompat="@drawable/stat" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

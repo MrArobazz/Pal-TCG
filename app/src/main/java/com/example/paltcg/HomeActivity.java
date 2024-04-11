@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -77,6 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                 }else{
                     if(item.getItemId()==R.id.save){
                         Toast.makeText(HomeActivity.this,user.getEvaluation()+" nb etoiles",Toast.LENGTH_LONG).show();
+                        partage();
                     }
                 }
                 return true;
@@ -143,6 +145,20 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Stat_Activity.class);
         intent.putExtra("the_user",user);
         startActivity(intent);
+    }
+
+    public void partage() {
+
+        String uriText =
+                "mailto:tom.caillaud@etu.univ-poitiers.fr" +
+                        "?subject=" + Uri.encode("TCG_POKEMON") +
+                        "&body=" + Uri.encode(user.getStats());
+
+        Uri uri = Uri.parse(uriText);
+
+        Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
+        sendIntent.setData(uri);
+        startActivity(Intent.createChooser(sendIntent, "Send email"));
     }
 
 }

@@ -36,6 +36,7 @@ public class User implements Parcelable {
         won_battles = in.readInt();
         loosed_battles = in.readInt();
         evaluationMoy = in.readDouble();
+        flee_battles = in.readInt();
     }
 
     @Override
@@ -50,6 +51,7 @@ public class User implements Parcelable {
         dest.writeInt(loosed_battles);
         dest.writeInt(won_battles);
         dest.writeDouble(evaluationMoy);
+        dest.writeInt(flee_battles);
     }
 
     @Override

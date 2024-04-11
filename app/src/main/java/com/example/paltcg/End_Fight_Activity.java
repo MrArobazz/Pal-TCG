@@ -129,9 +129,12 @@ public class End_Fight_Activity extends AppCompatActivity {
         }
 
         if(user!=null){
-            if (result < 2)
+            if (result == 1)
+                user.addFleeBattle();
+            if (result == 0)
                 user.addLoosedBattle();
-            else user.addWonBattle();
+            if(result == 2)
+                user.addWonBattle();
         }
 
         ratingBar = findViewById(R.id.ratingBar_endfight);
