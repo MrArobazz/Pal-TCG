@@ -2,13 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/setting"
-        android:title="Settings"
+    <item
+        android:id="@+id/change_pokemon"
         android:icon="@drawable/replace_svgrepo_com"
-        app:showAsAction="ifRoom"/>
-    <item android:id="@+id/save"
-        android:title="Save"
+        android:title="Changement"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/escape"
         android:icon="@drawable/exit_icon_icons_com_70975"
-        app:showAsAction="ifRoom"/>
+        android:title="Escape"
+        app:showAsAction="ifRoom" />
 
 </menu>

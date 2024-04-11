@@ -14,65 +14,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView_pv_player_arena2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="11dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/progressBar_pv_player_arene2"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar_pv_player_arene2"
-            app:layout_constraintStart_toStartOf="@+id/progressBar_pv_player_arene2"
-            app:layout_constraintTop_toTopOf="@+id/progressBar_pv_player_arene2" />
-
         <ImageView
-            android:id="@+id/imageView_carte_active_player_arena2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/alakazambaseset1" />
+            android:id="@+id/imageView_carte_active_bot_arena2"
+            android:layout_width="168dp"
+            android:layout_height="172dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/abrabaseset43" />
 
         <WebView
             android:id="@+id/webView_sprite_bot_arena2"
-            android:layout_width="128dp"
-            android:layout_height="127dp"
+            android:layout_width="147dp"
+            android:layout_height="143dp"
             android:layout_marginStart="87dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="80dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView_carte_active_bot_arena2"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView_carte_active_bot_arena2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/abrabaseset43" />
-
-        <WebView
-            android:id="@+id/webView_sprite_player_arena2"
-            android:layout_width="128dp"
-            android:layout_height="127dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="87dp"
-            android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player_arena2"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar_pv_player_arene2"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="130dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="4dp"
-            android:foregroundTint="#08830D"
-            android:progressDrawable="@drawable/progress_bar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player_arena2" />
 
         <ProgressBar
             android:id="@+id/progressBar_pv_bot_arene2"
@@ -96,6 +55,47 @@
             app:layout_constraintStart_toStartOf="@+id/progressBar_pv_bot_arene2"
             app:layout_constraintTop_toTopOf="@+id/progressBar_pv_bot_arene2"
             app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView_carte_active_player_arena2"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/alakazambaseset1" />
+
+        <WebView
+            android:id="@+id/webView_sprite_player_arena2"
+            android:layout_width="153dp"
+            android:layout_height="156dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="87dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player_arena2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_pv_player_arene2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="4dp"
+            android:foregroundTint="#08830D"
+            android:progressDrawable="@drawable/progress_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView_carte_active_player_arena2" />
+
+        <TextView
+            android:id="@+id/textView_pv_player_arena2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar_pv_player_arene2"
+            app:layout_constraintEnd_toEndOf="@+id/progressBar_pv_player_arene2"
+            app:layout_constraintStart_toStartOf="@+id/progressBar_pv_player_arene2"
+            app:layout_constraintTop_toTopOf="@+id/progressBar_pv_player_arene2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -122,7 +122,7 @@
             android:id="@+id/floating_action_button_attack_arena2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="attack"
+            android:onClick="displayAttackChoice"
             android:src="@drawable/athlete_boxing_fight_svgrepo_com"
             app:backgroundTint="@android:color/holo_green_light"
             app:layout_anchor="@id/bottom_app_bar_arene2" />
@@ -130,7 +130,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner_pokeChoice_arene2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -139,11 +139,12 @@
         app:layout_constraintTop_toBottomOf="@+id/constraint_layout_arena2" />
 
     <ListView
+        android:id="@+id/listView_attackChoice_arena2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_pokeChoice_arene2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

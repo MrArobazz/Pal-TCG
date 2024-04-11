@@ -3,7 +3,7 @@
     <item android:id="@+id/profil_button"
         android:title="@string/Profil"
         android:icon="@drawable/pokemon_trainer_boy_icon_icons_com_67516"/>
-    <item android:id="@+id/save"
+    <item android:id="@+id/escape"
         android:title="@string/Save"
         android:icon="@drawable/pokemon_view_virtual_reality_icon_icons_com_67514"/>
     <item android:id="@+id/mute"

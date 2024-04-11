@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                 if(item.getItemId()==R.id.profil_button){
                     profile();
                 }else{
-                    if(item.getItemId()==R.id.save){
+                    if(item.getItemId()==R.id.escape){
                         Toast.makeText(HomeActivity.this,user.getEvaluation()+" nb etoiles",Toast.LENGTH_LONG).show();
                     }
                 }
