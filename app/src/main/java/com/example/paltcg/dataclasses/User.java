@@ -186,24 +186,13 @@ public class User implements Parcelable {
                 "Number of Battles: "+getNbBattles()+"\n"+
                 "Number of Loosed Battles: "+loosed_battles+"\n"+
                 "Number of Won Battles: "+won_battles+"\n"+
-                "Number of Flee: "+)
+                "Number of Flee: "+flee_battles+"\n"+
+                "Number of Won Pokemons: "+won_poke+"\n"+
+                "Number of Loosed Pokemons: "+loosed_poke+"\n"+
+                "Number of Possessed Pokemons: "+getNbCards()+"\n"+
+                "My Evaluation of the Battles: "+evaluationMoy+"\n");
     }
 }
-
-
-
-
-    String username;
-    Boolean gender = false; // false : male, true : female
-    Integer profilePicId = 0;
-
-    ArrayList<Integer> cardsIds = new ArrayList<>();
-
-    ArrayList<Integer> deckCardsIds = new ArrayList<>();
-
-    //Champs pour les stats
-    Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0;
-    Double evaluationMoy = 0.0 ;
 
 
 
