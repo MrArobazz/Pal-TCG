@@ -19,7 +19,7 @@ public class User implements Parcelable {
     ArrayList<Integer> deckCardsIds = new ArrayList<>();
 
     //Champs pour les stats
-    Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0;
+    Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0 , flee_battles = 0;
     Double evaluationMoy = 0.0 ;
 
     public User() {}
@@ -135,8 +135,8 @@ public class User implements Parcelable {
     public ArrayList<Integer> getDeckCardsIds() { return deckCardsIds;}
 
     public void setEvaluation(double evaluation){
-        double tmp =  evaluationMoy * (won_battles + loosed_battles - 1);
-        evaluationMoy = (double)(tmp + evaluation) / (double)(won_battles + loosed_battles);
+        double tmp =  evaluationMoy * (getNbBattles() - 1);
+        evaluationMoy = (double)(tmp + evaluation) / (double)(getNbBattles());
     }
 
     public void addWonBattle(){
@@ -146,6 +146,7 @@ public class User implements Parcelable {
     public void addLoosedBattle(){
         loosed_battles++;
     }
+    public void addFleeBattle(){flee_battles++;}
 
     public void addLoosedPoke(int nb_losed){
         loosed_poke += nb_losed;
@@ -162,6 +163,7 @@ public class User implements Parcelable {
     public int getLoosedBattle(){
         return loosed_battles;
     }
+    public int getFleeBattle(){return flee_battles;}
 
     public int getWonPoke(){
         return won_poke;
@@ -172,10 +174,40 @@ public class User implements Parcelable {
     }
 
     public int getNbBattles(){
-        return won_battles + loosed_battles;
+        return won_battles + loosed_battles + flee_battles;
     }
 
     public double getEvaluation(){
         return  evaluationMoy;
     }
+
+    public String getStats(){
+        return ("Pseudo: "+ username +"\n"+
+                "Number of Battles: "+getNbBattles()+"\n"+
+                "Number of Loosed Battles: "+loosed_battles+"\n"+
+                "Number of Won Battles: "+won_battles+"\n"+
+                "Number of Flee: "+)
+    }
 }
+
+
+
+
+    String username;
+    Boolean gender = false; // false : male, true : female
+    Integer profilePicId = 0;
+
+    ArrayList<Integer> cardsIds = new ArrayList<>();
+
+    ArrayList<Integer> deckCardsIds = new ArrayList<>();
+
+    //Champs pour les stats
+    Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0;
+    Double evaluationMoy = 0.0 ;
+
+
+
+
+
+
+
