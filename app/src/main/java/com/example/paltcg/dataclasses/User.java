@@ -31,6 +31,11 @@ public class User implements Parcelable {
         profilePicId = in.readInt();
         cardsIds = (ArrayList<Integer>) in.readSerializable();
         deckCardsIds = (ArrayList<Integer>) in.readSerializable();
+        loosed_poke = in.readInt();
+        won_poke = in.readInt();
+        won_battles = in.readInt();
+        loosed_battles = in.readInt();
+        evaluationMoy = in.readDouble();
     }
 
     @Override
@@ -40,6 +45,11 @@ public class User implements Parcelable {
         dest.writeInt(profilePicId);
         dest.writeSerializable(cardsIds);
         dest.writeSerializable(deckCardsIds);
+        dest.writeInt(loosed_poke);
+        dest.writeInt(won_poke);
+        dest.writeInt(loosed_battles);
+        dest.writeInt(won_battles);
+        dest.writeDouble(evaluationMoy);
     }
 
     @Override

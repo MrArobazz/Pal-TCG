@@ -65,6 +65,7 @@ public class ArenaChoiceActivity extends AppCompatActivity{
 
     public void leave(View v) {
         Intent returnIntent = new Intent();
+        Log.i("TAG", "leave: " + user.getUsername());
         returnIntent.putExtra("the_user",user);
         Log.i("TAG", "leave: " + user.getEvaluation());
         setResult(Activity.RESULT_OK, returnIntent);
