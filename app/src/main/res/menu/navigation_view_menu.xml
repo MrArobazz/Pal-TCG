@@ -8,7 +8,7 @@
         <item android:id="@+id/attack_arena3"
             android:icon="@drawable/fight_svgrepo_com"
             android:title="@string/Attack"/>
-        <item android:id="@+id/defense_arena3"
+        <item android:id="@+id/escape_arena3"
             android:icon="@drawable/shield_reflect_svgrepo_com"
             android:title="@string/Run"/>
         <item android:id="@+id/change_arena3"

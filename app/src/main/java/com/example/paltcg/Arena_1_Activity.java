@@ -45,6 +45,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
     ConstraintLayout arena;
     ImageView botActiveCard, playerActiveCard;
+
     Integer playerActiveCardResId;
     WebView botPokemonSprite , playerPokemonSprite;
     ProgressBar progressBar_bot,progressBar_player;
@@ -52,7 +53,7 @@ public class Arena_1_Activity extends AppCompatActivity {
 
 
     Spinner pokemonsChoice;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapterForPokemonsChoice;
 
     ListView attacksChoice;
 
@@ -95,6 +96,8 @@ public class Arena_1_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arena1);
+
+
         findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
         random = new Random();
 
@@ -111,6 +114,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         }
 
         // Find pokemons of the player cards
+        pokemonCardsIds = getResources().obtainTypedArray(R.array.pokemon_cards_ids);
         generatePlayerTeam();
         generateBotTeam();
         pokemonCardsIds.recycle();
@@ -122,12 +126,11 @@ public class Arena_1_Activity extends AppCompatActivity {
             playerSpinnerArray.add(pokemon.getName());
         }
 
-        adapter = new ArrayAdapter<>(
+        adapterForPokemonsChoice = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, playerSpinnerArray);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pokemonsChoice = findViewById(R.id.spinner_poke_choice);
-        pokemonsChoice.setAdapter(adapter);
+        adapterForPokemonsChoice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pokemonsChoice.setAdapter(adapterForPokemonsChoice);
         pokemonsChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -158,8 +161,6 @@ public class Arena_1_Activity extends AppCompatActivity {
         progressBar_bot = findViewById(R.id.progressBar_pv_bot_arene1);
         progressBar_player = findViewById(R.id.progressBar_pv_player_arene1);
 
-        botActiveCard = findViewById(R.id.imageView_carte_active_bot);
-
         playerPokemonSprite = findViewById(R.id.webView_sprite_player_arena1);
         botPokemonSprite = findViewById(R.id.webView_sprite_bot_arena1);
         playerPokemonSprite.getSettings().setUseWideViewPort(true);
@@ -174,10 +175,11 @@ public class Arena_1_Activity extends AppCompatActivity {
 
         playerActiveCard = findViewById(R.id.imageView_carte_active_player);
         botActiveCard = findViewById(R.id.imageView_carte_active_bot);
+
+        pokemonsChoice = findViewById(R.id.spinner_poke_choice);
     }
 
     private void generatePlayerTeam() {
-        pokemonCardsIds = getResources().obtainTypedArray(R.array.pokemon_cards_ids);
         String[] pokemonNames = getResources().getStringArray(R.array.pokemon_names);
         for (int cardid : player.getDeckCardsIds()) {
             for (int i = 0; i < pokemonCardsIds.length(); i++) {
@@ -457,7 +459,7 @@ public class Arena_1_Activity extends AppCompatActivity {
                             goBilan(0);
                         }
                         else {
-                            adapter.remove(active_player_pokemon.getName());
+                            adapterForPokemonsChoice.remove(active_player_pokemon.getName());
                             change_by_ko = true;
                             pokemonsChoice.setVisibility(View.VISIBLE);
                         }
@@ -477,20 +479,20 @@ public class Arena_1_Activity extends AppCompatActivity {
         animator.start();
         String toastText = attacker.getName() + getString(R.string.use) + attkName + getString(R.string.inflicts) + dgts;
         Log.i(TAG, "attackAPokemon: " + toastText);
-        showToast(this,toastText,10000);
+        showToast(this,toastText,1000);
     }
     private final ListView.OnItemClickListener attack_action =
-            (parent, view, position, id) -> {
-                // Hide menus
-                attacksChoice.setVisibility(View.GONE);
-                findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
+        (parent, view, position, id) -> {
+            // Hide menus
+            attacksChoice.setVisibility(View.GONE);
+            findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
 
-                Log.i(TAG, "choix attaquer ");
-                Log.i("TAG", "here.");
-                String attkName = (String)parent.getItemAtPosition(position);
-                attackAPokemon(active_player_pokemon,true,attkName,active_bot_pokemon);
+            Log.i(TAG, "choix attaquer ");
+            Log.i("TAG", "here.");
+            String attkName = (String)parent.getItemAtPosition(position);
+            attackAPokemon(active_player_pokemon,true,attkName,active_bot_pokemon);
 
-            };
+    };
 
     private void replaceBotPokemon() {
         Log.i(TAG, "replaceBotPokemon: changmeent du pokemon du bot");
