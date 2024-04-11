@@ -19,8 +19,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="364dp"
-        android:layout_height="318dp"
+        android:layout_width="368dp"
+        android:layout_height="485dp"
         app:layout_constraintBottom_toTopOf="@+id/button_end_fight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,8 +119,7 @@
                 android:layout_gravity="center"
                 android:max="5"
                 android:numStars="5"
-                android:rating="0"
-                android:stepSize="0.5" />
+                android:rating="0" />
 
         </LinearLayout>
     </ScrollView>

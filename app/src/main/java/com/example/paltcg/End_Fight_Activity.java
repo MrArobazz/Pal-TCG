@@ -110,7 +110,7 @@ public class End_Fight_Activity extends AppCompatActivity {
                 cardsToDisplay = new ArrayList<>(user.getCardsIds());
                 cardsToDisplay.removeAll(oldCards);
                 Log.i(TAG, "onCreate: nb a afficher " + cardsToDisplay.size());
-                user.addLoosedPoke(cardsToDisplay.size());
+                user.addWonPoke(cardsToDisplay.size());
             }
         }
 
