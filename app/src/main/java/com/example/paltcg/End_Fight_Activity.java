@@ -6,17 +6,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,7 +60,7 @@ public class End_Fight_Activity extends AppCompatActivity {
         card5 = findViewById(R.id.imageView_card5);
 
         Intent intent = getIntent();
-        int result = 0;
+        int result;
         result = intent.getIntExtra("result",0);
         ArrayList<Integer> oldCards = intent.getIntegerArrayListExtra("old_list");
         if (oldCards != null)
@@ -71,16 +68,20 @@ public class End_Fight_Activity extends AppCompatActivity {
         user = intent.getParcelableExtra("the_user");
         if (user != null) Log.i(TAG, "onCreate: nouveau deck " + user.getCardsIds());
 
+
         Uri uri;
         switch (result) {
             case 0 :
                 uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.game_over);
+                user.addLoosedBattle();
                 break;
             case 1 :
                 uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.run_away);
+                user.addFleeBattle();
                 break;
             case 2 :
                 uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.win);
+                user.addWonBattle();
                 break;
             default :
                 uri = null;
@@ -126,15 +127,6 @@ public class End_Fight_Activity extends AppCompatActivity {
             for (int i = cardCount; i < 5; i++) {
                 cards.getChildAt(i).setVisibility(View.GONE);
             }
-        }
-
-        if(user!=null){
-            if (result == 1)
-                user.addFleeBattle();
-            if (result == 0)
-                user.addLoosedBattle();
-            if(result == 2)
-                user.addWonBattle();
         }
 
         ratingBar = findViewById(R.id.ratingBar_endfight);

@@ -32,7 +32,7 @@
     <string name="Attack">Attaquer</string>
     <string name="Run">Fuire</string>
     <string name="Change">Changer</string>
-    <string name="home">Acceuil</string>
+    <string name="home">Accueil</string>
     <string name="wonPoke">Vous avez gagné ces Pokemons:</string>
     <string name="loosedPoke">Vous avez perdu ces Pokemons:</string>
     <string name="flee">Fuites</string>
@@ -129,4 +129,9 @@
     <string name="end_of_turn">Fin du tour</string>
     <string name="try_to_press_back_button">Vous ne pouvez pas quitter le combat de cette manière. Utilisez le bouton \"Fuite\".</string>
     <string name="need_to_rate">Vous devez évaluer.</string>
+    <string name="saved_file">Utilisateur sauvegardé.</string>
+    <string name="save_error">Erreur de sauvegarde.</string>
+    <string name="loaded_file">Utilisateur chargé.</string>
+    <string name="load_error">Erreur de chargement.</string>
+    <string name="remove_error">Erreur pour supprimer la sauvegarde.</string>
 </resources>

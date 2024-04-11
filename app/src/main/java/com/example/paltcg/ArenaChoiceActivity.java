@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -77,7 +76,6 @@ public class ArenaChoiceActivity extends AppCompatActivity{
             Intent resultDatas = result.getData();
             if (resultDatas != null) {
                 user = resultDatas.getParcelableExtra("the_user");
-                Log.i("TAG", "handleActivityResult: " + user.getEvaluation());
             }
             leave(null);
         }
@@ -85,19 +83,19 @@ public class ArenaChoiceActivity extends AppCompatActivity{
 
     public void goArene1(android.view.View v){
         Intent intent = new Intent(this,Arena_1_Activity.class);
-        intent.putExtra("background", R.drawable.battlefield_2); // TO CHANGE
+        intent.putExtra("background", R.drawable.battlefiled_1);
         goNextActivity(intent);
     }
 
     public void goArene2(android.view.View v){
         Intent intent = new Intent(this,Arena_2_Activity.class);
-        intent.putExtra("background", R.drawable.battlefield_2); // TO CHANGE
+        intent.putExtra("background", R.drawable.battlefield_2);
         goNextActivity(intent);
     }
 
     public void goArene3(android.view.View v){
         Intent intent = new Intent(this, Arena_3_Activity.class);
-        intent.putExtra("background", R.drawable.battlefield_2); // TO CHANGE
+        intent.putExtra("background", R.drawable.battlefield_3);
         goNextActivity(intent);
     }
 
