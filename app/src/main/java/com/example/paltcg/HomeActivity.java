@@ -104,7 +104,7 @@ public class HomeActivity extends AppCompatActivity {
             Log.i("Returned value", "received result ok.");
             if (resultDatas != null) {
                 user = resultDatas.getParcelableExtra("the_user");
-                Log.i("HOMEACTIVITY", "handleActivityResult: returned from combat, rating :" + user.getEvaluation());
+                Log.i("HOMEACTIVITY", "handleActivityResult: returned from combat, rating :" + user.getUsername());
                 Log.i("Returned value", "received user.");
             }
         }
