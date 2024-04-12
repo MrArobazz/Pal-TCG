@@ -67,7 +67,7 @@
 
             <ImageButton
                 android:id="@+id/imageButton_arene1"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/white"
@@ -83,8 +83,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton_arene2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:background="@color/white"
                 android:contentDescription="@string/imageButton"
@@ -99,8 +99,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton_arene3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:background="@color/white"
                 android:contentDescription="@string/imageButton"
