@@ -109,8 +109,8 @@
 
                     <TextView
                         android:id="@+id/textView_expToUp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="60dp"
+                        android:layout_height="7dp"
                         android:gravity="center"
                         android:textAlignment="viewEnd"
                         android:textColor="#510606"
@@ -120,8 +120,8 @@
 
                     <TextView
                         android:id="@+id/textView_expNow"
-                        android:layout_width="142dp"
-                        android:layout_height="11dp"
+                        android:layout_width="56dp"
+                        android:layout_height="9dp"
                         android:gravity="center"
                         android:textAlignment="viewStart"
                         android:textColor="#670303"
