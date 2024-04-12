@@ -133,19 +133,21 @@ public class SignUpActivity extends AppCompatActivity {
             else {
                 if (profilePic == null)
                     Toast.makeText(this, "Please select a profile picture", Toast.LENGTH_SHORT).show();
-                if (user.getNbCards() == 0)
-                    Toast.makeText(this, "You need to generate a deck", Toast.LENGTH_SHORT).show();
                 else {
-                    user.setUsername(usernameEditText.getText().toString());
-                    user.setProfilePicId(Integer.parseInt(profilePic.getTag().toString())-1);
-                    user.setGender(genders.getCheckedRadioButtonId() != R.id.radioButton_genderMale);
+                    if (user.getNbCards() == 0)
+                        Toast.makeText(this, "You need to generate a deck", Toast.LENGTH_SHORT).show();
+                    else {
+                        user.setUsername(usernameEditText.getText().toString());
+                        user.setProfilePicId(Integer.parseInt(profilePic.getTag().toString()) - 1);
+                        user.setGender(genders.getCheckedRadioButtonId() != R.id.radioButton_genderMale);
 
-                    user.saveUser(this);
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("the_user",user);
-                    Log.i("TAG", "signUp: end");
-                    setResult(Activity.RESULT_OK, returnIntent);
-                    finish();
+                        user.saveUser(this);
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("the_user", user);
+                        Log.i("TAG", "signUp: end");
+                        setResult(Activity.RESULT_OK, returnIntent);
+                        finish();
+                    }
                 }
             }
         }
