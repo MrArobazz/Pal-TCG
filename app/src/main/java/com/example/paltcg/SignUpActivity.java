@@ -140,6 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
                     user.setProfilePicId(Integer.parseInt(profilePic.getTag().toString())-1);
                     user.setGender(genders.getCheckedRadioButtonId() != R.id.radioButton_genderMale);
 
+                    user.saveUser(this);
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("the_user",user);
                     Log.i("TAG", "signUp: end");
