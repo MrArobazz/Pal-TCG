@@ -12,13 +12,13 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="166dp"
+        android:contentDescription="@string/imageView"
+        android:importantForAccessibility="no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/battle"
-        android:importantForAccessibility="no" />
+        app:srcCompat="@drawable/battle" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_home"
@@ -42,15 +42,14 @@
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/pokeball"
             tools:layout_editor_absoluteX="155dp"
-            tools:layout_editor_absoluteY="15dp"
-            />
+            tools:layout_editor_absoluteY="15dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/scrollView"
         android:layout_marginBottom="1dp"
+        android:contentDescription="@string/scrollView"
         app:layout_constraintBottom_toTopOf="@+id/toolbar_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,35 +61,50 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
             <ImageButton
                 android:id="@+id/imageButton_arene1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:contentDescription="@string/imageButton"
                 android:importantForAccessibility="no"
                 android:onClick="goArene1"
                 android:scaleType="fitXY"
-                android:contentDescription="@string/imageButton"
-                android:background="@color/white"
                 app:srcCompat="@drawable/arene1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
             <ImageButton
                 android:id="@+id/imageButton_arene2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
+                android:layout_gravity="center"
                 android:background="@color/white"
                 android:contentDescription="@string/imageButton"
+                android:importantForAccessibility="no"
                 android:onClick="goArene2"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/arene4" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
             <ImageButton
                 android:id="@+id/imageButton_arene3"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
+                android:layout_gravity="center"
                 android:background="@color/white"
                 android:contentDescription="@string/imageButton"
+                android:importantForAccessibility="no"
                 android:onClick="goArene3"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/arene3" />
