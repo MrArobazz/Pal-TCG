@@ -82,6 +82,8 @@
     <string name="slash" translatable="false">/</string>
     <string name="homebutton" translatable="false">homeButton</string>
     <string name="button_for_save" translatable="false">button_for_save</string>
+    <string name="level">Level</string>
+    <string name="exp">Exp</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>

@@ -32,6 +32,8 @@ public class End_Fight_Activity extends AppCompatActivity {
     ImageView card1, card2, card3, card4, card5;
     RatingBar ratingBar;
 
+    int won_card = 0 , loosed_card = 0;
+
 
     User user;
 
@@ -102,6 +104,7 @@ public class End_Fight_Activity extends AppCompatActivity {
                 cardsToDisplay.removeAll(user.getCardsIds());
                 Log.i(TAG, "onCreate: nb a afficher " + cardsToDisplay.size());
                 user.addLoosedPoke(cardsToDisplay.size());
+                loosed_card = cardsToDisplay.size();
             }
         }
         else {
@@ -112,7 +115,14 @@ public class End_Fight_Activity extends AppCompatActivity {
                 cardsToDisplay.removeAll(oldCards);
                 Log.i(TAG, "onCreate: nb a afficher " + cardsToDisplay.size());
                 user.addWonPoke(cardsToDisplay.size());
+                won_card = cardsToDisplay.size();
             }
+        }
+
+        calculateExp(result);
+        if(user.getExp() > (user.getLevel() * 20)) {
+            user.setLevel();
+            Toast.makeText(this,"Level Up : "+user.getLevel(),Toast.LENGTH_LONG).show();
         }
 
         int cardCount = cardsToDisplay.size();
@@ -182,6 +192,17 @@ public class End_Fight_Activity extends AppCompatActivity {
         video.suspend();
     }
 
+
+    private void calculateExp(int resultat){
+        switch(resultat){
+            case 0 : user.setExp((user.getLoosedBattle())/(user.getLevel() + user.getNbWonBattle() + loosed_card));
+                    break;
+            case 1 : user.setExp((user.getFleeBattle() + user.getNbBattles())/(user.getLevel() + user.getLoosedBattle() + loosed_card));
+                    break;
+            case 2 : user.setExp((user.getNbWonBattle() + won_card + user.getNbBattles())/user.getLevel());
+                    break;
+        }
+    }
 
 
 }

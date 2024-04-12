@@ -16,9 +16,10 @@ public class Stat_Activity extends AppCompatActivity {
 
     User user;
 
-    ProgressBar wonPoke, loosedPoke, wonBattles, loosedBattles, fleeBattles;
+    ProgressBar wonPoke, loosedPoke, wonBattles, loosedBattles, fleeBattles , exp;
     RatingBar evaluation;
-    TextView my_Poke, victories, defeats, flee, pokeWon, pokeLoose, totalPoke;
+    TextView my_Poke, victories, defeats, flee, pokeWon, pokeLoose, totalPoke , expNow , expMax , level;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class Stat_Activity extends AppCompatActivity {
         wonBattles.setMax(100);
         evaluation = findViewById(R.id.ratingBar_evaluation);
         evaluation.setNumStars(5);
+        exp = findViewById(R.id.progressBar_exp);
         my_Poke = findViewById(R.id.textView_mypoke);
         victories = findViewById(R.id.textView_victories);
         defeats = findViewById(R.id.textView_defeats);
@@ -47,6 +49,11 @@ public class Stat_Activity extends AppCompatActivity {
         pokeWon = findViewById(R.id.textView_catchedpoke);
         pokeLoose = findViewById(R.id.textView_lostpoke);
         totalPoke = findViewById(R.id.textView_totalpoke);
+        expNow = findViewById(R.id.textView_expNow);
+        expMax = findViewById(R.id.textView_expToUp);
+        level = findViewById(R.id.textView_level);
+
+
 
         if (user == null) {
             Toast.makeText(this, "user null", Toast.LENGTH_LONG).show();
@@ -100,6 +107,11 @@ public class Stat_Activity extends AppCompatActivity {
         flee.setText(String.valueOf(user.getFleeBattle()));
         fleeBattles.setProgress(user.getFleeBattle());
         totalPoke.setText(R.string.cards_number);
+        level.setText(String.valueOf(user.getLevel()));
+        expNow.setText(String.valueOf(user.getExp()));
+        expMax.setText(String.valueOf(user.getLevel() * 20));
+        exp.setMax(user.getLevel() * 20);
+        exp.setProgress(user.getExp());
 
     }
 

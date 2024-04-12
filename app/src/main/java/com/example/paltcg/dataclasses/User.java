@@ -30,8 +30,10 @@ public class User implements Parcelable {
     ArrayList<Integer> deckCardsIds = new ArrayList<>();
 
     //Champs pour les stats
-    Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0 , flee_battles = 0;
+    Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0 , flee_battles = 0 , level = 1 , exp = 0;
     Double evaluationMoy = 0.0 ;
+
+
 
     String mail = "";
 
@@ -51,6 +53,8 @@ public class User implements Parcelable {
         evaluationMoy = in.readDouble();
         flee_battles = in.readInt();
         mail = in.readString();
+        level = in.readInt();
+        exp = in.readInt();
     }
 
     @Override
@@ -67,6 +71,8 @@ public class User implements Parcelable {
         dest.writeDouble(evaluationMoy);
         dest.writeInt(flee_battles);
         dest.writeString(mail);
+        dest.writeInt(level);
+        dest.writeInt(exp);
     }
 
     @Override
@@ -95,6 +101,9 @@ public class User implements Parcelable {
     public void setGender(Boolean gender) {
         this.gender = gender;
     }
+
+    public void setLevel(){this.level++;}
+    public void setExp(int exp){this.exp += exp;}
 
 
     public void setProfilePicId(Integer profilePicId) {
@@ -147,7 +156,8 @@ public class User implements Parcelable {
     }
     public boolean getGender(){return gender;}
     public String getMail(){return mail;}
-
+    public int getLevel(){return level;}
+    public int getExp(){return exp;}
     public Integer getProfilePicId() {
         return profilePicId;
     }
@@ -215,6 +225,7 @@ public class User implements Parcelable {
 
     public String getStats(){
         return ("Pseudo: "+ username +"\n"+
+                "Level: "+ level+"\n"+
                 "Number of Battles: "+getNbBattles()+"\n"+
                 "Number of Loosed Battles: "+loosed_battles+"\n"+
                 "Number of Won Battles: "+won_battles+"\n"+
