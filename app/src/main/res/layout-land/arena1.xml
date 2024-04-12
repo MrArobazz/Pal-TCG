@@ -103,7 +103,8 @@
             android:layout_width="140dp"
             android:layout_height="150dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
 
         <WebView
             android:id="@+id/webView_sprite_player_arena1"

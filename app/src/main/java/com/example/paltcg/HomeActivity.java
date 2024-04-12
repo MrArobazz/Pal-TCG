@@ -7,7 +7,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
@@ -69,18 +68,15 @@ public class HomeActivity extends AppCompatActivity {
 
 
         toolbar= findViewById(R.id.toolbar_home);
-        toolbar.setOnMenuItemClickListener(new androidx.appcompat.widget.Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId()==R.id.profil_button){
-                    profile();
-                }else{
-                    if(item.getItemId()==R.id.mail){
-                        partage();
-                    }
+        toolbar.setOnMenuItemClickListener(item -> {
+            if(item.getItemId()==R.id.profil_button){
+                profile();
+            }else{
+                if(item.getItemId()==R.id.mail){
+                    partage();
                 }
-                return true;
             }
+            return true;
         });
 
     }
@@ -119,9 +115,7 @@ public class HomeActivity extends AppCompatActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle(R.string.not_enough_active_cards_title);
             alert.setMessage(R.string.not_enough_active_cards);
-            alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                seeDeck(v);
-            });
+            alert.setPositiveButton(android.R.string.yes, (dialog, which) -> seeDeck(v));
 
             alert.show();
         }

@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
@@ -30,7 +29,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -140,28 +138,25 @@ public class Arena_3_Activity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(Arena_3_Activity.this,drawerLayout,toolbar,R.string.open_menu,R.string.close_menu);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.attack_arena3) {
-                    pokemonsChoice.setVisibility(View.GONE);
-                    pokemonsChoice.setSelection(0);
-                    attacksChoice.setVisibility(View.VISIBLE);
-                }else{
-                    if(menuItem.getItemId() == R.id.escape_arena3) {
-                        run_away();
-                    }
-                        else {
-                        if (menuItem.getItemId() == R.id.change_arena3) {
-                            attacksChoice.setVisibility(View.GONE);
-                            pokemonsChoice.setVisibility(View.VISIBLE);
-                        }
-                    }
-
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            if(menuItem.getItemId() == R.id.attack_arena3) {
+                pokemonsChoice.setVisibility(View.GONE);
+                pokemonsChoice.setSelection(0);
+                attacksChoice.setVisibility(View.VISIBLE);
+            }else{
+                if(menuItem.getItemId() == R.id.escape_arena3) {
+                    run_away();
                 }
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
+                    else {
+                    if (menuItem.getItemId() == R.id.change_arena3) {
+                        attacksChoice.setVisibility(View.GONE);
+                        pokemonsChoice.setVisibility(View.VISIBLE);
+                    }
+                }
+
             }
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         });
     }
 
@@ -255,7 +250,7 @@ public class Arena_3_Activity extends AppCompatActivity {
             Intent resultDatas = result.getData();
             if (resultDatas != null) {
                 player = resultDatas.getParcelableExtra("the_user");
-                Log.i(TAG, "handleActivityResult: " + player.getEvaluation());
+                //Log.i(TAG, "handleActivityResult: " + player.getEvaluation());
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("the_user",player);
                 setResult(Activity.RESULT_OK, returnIntent);

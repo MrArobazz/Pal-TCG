@@ -241,7 +241,7 @@ public class Arena_1_Activity extends AppCompatActivity {
             Intent resultDatas = result.getData();
             if (resultDatas != null) {
                 player = resultDatas.getParcelableExtra("the_user");
-                Log.i(TAG, "handleActivityResult: " + player.getEvaluation());
+                //Log.i(TAG, "handleActivityResult: " + player.getEvaluation());
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("the_user",player);
                 setResult(Activity.RESULT_OK, returnIntent);

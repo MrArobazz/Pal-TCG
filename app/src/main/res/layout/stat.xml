@@ -12,7 +12,7 @@
         android:id="@+id/imageView3"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:contentDescription="header"
+        android:contentDescription="@string/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -225,7 +225,7 @@
                             android:layout_height="44dp"
                             android:editable="false"
                             android:gravity="center"
-                            android:text="/"
+                            android:text="@string/slash"
                             android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/textView_totalpoke"
@@ -417,7 +417,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:contentDescription="homeButton"
+        android:contentDescription="@string/homebutton"
         android:onClick="goHome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -431,6 +431,7 @@
         android:onClick="save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/save_svgrepo_com" />
+        app:srcCompat="@drawable/save_svgrepo_com"
+        android:contentDescription="@string/button_for_save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

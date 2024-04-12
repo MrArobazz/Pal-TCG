@@ -57,7 +57,8 @@
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/pokeball_icon_icons_com_67533"
             tools:layout_editor_absoluteX="389dp"
-            tools:layout_editor_absoluteY="29dp" />
+            tools:layout_editor_absoluteY="29dp"
+            android:contentDescription="@string/imagebutton_gohome" />
     </androidx.appcompat.widget.Toolbar>
 
     <ImageButton
@@ -72,7 +73,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_entete"
-        app:srcCompat="@drawable/deck" />
+        app:srcCompat="@drawable/deck"
+        android:contentDescription="@string/imagebutton_seedecks" />
 
     <ImageButton
         android:id="@+id/imageButton_stat"
@@ -83,7 +85,8 @@
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_entete"
-        app:srcCompat="@drawable/stat" />
+        app:srcCompat="@drawable/stat"
+        android:contentDescription="@string/imagebutton_seestats" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

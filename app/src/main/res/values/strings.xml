@@ -75,6 +75,13 @@
     <string name="imageView" translatable="false">ImageView</string>
     <string name="scrollView" translatable="false">ScrollView</string>
     <string name="editText" translatable="false">EditText</string>
+    <string name="imagebutton_seedecks" translatable="false">imageButton_seeDecks</string>
+    <string name="imagebutton_seestats" translatable="false">imageButton_seeStats</string>
+    <string name="imagebutton_gohome" translatable="false">imageButton_goHome</string>
+    <string name="header" translatable="false">header</string>
+    <string name="slash" translatable="false">/</string>
+    <string name="homebutton" translatable="false">homeButton</string>
+    <string name="button_for_save" translatable="false">button_for_save</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>

@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -60,38 +59,25 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }
 
-        man.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                    tmp_gender = false;
-            }
+        man.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked)
+                tmp_gender = false;
         });
 
 
-        woman.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                    tmp_gender = true;
-            }
+        woman.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked)
+                tmp_gender = true;
         });
 
-        save.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    save.setBackgroundColor(Color.GREEN);
-                    user.setUsername(pseudo.getText().toString());
-                    if(man.isChecked()){
-                        user.setGender(false);
-                    }else{
-                        user.setGender(true);
-                    }
-                    user.setMail(mail.getText().toString());
-                }else{
-                    save.setBackgroundColor(Color.RED);
-                }
+        save.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+                save.setBackgroundColor(Color.GREEN);
+                user.setUsername(pseudo.getText().toString());
+                user.setGender(!man.isChecked());
+                user.setMail(mail.getText().toString());
+            }else{
+                save.setBackgroundColor(Color.RED);
             }
         });
 
