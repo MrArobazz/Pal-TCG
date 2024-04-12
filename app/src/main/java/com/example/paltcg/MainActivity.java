@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -22,14 +23,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.paltcg.dataclasses.User;
 
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
     MediaPlayer mainTheme;
-    ActivityResultLauncher<Intent> signUpActivityResultLauncher;
-    ActivityResultLauncher<Intent> homeActivityResultLauncher;
+    ActivityResultLauncher<Intent> activityResultLauncher;
 
     User user;
 
@@ -55,21 +54,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // Widgets
         profilePic = findViewById(R.id.imageView_profilePic);
         accountUsername = findViewById(R.id.textView_accountUsername);
         completion = findViewById(R.id.textView_completion);
 
-        displayInfos();
-        //TODO: check si sauvegarde existante ou non
         if (user == null) {
-            signUpActivityResultLauncher = registerForActivityResult(
-                    new ActivityResultContracts.StartActivityForResult(),
-                    this::handleActivityResult
-            );
+            user = new User();
+            if (!user.loadUserIfExists(this))
+                user = null;
         }
 
-        homeActivityResultLauncher = registerForActivityResult(
+        displayInfos();
+
+        activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleActivityResult
         );
@@ -116,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
             alert.setTitle(R.string.ask_to_delete_title);
             alert.setMessage(R.string.ask_to_delete);
             alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                File folder = getApplicationContext().getFilesDir();
+                File toDelete = new File(folder, "user.txt");
+                if (toDelete.exists())
+                    if (!toDelete.delete())
+                        Toast.makeText(this, "Error, file cannot be removed.", Toast.LENGTH_SHORT).show();
                 user = null;
                 displayInfos();
             });
@@ -143,32 +147,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent;
         if (user == null) {
             intent = new Intent(this, SignUpActivity.class);
-            signUpActivityResultLauncher.launch(intent);
         }
         else {
             intent = new Intent(this, HomeActivity.class);
             intent.putExtra("the_user",user);
-            homeActivityResultLauncher.launch(intent);
         }
-    }
-
-    public void adminSignUp(View v) {
-        user = new User();
-        user.setUsername("Admin");
-        user.setGender(false);
-        user.setProfilePicId(5);
-        SortedSet<Integer> cards = new TreeSet<>();
-        cards.add(R.drawable.farfetch_dbaseset27);
-        cards.add(R.drawable.charizardstormfront103);
-        cards.add(R.drawable.nidoranbaseset55);
-        cards.add(R.drawable.diglettbaseset47);
-        cards.add(R.drawable.kadabrabaseset32);
-        cards.add(R.drawable.machopbaseset52);
-        user.addNewCards(cards);
-        for (int i = 0; i < 5; i++)
-            user.activateCard(i);
-        displayInfos();
-        playOrSignUp(v);
+        activityResultLauncher.launch(intent);
     }
 
     private void playMusic() {

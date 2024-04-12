@@ -58,9 +58,9 @@
                     android:id="@+id/imageView_bot_arena3"
                     android:layout_width="140dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/abrabaseset43"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:importantForAccessibility="no" />
 
                 <ProgressBar
                     android:id="@+id/progressBar_pv_bot_arene3"
@@ -98,9 +98,9 @@
                     android:id="@+id/imageView_card_player_arena3"
                     android:layout_width="122dp"
                     android:layout_height="135dp"
-                    android:src="@drawable/alakazambaseset1"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:importantForAccessibility="no" />
 
                 <ProgressBar
                     android:id="@+id/progressBar_pv_player_arene3"

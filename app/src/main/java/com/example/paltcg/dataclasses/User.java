@@ -1,12 +1,23 @@
 package com.example.paltcg.dataclasses;
 
+import android.app.Activity;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.paltcg.R;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.SortedSet;
 
 public class User implements Parcelable {
@@ -115,11 +126,11 @@ public class User implements Parcelable {
     }
 
     public void removeActiveCards() {
-        int nb_removed = 0;
+        ArrayList<Integer> tmp_cardsIds = new ArrayList<>(cardsIds);
+
         for (int pos : deckCardsIds) {
-            Log.i("TAG", "removeActiveCards: " + pos);
-            cardsIds.remove(pos-nb_removed);
-            nb_removed ++;
+            Integer cardid = tmp_cardsIds.get(pos);
+            cardsIds.remove(cardid);
         }
         deckCardsIds = new ArrayList<>();
     }
@@ -157,7 +168,7 @@ public class User implements Parcelable {
 
     public void setEvaluation(double evaluation){
         double tmp =  evaluationMoy * (getNbBattles() - 1);
-        evaluationMoy = (double)(tmp + evaluation) / (double)(getNbBattles());
+        evaluationMoy = (tmp + evaluation) / (double)(getNbBattles());
     }
 
     public void addWonBattle(){
@@ -212,6 +223,78 @@ public class User implements Parcelable {
                 "Number of Loosed Pokemons: "+loosed_poke+"\n"+
                 "Number of Possessed Pokemons: "+getNbCards()+"\n"+
                 "My Evaluation of the Battles: "+evaluationMoy+"\n");
+    }
+
+    public void saveUser(Activity activity) {
+        File folder = activity.getApplicationContext().getFilesDir();
+        File fileout = new File(folder, "user.txt");
+        try (FileOutputStream fos = new FileOutputStream(fileout)){
+            PrintStream ps = new PrintStream(fos);
+            ps.println(username);
+            ps.println(gender);
+            ps.println(profilePicId);
+            for (int cardid : cardsIds) {
+                ps.println(cardid);
+            }
+            ps.println(-1);
+            for (int pos : deckCardsIds) {
+                ps.println(pos);
+            }
+            ps.println(-1);
+            ps.println(loosed_poke);
+            ps.println(won_poke);
+            ps.println(won_battles);
+            ps.println(loosed_battles);
+            ps.println(flee_battles);
+            ps.println(evaluationMoy);
+
+            ps.close();
+
+            Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.saved_file), Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.save_error), Toast.LENGTH_SHORT).show();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean loadUserIfExists(Activity activity) {
+        File folder = activity.getApplicationContext().getFilesDir();
+        File readFrom = new File(folder, "user.txt");
+        if (readFrom.exists()) {
+            try (FileInputStream fis = new FileInputStream(readFrom)) {
+                Scanner sc = new Scanner(fis);
+                sc.useLocale(Locale.US);
+                username = sc.nextLine();
+                gender = sc.nextBoolean();
+                profilePicId = sc.nextInt();
+                while (sc.hasNextInt()) {
+                    int nextInt = sc.nextInt();
+                    if (nextInt != -1)
+                        cardsIds.add(nextInt);
+                    else break;
+                }
+                while (sc.hasNextInt()) {
+                    int nextInt = sc.nextInt();
+                    if (nextInt != -1)
+                        deckCardsIds.add(nextInt);
+                    else break;
+                }
+                loosed_poke = sc.nextInt();
+                won_poke = sc.nextInt();
+                won_battles = sc.nextInt();
+                loosed_battles = sc.nextInt();
+                flee_battles = sc.nextInt();
+                evaluationMoy = sc.nextDouble();
+
+                sc.close();
+                Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.loaded_file), Toast.LENGTH_SHORT).show();
+                return true;
+            } catch (IOException e) {
+                Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.load_error), Toast.LENGTH_SHORT).show();
+                throw new RuntimeException(e);
+            }
+        }
+        return false;
     }
 }
 

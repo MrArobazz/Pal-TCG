@@ -63,6 +63,12 @@
     <string name="end_of_turn">End of turn</string>
     <string name="try_to_press_back_button">You cannot leave the fight like this. Use escape button.</string>
     <string name="need_to_rate">You need to rate.</string>
+    <string name="saved_file">User saved.</string>
+    <string name="save_error">Save error.</string>
+    <string name="loaded_file">User loaded.</string>
+    <string name="load_error">Load error.</string>
+    <string name="remove_error">Save delete error.</string>
+    <string name="cards_number" translatable="false">69</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>

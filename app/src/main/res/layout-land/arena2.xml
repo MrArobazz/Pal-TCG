@@ -20,7 +20,7 @@
             android:layout_height="122dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/abrabaseset43" />
+            android:importantForAccessibility="no" />
 
         <WebView
             android:id="@+id/webView_sprite_bot_arena2"
@@ -59,7 +59,7 @@
             android:layout_height="122dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/alakazambaseset1" />
+            android:importantForAccessibility="no" />
 
         <WebView
             android:id="@+id/webView_sprite_player_arena2"
@@ -121,7 +121,8 @@
             android:onClick="displayAttackChoice"
             android:src="@drawable/athlete_boxing_fight_svgrepo_com"
             app:backgroundTint="@android:color/holo_green_light"
-            app:layout_anchor="@id/bottom_app_bar_arene2" />
+            app:layout_anchor="@id/bottom_app_bar_arene2"
+            android:importantForAccessibility="no" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -168,8 +168,6 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable 
 
             Element elem = doc.getElementById("mw-content-text");
             if (elem != null) {
-                Elements tables = elem.select("table");
-
                 Element datasTable = elem.selectFirst("table");
 
                 // Find the type
@@ -218,8 +216,10 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable 
                                 // here we are on the right ones
                                 String attackName = ths.get(1).ownText();
                                 String result = ths.get(2).text();
-                                String attackDgts =
-                                        result.length() > 2 ? result.substring(0,2) : result;
+                                String attackDgts = result;
+                                if (result.length() == 3)
+                                    if (result.charAt(2) != '0')
+                                        attackDgts = result.substring(0,2);
                                 if (attackDgts.length() < 2) {
                                     attackDgts = "20";
                                 }
