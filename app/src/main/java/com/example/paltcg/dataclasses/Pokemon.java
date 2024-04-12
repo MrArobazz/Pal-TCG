@@ -91,7 +91,9 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable 
     };
 
     public void fetchDatas() {
+        // if we do not already fetch datas
         if (!ready)
+            // to get Charizard datas directly
             if (name.equals("Charizard")) {
                 pv = 120;
                 max_pv = pv;
@@ -101,6 +103,7 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable 
                 attacks.add(new Attack("Fire Spin",100));
                 ready = true;
             }
+            // for the others
             else execute();
     }
 
@@ -119,6 +122,7 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable 
     }
 
     public String getBestAttackName() {
+        // just a comparison on the list
         int max = -1;
         String bestName = "";
         for (Attack attack : attacks) {
@@ -139,6 +143,7 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable 
     }
 
     public void attackPokemon(Pokemon opponent, int degats) {
+        // weakness and resistance coefs are always the same
         if (opponent.weakness == this.type)
             opponent.pv -= degats * 2;
         else if (opponent.resistance == this.type)
@@ -170,7 +175,6 @@ public class Pokemon extends AsyncTask<Void,Integer,Void> implements Parcelable 
             if (elem != null) {
                 Element datasTable = elem.selectFirst("table");
 
-                // Find the type
                 for (Element row : datasTable.select("tr")) {
                     Elements ths = row.select("th");
                     if (ths.size() == 1) {

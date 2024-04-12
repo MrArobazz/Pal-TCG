@@ -39,25 +39,33 @@ public class PC_RecyclerViewAdapter extends RecyclerView.Adapter<PC_RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull PC_RecyclerViewAdapter.MyViewHolder holder, int position) {
+        // at each new row to display
         Log.i("TAG", "onBindViewHolder: " + position);
+        // we will always have a left one, so we set the image ressource
         holder.leftCard.setImageResource(cardsIds.get(position*2));
+        // and we see if this cards was activated by the user to check the checkbox or not
         holder.isLeftEnabled.setChecked(user.getDeckCardsIds().contains(Integer.valueOf(position*2)));
+        // if the right one exists
         if (position*2+1 < cardsIds.size()) {
+            // we put it visible because if we don't, it will hide some cards if we going up again
             holder.rightCard.setVisibility(View.VISIBLE);
             holder.isRightEnabled.setVisibility(View.VISIBLE);
             holder.rightCard.setImageResource(cardsIds.get(position*2 + 1));
             holder.isRightEnabled.setChecked(user.getDeckCardsIds().contains(Integer.valueOf(position*2+1)));
         }
         else {
+            // we hide it
             holder.rightCard.setVisibility(View.INVISIBLE);
             holder.isRightEnabled.setVisibility(View.INVISIBLE);
         }
+        // we add listeners on checkboxes
         holder.isLeftEnabled.setOnClickListener(v -> activateCard(v, position*2));
         holder.isRightEnabled.setOnClickListener(v -> activateCard(v, position * 2 + 1));
     }
 
     @Override
     public int getItemCount() {
+        // because we have two cards per row
         return (cardsIds.size()+1)/2;
     }
 

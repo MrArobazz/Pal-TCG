@@ -116,7 +116,17 @@ public class User implements Parcelable {
                 cardsIds.add(cardId);
     }
 
+    public void addNewCards(ArrayList<Integer> newCards) {
+        // we check if we don't already have the card
+        for (Integer newCard : newCards) {
+            if (!cardsIds.contains(newCard))
+                // if not we add it
+                cardsIds.add(newCard);
+        }
+    }
+
     public boolean activateCard(int cardPosition) {
+        // to fill our hand
         if (getNbActiveCards() < 5) {
             deckCardsIds.add(cardPosition);
             return true;
@@ -125,16 +135,19 @@ public class User implements Parcelable {
     }
 
     public void removeDeckCard(int position) {
+        // here we remove a card from his position in the list
         Log.i("TAG", "removeDeckCard: remove " + position);
         deckCardsIds.remove(Integer.valueOf(position));
     }
 
     public void removeCards(ArrayList<Integer> cardsToRemove) {
+        // here we remove all specified cards
         cardsIds.removeAll(cardsToRemove);
         deckCardsIds = new ArrayList<>();
     }
 
     public void removeActiveCards() {
+        // here we remove all cards that were in our hand
         ArrayList<Integer> tmp_cardsIds = new ArrayList<>(cardsIds);
 
         for (int pos : deckCardsIds) {
@@ -142,13 +155,6 @@ public class User implements Parcelable {
             cardsIds.remove(cardid);
         }
         deckCardsIds = new ArrayList<>();
-    }
-
-    public void addNewCards(ArrayList<Integer> newCards) {
-        for (Integer newCard : newCards) {
-            if (!cardsIds.contains(newCard))
-                cardsIds.add(newCard);
-        }
     }
 
     public String getUsername() {
@@ -238,10 +244,13 @@ public class User implements Parcelable {
     }
 
     public void saveUser(Activity activity) {
+        // we will save in internal storage
         File folder = activity.getApplicationContext().getFilesDir();
         File fileout = new File(folder, "user.txt");
         try (FileOutputStream fos = new FileOutputStream(fileout)){
+            // we use printstream to easier manipulations
             PrintStream ps = new PrintStream(fos);
+            // we hard save datas
             ps.println(username);
             ps.println(gender);
             ps.println(profilePicId);
@@ -270,10 +279,13 @@ public class User implements Parcelable {
     }
 
     public boolean loadUserIfExists(Activity activity) {
+        // we get the save file
         File folder = activity.getApplicationContext().getFilesDir();
         File readFrom = new File(folder, "user.txt");
+        // we check if it exists
         if (readFrom.exists()) {
             try (FileInputStream fis = new FileInputStream(readFrom)) {
+                // we use scanner to easier manipulations
                 Scanner sc = new Scanner(fis);
                 sc.useLocale(Locale.US);
                 username = sc.nextLine();

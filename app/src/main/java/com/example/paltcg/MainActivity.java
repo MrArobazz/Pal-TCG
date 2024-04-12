@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
         accountUsername = findViewById(R.id.textView_accountUsername);
         completion = findViewById(R.id.textView_completion);
 
+        // if we do not get a user from bundle
         if (user == null) {
+            // we create a new one to see if we have a save file
             user = new User();
             if (!user.loadUserIfExists(this))
                 user = null;
@@ -145,9 +147,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void playOrSignUp(android.view.View v) {
         Intent intent;
+        // if the user do not exists, we create it
         if (user == null) {
             intent = new Intent(this, SignUpActivity.class);
         }
+        // if it exists, we go on HomeActivity
         else {
             intent = new Intent(this, HomeActivity.class);
             intent.putExtra("the_user",user);

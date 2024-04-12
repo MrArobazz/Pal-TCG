@@ -28,7 +28,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -75,24 +74,6 @@ public class Arena_1_Activity extends AppCompatActivity {
     private final String TAG = "COMBAT";
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        player = savedInstanceState.getParcelable("player");
-        playerPokemons = savedInstanceState.getParcelableArrayList("playerPokemons");
-        playerPokemons_original = savedInstanceState.getParcelableArrayList("playerPokemons_original");
-        botPokemons = savedInstanceState.getParcelableArrayList("botPokemons");
-        active_player_pokemon = savedInstanceState.getParcelable("active_player_pokemon");
-        active_bot_pokemon = savedInstanceState.getParcelable("active_bot_pokemon");
-        player_pokemonCards = savedInstanceState.getIntegerArrayList("player_pokemonCards");
-        player_pokemonCardsToRemove = savedInstanceState.getIntegerArrayList("player_pokemonCardsToRemove");
-        bot_pokemonCards = savedInstanceState.getIntegerArrayList("bot_pokemonCards");
-        begin = savedInstanceState.getBoolean("begin");
-        change_by_ko = savedInstanceState.getBoolean("change_by_ko");
-        nb_attempts = savedInstanceState.getInt("nb_attempts");
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arena1);
@@ -126,6 +107,7 @@ public class Arena_1_Activity extends AppCompatActivity {
             playerSpinnerArray.add(pokemon.getName());
         }
 
+        // We add the pokemons (names) to the spinner
         adapterForPokemonsChoice = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, playerSpinnerArray);
 
@@ -140,6 +122,8 @@ public class Arena_1_Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+
+        // We don't let the user go back because it will make escape useless
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() { showToast(Arena_1_Activity.this, getString(R.string.try_to_press_back_button),2500);}
@@ -180,13 +164,17 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     private void generatePlayerTeam() {
+        // we will get the drawables and names of the pokemon in the user hand
         String[] pokemonNames = getResources().getStringArray(R.array.pokemon_names);
         for (int cardid : player.getDeckCardsIds()) {
+            // for each card in the hand, we try to get the drawable and the name
             for (int i = 0; i < pokemonCardsIds.length(); i++) {
                 if (player.getCardId(cardid) == pokemonCardsIds.getResourceId(i, -1)) {
                     Pokemon pokemon = new Pokemon(pokemonNames[i], i + 1);
+                    // as soon as we have a pokemon, we start to fetch the datas to save time
                     pokemon.fetchDatas();
 
+                    // we add the pokemon to the list
                     player_pokemonCards.add(player.getCardId(cardid));
                     Log.i(TAG, "onCreate: " + pokemon.getName() + " " + player.getCardId(cardid));
                     playerPokemons.add(pokemon);
@@ -197,8 +185,10 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     private void generateBotTeam() {
+        // we do the same with the team of the bot but with random ids for the hand
         ArrayList<Integer> randomCardsIds = new ArrayList<>();
         String[] pokemonNames = getResources().getStringArray(R.array.pokemon_names);
+        // we still need to have 5 differents cards
         while (randomCardsIds.size() != 5) {
             int randomId = random.nextInt(pokemonCardsIds.length());
             Log.i("TAG", "onCreate: " + randomId);
@@ -222,15 +212,19 @@ public class Arena_1_Activity extends AppCompatActivity {
         handleBattleOrChange(position - 1);
     }
     private void handleBattleOrChange(int selectedIndex) {
+        // we will have differents behaviours depending of the context of the battle
+        // if the pokemon is dead
         if (change_by_ko) {
+            // we will replace it by another
             replacePlayerPokemonWith(selectedIndex);
             pokemonsChoice.setVisibility(View.GONE);
             pokemonsChoice.setSelection(0);
-            begin = false;
         } else {
             if (begin) {
+                // if it is the beginning
                 beginBattleWith(selectedIndex);
             } else {
+                // if the user wants to change the pokemon
                 changePokemonWith(selectedIndex);
             }
         }
@@ -250,27 +244,13 @@ public class Arena_1_Activity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable("player",player);
-        outState.putParcelableArrayList("playerPokemons",playerPokemons);
-        outState.putParcelableArrayList("playerPokemons_original",playerPokemons_original);
-        outState.putParcelableArrayList("botPokemons",botPokemons);
-        outState.putParcelable("active_player_pokemon",active_player_pokemon);
-        outState.putParcelable("active_bot_pokemon",active_bot_pokemon);
-        outState.putIntegerArrayList("player_pokemonCards",player_pokemonCards);
-        outState.putIntegerArrayList("player_pokemonCardsToRemove",player_pokemonCardsToRemove);
-        outState.putIntegerArrayList("bot_pokemonCards",bot_pokemonCards);
-        outState.putBoolean("begin",begin);
-        outState.putBoolean("change_by_ko",change_by_ko);
-        outState.putInt("nb_attempts",nb_attempts);
-    }
-
     void showToast(Context ctx, String message) {
         showToast(ctx,message,1000);
     }
     void showToast(Context ctx, String message, int duration) {
+        // i handle toasts to make them faster
+        // because i show a lot of toasts to follow the battle
+        // and default length are too long (yes 2.5 seconds are long even if she doesn't agree)
         final Toast toast = Toast.makeText(ctx, message,Toast.LENGTH_SHORT);
         toast.show();
 
@@ -289,6 +269,8 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     void setUpSprite(WebView sprite, Pokemon pokemon, boolean isPlayer) {
+        // there are a few names that are not okay so we need to change them
+        // for now it is here but we could put that somewhere else
         String rightName = pokemon.getName();
         if (rightName.equals("Nidoran♂"))
             rightName = rightName.replace("Nidoran♂","Nidoran_m");
@@ -329,9 +311,12 @@ public class Arena_1_Activity extends AppCompatActivity {
     }
 
     void changePlayerDisplay(int position) {
+        // we display the new pokemon
         active_player_pokemon = playerPokemons.get(position);
 
+        // we wait if he's not ready
         while (active_player_pokemon.isNotReady()) {}
+        // we put infos
         setUpProgressBar(progressBar_player, active_player_pokemon);
         setUpTextView(player_hp,active_player_pokemon);
         setUpSprite(playerPokemonSprite, active_player_pokemon, true);
@@ -420,14 +405,18 @@ public class Arena_1_Activity extends AppCompatActivity {
             healthbar = progressBar_player;
             healthText = player_hp;
         }
+        // to animate the decline in progress bar
         ValueAnimator animator = ValueAnimator.ofInt(healthbar.getProgress(),receiver.getPv());
         animator.setDuration(2000);
 
         animator.addUpdateListener(animation -> {
+            // at each frame (is that like Update function from Unity Hakim ?)
             int progress = (int) animation.getAnimatedValue();
+            // we get the new value
             String hpText = progress + "/" + receiver.getMaxPv();
+            // we set the new text
             float ratio = (float) progress / (float) receiver.getMaxPv();
-
+            // we calculate the ratio for the color
             int color;
             if (ratio <= 0.2)
                 color = Color.RED;
@@ -435,6 +424,7 @@ public class Arena_1_Activity extends AppCompatActivity {
                 color = Color.rgb(255,165,0);
             else color = Color.GREEN;
 
+            // we set up everything
             healthbar.setProgressTintList(ColorStateList.valueOf(color));
             healthbar.setProgress(progress);
             healthText.setText(hpText);
@@ -443,22 +433,32 @@ public class Arena_1_Activity extends AppCompatActivity {
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                // when animation ends
+                // we keep going the game
+                // if the receiver is dead
                 if (receiver.getPv() == 0) {
                     String toastText = receiver.getName() + getString(R.string.is_dead);
                     showToast(Arena_1_Activity.this, toastText);
+                    // if the receiver is the bot
                     if (isPlayer) {
                         nb_attempts = 0;
+                        // we remove the pokemon and we will try to replace it
                         botPokemons.remove(receiver); //active_bot_pokemon
                         replaceBotPokemon();
+                        // we will let the bot play
                         fin_tour();
                     }
+                    // if the receiver is the player
                     else {
+                        // we remove the pokemon and add it to the removed ones in case player escapes
                         playerPokemons.remove(receiver); //active_player_pokemon
                         player_pokemonCardsToRemove.add(playerActiveCardResId);
+                        // if player is dead we end the battle
                         if (playerPokemons.isEmpty()) {
                             goBilan(0);
                         }
                         else {
+                            // we will say to the player to replace his pokemon
                             adapterForPokemonsChoice.remove(active_player_pokemon.getName());
                             change_by_ko = true;
                             pokemonsChoice.setVisibility(View.VISIBLE);
@@ -466,7 +466,10 @@ public class Arena_1_Activity extends AppCompatActivity {
                     }
                 }
                 else if (isPlayer) {
+                    // normal behaviour
+                    // he attacks so we reset nb_attempts used for escape luck
                     nb_attempts = 0;
+                    // we will let the bot play
                     fin_tour();
                 }
                 else {
@@ -495,6 +498,7 @@ public class Arena_1_Activity extends AppCompatActivity {
     };
 
     private void replaceBotPokemon() {
+        // we will always replace with the first pokemon for the bot
         Log.i(TAG, "replaceBotPokemon: changmeent du pokemon du bot");
         if (!botPokemons.isEmpty()) {
             Log.i(TAG, "replaceBotPokemon: il lui reste des pokemons");
@@ -526,6 +530,7 @@ public class Arena_1_Activity extends AppCompatActivity {
         alert.setMessage(R.string.run_away_battle);
         alert.setPositiveButton(android.R.string.yes, (dialog, which) -> {
             findViewById(R.id.linearLayout_player_choice).setVisibility(View.GONE);
+            // it is the same operation in the game but with speed and not health points
             boolean success = false;
             int very_lucky = (active_player_pokemon.getMaxPv()/4)%256;
             if (very_lucky == 0)

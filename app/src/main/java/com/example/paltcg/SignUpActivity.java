@@ -96,20 +96,27 @@ public class SignUpActivity extends AppCompatActivity {
     public void generateDeck(android.view.View v) {
         Log.i("TAG", "generateDeck: begin");
 
+
         Random random = new Random();
         user = new User();
 
         SortedSet<Integer> randomCardsIds = new TreeSet<>();
+        // we get a array that contains resid of drawables
         pokemonCardsIds = getResources().obtainTypedArray(R.array.pokemon_cards_ids);
 
+        // we don't want dup cards, so we use a sorted set so we need to wait until we have 15 cards
         while (randomCardsIds.size() != 15) {
+            // we get a random pos
             int randomId = random.nextInt(pokemonCardsIds.length());
+            // and we add to our list
             randomCardsIds.add(pokemonCardsIds.getResourceId(randomId, 0));
         }
+        // we think to recycle the TypedArray
         pokemonCardsIds.recycle();
 
         user.addNewCards(randomCardsIds);
 
+        // we show cards to the user
         Intent intent = new Intent(this, DecksActivity.class);
         intent.putExtra("the_user",user);
         startActivity(intent);
