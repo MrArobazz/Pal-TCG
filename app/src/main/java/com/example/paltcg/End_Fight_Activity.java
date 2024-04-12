@@ -120,6 +120,7 @@ public class End_Fight_Activity extends AppCompatActivity {
         }
 
         calculateExp(result);
+        //MAJ Level si exp suffisant
         if(user.getExp() > (user.getLevel() * 20)) {
             user.setLevel();
             Toast.makeText(this,"Level Up : "+user.getLevel(),Toast.LENGTH_LONG).show();
@@ -193,6 +194,7 @@ public class End_Fight_Activity extends AppCompatActivity {
     }
 
 
+    //Calcul de l'exp gagne lors du combat
     private void calculateExp(int resultat){
         switch(resultat){
             case 0 : user.setExp((user.getLoosedBattle())/(user.getLevel() + user.getNbWonBattle() + loosed_card));

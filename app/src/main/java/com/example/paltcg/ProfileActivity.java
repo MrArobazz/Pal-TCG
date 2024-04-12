@@ -59,6 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }
 
+        //Si changement de genre
         man.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked)
                 tmp_gender = false;
@@ -70,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
                 tmp_gender = true;
         });
 
+        //si user veut sauvegarder ou pas les nouvelles infos
         save.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
                 save.setBackgroundColor(Color.GREEN);
@@ -81,6 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //Recuperation du nouveau mail renseigne
         mail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -99,6 +102,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //Recuperation du nouveau pseudo renseigne
         pseudo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

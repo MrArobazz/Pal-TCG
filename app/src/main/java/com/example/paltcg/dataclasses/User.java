@@ -223,6 +223,7 @@ public class User implements Parcelable {
         return  evaluationMoy;
     }
 
+    //corps du mail a envoyer
     public String getStats(){
         return ("Pseudo: "+ username +"\n"+
                 "Level: "+ level+"\n"+
