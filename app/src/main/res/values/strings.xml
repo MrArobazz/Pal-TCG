@@ -44,7 +44,11 @@
     <string name="wonPoke">You won these Pokemons :</string>
     <string name="loosedPoke">You lost these Pokemons :</string>
     <string name="flee">Flee</string>
-
+    <string name="saveOn">SaveOn</string>
+    <string name="saveOff">SaveOff</string>
+    <string name="mail">Mail To Send Stats</string>
+    <string name="back">Back</string>
+    <string name="validate">Validate</string>
 
     <string name="open_menu" translatable="false">Open</string>
     <string name="close_menu" translatable="false">Close</string>

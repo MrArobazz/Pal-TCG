@@ -54,12 +54,34 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/pseudo_player"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:editable="true"
-                android:text="NoName"
+                android:ems="10"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="37dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text="@string/mail"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
                 android:textAlignment="center" />
 
             <Space
@@ -77,6 +99,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif"
+                    android:gravity="center"
                     android:text="@string/gender"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -88,59 +111,45 @@
                     android:layout_weight="1">
 
                     <RadioButton
-                        android:id="@+id/radioButton4"
+                        android:id="@+id/radioButton_Man"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/Man" />
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/radioButton_Woman"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/Woman" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Pokemon" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Other" />
 
                 </RadioGroup>
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="23dp" />
+                android:layout_height="37dp" />
 
-            <TextView
-                android:id="@+id/textView6"
+            <ToggleButton
+                android:id="@+id/toggleButton_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:text="@string/BirthDay"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:background="#BC3333"
+                android:checked="false"
+                android:text="ToggleButton"
+                android:textOff="@string/saveOff"
+                android:textOn="@string/saveOn" />
 
-            <EditText
-                android:id="@+id/editTextDate_birthday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date" />
-
-            <CalendarView
-                android:id="@+id/calendarView_birthday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="save"
+        android:text="@string/validate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,11 @@
     <string name="wonPoke">Vous avez gagné ces Pokemons:</string>
     <string name="loosedPoke">Vous avez perdu ces Pokemons:</string>
     <string name="flee">Fuites</string>
+    <string name="saveOn">Sauvegarde Activée</string>
+    <string name="saveOff">Sauvegarde Desactivée</string>
+    <string name="mail">Mail pour Envoi Stats</string>
+    <string name="back">Retour</string>
+    <string name="validate">Valider</string>
 
 
     <!--<string-array name="pokemon_names">

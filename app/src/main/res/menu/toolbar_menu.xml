@@ -3,10 +3,7 @@
     <item android:id="@+id/profil_button"
         android:title="@string/Profil"
         android:icon="@drawable/pokemon_trainer_boy_icon_icons_com_67516"/>
-    <item android:id="@+id/save"
+    <item android:id="@+id/mail"
         android:title="@string/Send"
         android:icon="@drawable/pokemon_view_virtual_reality_icon_icons_com_67514"/>
-    <item android:id="@+id/mute"
-        android:title="@string/Mute"
-        android:icon="@drawable/_643732_mute_sound_speaker_voice_volume_113439"/>
 </menu>

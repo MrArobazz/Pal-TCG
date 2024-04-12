@@ -76,8 +76,7 @@ public class HomeActivity extends AppCompatActivity {
                 if(item.getItemId()==R.id.profil_button){
                     profile();
                 }else{
-                    if(item.getItemId()==R.id.escape){
-                        Toast.makeText(HomeActivity.this,user.getEvaluation()+" nb etoiles",Toast.LENGTH_LONG).show();
+                    if(item.getItemId()==R.id.mail){
                         partage();
                     }
                 }
@@ -138,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
     public void profile(){
         Intent intent = new Intent(this,ProfileActivity.class);
         intent.putExtra("the_user",user);
-        startActivity(intent);
+        activityResultLauncher.launch(intent);
     }
 
     public void stats(android.view.View View){
@@ -147,10 +146,10 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //envoi des stats par mail
     public void partage() {
-
         String uriText =
-                "mailto:tom.caillaud@etu.univ-poitiers.fr" +
+                "mailto:" +user.getMail()+
                         "?subject=" + Uri.encode("TCG_POKEMON") +
                         "&body=" + Uri.encode(user.getStats());
 
@@ -158,7 +157,8 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
         sendIntent.setData(uri);
-        startActivity(Intent.createChooser(sendIntent, "Send email"));
+        startActivity(Intent.createChooser(sendIntent, "Stats"));
+
     }
 
 }

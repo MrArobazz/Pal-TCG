@@ -22,6 +22,8 @@ public class User implements Parcelable {
     Integer  loosed_poke = 0  , won_poke = 0 , won_battles = 0 , loosed_battles = 0 , flee_battles = 0;
     Double evaluationMoy = 0.0 ;
 
+    String mail = "";
+
     public User() {}
 
     protected User(Parcel in) {
@@ -37,6 +39,7 @@ public class User implements Parcelable {
         loosed_battles = in.readInt();
         evaluationMoy = in.readDouble();
         flee_battles = in.readInt();
+        mail = in.readString();
     }
 
     @Override
@@ -52,6 +55,7 @@ public class User implements Parcelable {
         dest.writeInt(won_battles);
         dest.writeDouble(evaluationMoy);
         dest.writeInt(flee_battles);
+        dest.writeString(mail);
     }
 
     @Override
@@ -75,9 +79,12 @@ public class User implements Parcelable {
         this.username = username;
     }
 
+    public void setMail(String mail) {this.mail = mail;}
+
     public void setGender(Boolean gender) {
         this.gender = gender;
     }
+
 
     public void setProfilePicId(Integer profilePicId) {
         this.profilePicId = profilePicId;
@@ -127,6 +134,8 @@ public class User implements Parcelable {
     public String getUsername() {
         return username;
     }
+    public boolean getGender(){return gender;}
+    public String getMail(){return mail;}
 
     public Integer getProfilePicId() {
         return profilePicId;
