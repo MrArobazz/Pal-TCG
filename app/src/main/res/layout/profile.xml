@@ -11,6 +11,7 @@
         android:id="@+id/imageView2"
         android:layout_width="271dp"
         android:layout_height="140dp"
+        android:contentDescription="@string/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -58,9 +59,12 @@
                 android:id="@+id/pseudo_player"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:autofillHints="username"
                 android:ems="10"
+                android:hint="@string/pseudo"
                 android:inputType="text"
                 android:textAlignment="center"
+                android:textColorHint="#600606"
                 android:textStyle="bold" />
 
             <Space
@@ -81,8 +85,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:autofillHints="emailAddress"
+                android:hint="@string/exampleMail"
                 android:inputType="textEmailAddress"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColorHint="#600606" />
 
             <Space
                 android:layout_width="match_parent"
@@ -131,11 +138,12 @@
 
             <ToggleButton
                 android:id="@+id/toggleButton_save"
-                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#BC3333"
                 android:checked="false"
-                android:text="ToggleButton"
+                android:textColor="#FFE0B2"
                 android:textOff="@string/saveOff"
                 android:textOn="@string/saveOn" />
 

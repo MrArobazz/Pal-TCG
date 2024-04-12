@@ -69,6 +69,12 @@
     <string name="load_error">Load error.</string>
     <string name="remove_error">Save delete error.</string>
     <string name="cards_number" translatable="false">69</string>
+    <string name="exampleMail" translatable="false">dupont@mail.com</string>
+    <string name="imageButton" translatable="false">ImageButton</string>
+    <string name="imageText" translatable="false">ImageText</string>
+    <string name="imageView" translatable="false">ImageView</string>
+    <string name="scrollView" translatable="false">ScrollView</string>
+    <string name="editText" translatable="false">EditText</string>
 
     <string-array name="pokemon_names" translatable="false">
         <item>Alakazam</item>

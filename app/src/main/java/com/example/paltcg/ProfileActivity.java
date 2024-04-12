@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,15 +13,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.example.paltcg.dataclasses.User;
-
-import java.util.Calendar;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView pseudo;
@@ -40,25 +36,27 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
 
-        pseudo = (TextView) findViewById(R.id.pseudo_player);
-        man = (RadioButton) findViewById(R.id.radioButton_Man);
-        woman = (RadioButton) findViewById(R.id.radioButton_Woman);
-        back = (Button) findViewById(R.id.button_back);
-        mail = (EditText) findViewById(R.id.editTextTextEmailAddress_mail);
-        save = (ToggleButton) findViewById(R.id.toggleButton_save);
+        pseudo =  findViewById(R.id.pseudo_player);
+        man =  findViewById(R.id.radioButton_Man);
+        woman =  findViewById(R.id.radioButton_Woman);
+        back =  findViewById(R.id.button_back);
+        mail =  findViewById(R.id.editTextTextEmailAddress_mail);
+        save =  findViewById(R.id.toggleButton_save);
 
         Intent intent = getIntent();
         if(intent != null){
             user = intent.getParcelableExtra("the_user");
-            pseudo.setText(user.getUsername());
-            tmp_gender = user.getGender();
-            tmp_username =  user.getUsername();
-            tmp_mail = user.getMail();
-            mail.setText(user.getMail());
-            if(user.getGender()){
-                woman.setChecked(true);
-            }else{
-                man.setChecked(true);
+            if(user != null) {
+                pseudo.setText(user.getUsername());
+                tmp_gender = user.getGender();
+                tmp_username = user.getUsername();
+                tmp_mail = user.getMail();
+                mail.setText(user.getMail());
+                if (user.getGender()) {
+                    woman.setChecked(true);
+                } else {
+                    man.setChecked(true);
+                }
             }
         }
 

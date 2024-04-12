@@ -11,7 +11,7 @@
         android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="106dp"
-        android:contentDescription="header"
+        android:contentDescription="@string/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -59,6 +59,7 @@
                     android:id="@+id/imageView_card1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imageView"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/abrabaseset43" />
 
@@ -66,6 +67,7 @@
                     android:id="@+id/imageView_card2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imageView"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/abrabaseset43" />
 
@@ -73,6 +75,7 @@
                     android:id="@+id/imageView_card3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imageView"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/abrabaseset43" />
 
@@ -80,6 +83,7 @@
                     android:id="@+id/imageView_card4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imageView"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/abrabaseset43" />
 
@@ -87,6 +91,7 @@
                     android:id="@+id/imageView_card5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/imageView"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/abrabaseset43" />
             </LinearLayout>

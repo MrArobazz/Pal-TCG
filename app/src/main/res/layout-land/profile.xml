@@ -10,6 +10,7 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="835dp"
+        android:contentDescription="@string/imageView"
         android:layout_height="105dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +111,7 @@
 
                     <RadioButton
                         android:id="@+id/radioButton_Man"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/Man" />
 
@@ -134,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:background="#BC3333"
                 android:checked="false"
-                android:text="ToggleButton"
+                android:text="@string/saveOff"
                 android:textOff="@string/saveOff"
                 android:textOn="@string/saveOn" />
 
