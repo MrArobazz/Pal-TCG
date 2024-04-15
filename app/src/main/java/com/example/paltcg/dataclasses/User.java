@@ -268,6 +268,9 @@ public class User implements Parcelable {
             ps.println(loosed_battles);
             ps.println(flee_battles);
             ps.println(evaluationMoy);
+            ps.println(level);
+            ps.println(exp);
+            ps.println(mail);
 
             ps.close();
 
@@ -309,6 +312,9 @@ public class User implements Parcelable {
                 loosed_battles = sc.nextInt();
                 flee_battles = sc.nextInt();
                 evaluationMoy = sc.nextDouble();
+                level = sc.nextInt();
+                exp = sc.nextInt();
+                mail = sc.nextLine();
 
                 sc.close();
                 Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.loaded_file), Toast.LENGTH_SHORT).show();
